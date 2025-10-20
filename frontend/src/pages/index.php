@@ -1,3 +1,15 @@
+<?php 
+// Include data file
+require_once __DIR__ . '/../data/properties.php';
+
+// Get current page from URL parameter, default to 1
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Get paginated properties (6 per page for featured section)
+$result = paginateProperties(getProperties(), $currentPage, 6);
+$properties = $result['properties'];
+$pagination = $result['pagination'];
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,6 +29,103 @@
       }
     }
   </script>
+  <style>
+    /* Property Card Hover Effects */
+    .property-card {
+      position: relative;
+      overflow: visible;
+      transition: transform 0.3s ease;
+    }
+
+    .property-popup {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      min-height: auto;
+      background: white;
+      border-radius: 1.5rem;
+      opacity: 0;
+      transform: scale(0.95) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+      z-index: 20;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      /* no inner border so image can touch edges */
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* body area inside popup; leave room for absolute price button */
+    .property-popup .popup-body {
+      padding-bottom: 96px; /* space for price button */
+    }
+
+    /* absolute price button that sits flush at the bottom of popup */
+    .property-price {
+      position: absolute;
+      /* extend slightly beyond popup edges to fully conceal popup bottom */
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      margin: 0 auto;
+      background: #FCB305;
+      color: white;
+      text-align: center;
+      padding: 18px 0;
+      font-weight: 700;
+      font-size: 1.125rem;
+      border-radius: 9999px; /* fully rounded */
+      z-index: 9999;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    /* Ensure parent containers don't clip the popup */
+    .max-w-6xl, .container, .properties-grid, .max-w-7xl {
+      overflow: visible !important;
+    }
+
+    /* Higher stacking for featured popups */
+    .property-popup { z-index: 9999; }
+
+    .property-card:hover {
+      transform: translateY(-5px);
+      z-index: 30;
+    }
+
+    .property-card:hover .property-popup {
+      opacity: 1;
+      transform: scale(1) translateY(-10px);
+      pointer-events: auto;
+    }
+
+    /* Index (featured) popup fixed size and centered behavior */
+    .property-popup.index-popup {
+      width: 367px;
+      height: 547px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.95) translateY(20px);
+    }
+
+    .property-card:hover .property-popup.index-popup {
+      opacity: 1;
+      transform: translateX(-50%) scale(1) translateY(-10px);
+      pointer-events: auto;
+    }
+
+    .property-popup.index-popup img {
+      width: 367px;
+      height: 254px;
+      object-fit: cover;
+    }
+
+    /* Add breathing room around hovered cards */
+    .properties-grid {
+      padding: 20px 0;
+    }
+  </style>
 </head>
 <body>
 
@@ -251,46 +360,90 @@
 
   <!-- Featured Properties Section -->
   <section class="py-20 bg-white">
-    <div class="container mx-auto px-6">
+    <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
       <div class="text-center mb-16">
-        <p class="text-xs uppercase text-gray-500 tracking-wide mb-2">FEATURED PROPERTIES / SUCCESS STORIES</p>
-        <h2 class="text-4xl font-bold mb-4">We Bring Dream Homes<br>To Reality</h2>
-        <button class="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-lg font-semibold transition">View All</button>
+        <p class="text-[18px] uppercase text-gray-500 tracking-wide mb-2">FEATURED LISTING</p>
+        <h2 class="text-[46px] font-bold mb-4 leading-tight">We Bring Dream Homes<br>To Reality</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="h-64 w-full object-cover" alt="Modern House">
-          <div class="p-6">
-            <h3 class="font-bold text-xl mb-2">Modern Family House</h3>
-            <p class="text-gray-600 mb-4">Beautiful 4-bedroom house with modern amenities</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-blue-600">£450,000</span>
-              <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">View Details</button>
+  <div class="properties-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style="overflow: visible;">
+        <?php foreach ($properties as $property): ?>
+  <div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
+          <div class="relative">
+            <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
+            <div class="absolute top-4 left-4">
+              <span class="<?php echo getStatusBadgeColor($property['status']); ?> text-white px-4 py-2 rounded-full text-sm font-semibold"><?php echo htmlspecialchars($property['status']); ?></span>
             </div>
           </div>
-        </div>
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="h-64 w-full object-cover" alt="Luxury Apartment">
-          <div class="p-6">
-            <h3 class="font-bold text-xl mb-2">Luxury Apartment</h3>
-            <p class="text-gray-600 mb-4">Premium 2-bedroom apartment in city center</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-blue-600">£320,000</span>
-              <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">View Details</button>
+          <div class="p-4 text-center">
+            <h3 class="font-bold text-lg mb-2 text-gray-800"><?php echo htmlspecialchars($property['title']); ?></h3>
+            <div class="flex items-center justify-center text-gray-600 mb-2">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-sm"><?php echo htmlspecialchars($property['location']); ?></span>
+            </div>
+            <div class="text-brand-yellow font-bold text-xl mb-2"><?php echo htmlspecialchars($property['price']); ?></div>
+            <div class="flex justify-center items-center gap-4 text-gray-600 text-sm">
+              <span><?php echo $property['bedrooms']; ?> beds</span>
+              <span><?php echo $property['bathrooms']; ?> baths</span>
+              <span><?php echo htmlspecialchars($property['area']); ?></span>
             </div>
           </div>
-        </div>
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="h-64 w-full object-cover" alt="Contemporary Villa">
-          <div class="p-6">
-            <h3 class="font-bold text-xl mb-2">Contemporary Villa</h3>
-            <p class="text-gray-600 mb-4">Stunning 5-bedroom villa with garden</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-blue-600">£750,000</span>
-              <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">View Details</button>
+
+          <!-- Hover Popup -->
+              <div class="property-popup index-popup">
+            <div class="relative h-full flex flex-col">
+              <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-48 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
+              <div class="absolute top-3 left-3">
+                <span class="<?php echo getStatusBadgeColor($property['status']); ?> text-white px-3 py-1 rounded-full text-xs font-semibold"><?php echo htmlspecialchars($property['status']); ?></span>
+              </div>
+              
+              <div class="popup-body p-4 flex-1 flex flex-col">
+                <h3 class="font-bold text-base mb-1 text-gray-800"><?php echo htmlspecialchars($property['title']); ?></h3>
+                <div class="flex items-center text-gray-600 mb-3">
+                  <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-xs"><?php echo htmlspecialchars($property['location']); ?></span>
+                </div>
+
+                <hr class="border-gray-200 mb-3">
+
+                <div class="grid grid-cols-2 gap-4 text-gray-600 text-sm mb-3">
+                  <div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18"></path></svg><span><?php echo htmlspecialchars($property['area']); ?></span></div>
+                  <div class="flex items-center justify-end"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 6v12"></path></svg><span><?php echo $property['garages'] ?? 2; ?> Garages</span></div>
+
+                  <div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14"></path></svg><span><?php echo $property['bedrooms']; ?> Bedrooms</span></div>
+                  <div class="flex items-center justify-end"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10a4 4 0 01-8 0"></path></svg><span><?php echo $property['bathrooms']; ?> Bathrooms</span></div>
+
+                  <div class="col-span-2 flex items-center justify-between text-xs text-gray-500 mt-3">
+                    <div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg><span>Michel Smith</span></div>
+                    <div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg><span>1 days ago</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+              
+              <!-- absolute price button placed at popup bottom -->
+              <div class="property-price"><?php echo htmlspecialchars($property['price']); ?></div>
+
+            </div>
         </div>
+        <?php endforeach; ?>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="flex justify-end items-center mt-8 gap-4">
+        <div class="flex items-center gap-2">
+          <?php for ($i = 1; $i <= $pagination['total_pages']; $i++): ?>
+            <?php if ($i == $pagination['current_page']): ?>
+              <span class="w-8 h-8 rounded bg-[#FCB305] text-white font-semibold text-sm flex items-center justify-center"><?php echo $i; ?></span>
+            <?php else: ?>
+              <a href="?page=<?php echo $i; ?>" class="w-8 h-8 rounded bg-gray-200 text-gray-600 font-semibold text-sm flex items-center justify-center hover:bg-gray-300 transition-colors"><?php echo $i; ?></a>
+            <?php endif; ?>
+          <?php endfor; ?>
+        </div>
+        <a href="properties.php" class="text-gray-800 font-semibold text-sm hover:text-[#FCB305] transition-colors">VIEW ALL</a>
       </div>
     </div>
   </section>
@@ -437,15 +590,8 @@
             heroEl.style.backgroundImage = overlay.style.backgroundImage;
             overlay.classList.remove('opacity-100');
             overlay.classList.add('opacity-0');
-          });
+          }
         }
-      }
-
-      function next() { idx = (idx + 1) % images.length; setBackground(idx); }
-      function prev() { idx = (idx - 1 + images.length) % images.length; setBackground(idx); }
-
-      const nextBtn = document.getElementById('heroNext');
-      const prevBtn = document.getElementById('heroPrev');
       if (nextBtn && !nextBtn.dataset.bound) { nextBtn.addEventListener('click', next); nextBtn.dataset.bound = '1'; }
       if (prevBtn && !prevBtn.dataset.bound) { prevBtn.addEventListener('click', prev); prevBtn.dataset.bound = '1'; }
 
