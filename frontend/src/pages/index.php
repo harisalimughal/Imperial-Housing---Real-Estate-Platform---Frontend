@@ -97,7 +97,7 @@ $pagination = $result['pagination'];
 
     .property-popup.index-popup img {
       width: 350px !important;
-      height: 200px !important;
+      height: 220px !important;
       object-fit: cover !important;
       display: block;
     }
