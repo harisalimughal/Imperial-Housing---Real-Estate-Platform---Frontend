@@ -2,13 +2,10 @@
 // Include data file
 require_once __DIR__ . '/../data/properties.php';
 
-// Get current page from URL parameter, default to 1
-$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
-// Get paginated properties (6 per page for featured section)
-$result = paginateProperties(getProperties(), $currentPage, 6);
-$properties = $result['properties'];
-$pagination = $result['pagination'];
+// Get all properties for carousel
+$allProperties = getProperties();
+$propertiesPerPage = 6;
+$totalPages = ceil(count($allProperties) / $propertiesPerPage);
 ?>
 <!doctype html>
 <html lang="en">
@@ -35,11 +32,12 @@ $pagination = $result['pagination'];
       position: relative;
       overflow: visible;
       transition: transform 0.3s ease;
+      z-index: 1;
     }
 
     .property-popup {
       position: absolute;
-      top: 0;
+      top: -20px; /* Move popup up to prevent top clipping */
       left: 0;
       width: 100%;
       height: auto;
@@ -50,7 +48,7 @@ $pagination = $result['pagination'];
       transform: scale(0.95) translateY(20px);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       pointer-events: none;
-      z-index: 20;
+      z-index: 50; /* Higher z-index to appear above carousel */
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
       /* no inner border so image can touch edges */
       overflow: hidden;
@@ -61,8 +59,13 @@ $pagination = $result['pagination'];
 
 
     /* Ensure parent containers don't clip the popup */
-    .max-w-6xl, .container, .properties-grid, .max-w-7xl {
+    .max-w-6xl, .container, .properties-grid, .max-w-7xl, .properties-page {
       overflow: visible !important;
+    }
+
+    /* Featured Properties Section - ensure no clipping */
+    section {
+      overflow: visible;
     }
 
     /* Higher stacking for featured popups */
@@ -70,12 +73,12 @@ $pagination = $result['pagination'];
 
     .property-card:hover {
       transform: translateY(-5px);
-      z-index: 30;
+      z-index: 100; /* Higher z-index when hovered */
     }
 
     .property-card:hover .property-popup {
       opacity: 1;
-      transform: scale(1) translateY(-10px);
+      transform: scale(1) translateY(-30px); /* Move further up when hovered */
       pointer-events: auto;
     }
 
@@ -105,6 +108,48 @@ $pagination = $result['pagination'];
     /* Add breathing room around hovered cards */
     .properties-grid {
       padding: 20px 0;
+    }
+
+    /* Properties Carousel Styles */
+    .properties-carousel-container {
+      overflow: hidden;
+      padding: 60px 0; /* Add padding to prevent popup clipping */
+      margin: -60px 0; /* Negative margin to maintain layout */
+    }
+
+    .properties-carousel {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .properties-page {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 0 20px; /* Add horizontal padding for side popups */
+    }
+
+    @media (max-width: 1024px) {
+      .properties-page {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .properties-page {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Carousel Navigation Buttons */
+    .carousel-nav-btn {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .carousel-nav-btn:hover:not([data-active="true"]) {
+      background-color: #d1d5db;
     }
   </style>
 </head>
@@ -346,9 +391,16 @@ $pagination = $result['pagination'];
         <p class="text-[18px] uppercase text-gray-500 tracking-wide mb-2">FEATURED LISTING</p>
         <h2 class="text-[46px] font-bold mb-4 leading-tight">We Bring Dream Homes<br>To Reality</h2>
       </div>
-  <div class="properties-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style="overflow: visible;">
-        <?php foreach ($properties as $property): ?>
-  <div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
+      <!-- Properties Carousel Container -->
+      <div class="properties-carousel-container" style="overflow: hidden;">
+        <div class="properties-carousel" style="display: flex; transition: transform 0.5s ease-in-out;">
+          <?php 
+          // Group properties into pages of 6
+          $propertyChunks = array_chunk($allProperties, $propertiesPerPage);
+          foreach ($propertyChunks as $pageIndex => $propertiesPage): ?>
+            <div class="properties-page" style="min-width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;" data-page="<?php echo $pageIndex; ?>">
+              <?php foreach ($propertiesPage as $property): ?>
+                <div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
           <div class="relative">
             <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
             <div class="absolute top-4 left-4">
@@ -411,18 +463,21 @@ $pagination = $result['pagination'];
             </div>
           </div>
         </div>
-        <?php endforeach; ?>
+              <?php endforeach; ?>
+            </div>
+          <?php endforeach; ?>
+        </div>
       </div>
       
-      <!-- Pagination -->
+      <!-- Carousel Navigation -->
       <div class="flex justify-end items-center mt-8 gap-4">
         <div class="flex items-center gap-2">
-          <?php for ($i = 1; $i <= $pagination['total_pages']; $i++): ?>
-            <?php if ($i == $pagination['current_page']): ?>
-              <span class="w-8 h-8 rounded bg-[#FCB305] text-white font-semibold text-sm flex items-center justify-center"><?php echo $i; ?></span>
-            <?php else: ?>
-              <a href="?page=<?php echo $i; ?>" class="w-8 h-8 rounded bg-gray-200 text-gray-600 font-semibold text-sm flex items-center justify-center hover:bg-gray-300 transition-colors"><?php echo $i; ?></a>
-            <?php endif; ?>
+          <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <button class="carousel-nav-btn w-8 h-8 rounded font-semibold text-sm flex items-center justify-center transition-colors" 
+                    data-page="<?php echo $i - 1; ?>" 
+                    <?php echo $i === 1 ? 'data-active="true"' : ''; ?>>
+              <?php echo $i; ?>
+            </button>
           <?php endfor; ?>
         </div>
         <a href="properties.php" class="text-gray-800 font-semibold text-sm hover:text-[#FCB305] transition-colors">VIEW ALL</a>
@@ -612,5 +667,44 @@ $pagination = $result['pagination'];
       // fail silently on pages without hero
       console && console.warn && console.warn('hero init error', e);
     }
+  })();
+
+  // Properties Carousel
+  (function() {
+    const carousel = document.querySelector('.properties-carousel');
+    const navBtns = document.querySelectorAll('.carousel-nav-btn');
+    let currentPage = 0;
+    const totalPages = <?php echo $totalPages; ?>;
+
+    if (!carousel || !navBtns.length) return;
+
+    // Update carousel position
+    function updateCarousel() {
+      const translateX = -(currentPage * 100);
+      carousel.style.transform = `translateX(${translateX}%)`;
+      
+      // Update navigation buttons
+      navBtns.forEach((btn, index) => {
+        if (index === currentPage) {
+          btn.className = 'carousel-nav-btn w-8 h-8 rounded bg-[#FCB305] text-white font-semibold text-sm flex items-center justify-center transition-colors';
+          btn.setAttribute('data-active', 'true');
+        } else {
+          btn.className = 'carousel-nav-btn w-8 h-8 rounded bg-gray-200 text-gray-600 font-semibold text-sm flex items-center justify-center hover:bg-gray-300 transition-colors';
+          btn.removeAttribute('data-active');
+        }
+      });
+    }
+
+    // Add click event listeners to navigation buttons
+    navBtns.forEach((btn, index) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentPage = index;
+        updateCarousel();
+      });
+    });
+
+    // Initialize
+    updateCarousel();
   })();
 </script>
