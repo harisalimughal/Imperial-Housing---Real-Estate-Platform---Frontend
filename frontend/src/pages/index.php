@@ -535,6 +535,7 @@ $pagination = $result['pagination'];
 
   <?php include '../partials/footer.php'; ?>
 
+  <script src="/public/assets/js/main.js"></script>
 </body>
 </html>
 <script>
@@ -544,8 +545,12 @@ $pagination = $result['pagination'];
       if (!heroEl) return;
 
       const data = heroEl.dataset && heroEl.dataset.heroImages ? heroEl.dataset.heroImages.split(',').map(s=>s.trim()).filter(Boolean) : [];
-  const images = data.length ? data : ['/public/assets/images/hero1.png','/public/assets/images/hero2.png'];
+      const images = data.length ? data : ['/public/assets/images/hero1.png','/public/assets/images/hero2.png'];
       let idx = 0;
+
+      // Get navigation buttons
+      const nextBtn = document.getElementById('heroNext');
+      const prevBtn = document.getElementById('heroPrev');
 
       let overlay = document.getElementById('heroOverlay');
       if (!overlay) {
@@ -572,12 +577,37 @@ $pagination = $result['pagination'];
             heroEl.style.backgroundImage = overlay.style.backgroundImage;
             overlay.classList.remove('opacity-100');
             overlay.classList.add('opacity-0');
-          }
+          });
         }
-      if (nextBtn && !nextBtn.dataset.bound) { nextBtn.addEventListener('click', next); nextBtn.dataset.bound = '1'; }
-      if (prevBtn && !prevBtn.dataset.bound) { prevBtn.addEventListener('click', prev); prevBtn.dataset.bound = '1'; }
+      }
 
+      // Navigation functions
+      function next() {
+        idx = (idx + 1) % images.length;
+        setBackground(idx, false);
+      }
+
+      function prev() {
+        idx = (idx - 1 + images.length) % images.length;
+        setBackground(idx, false);
+      }
+
+      // Bind event listeners
+      if (nextBtn && !nextBtn.dataset.bound) { 
+        nextBtn.addEventListener('click', next); 
+        nextBtn.dataset.bound = '1'; 
+      }
+      if (prevBtn && !prevBtn.dataset.bound) { 
+        prevBtn.addEventListener('click', prev); 
+        prevBtn.dataset.bound = '1'; 
+      }
+
+      // Set initial background
       setBackground(idx, true);
+
+      // Optional: Auto-advance every 5 seconds
+      setInterval(next, 5000);
+
     } catch (e) {
       // fail silently on pages without hero
       console && console.warn && console.warn('hero init error', e);
