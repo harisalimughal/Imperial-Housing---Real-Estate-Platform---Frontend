@@ -108,7 +108,6 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
       left: 0;
       width: 100%;
       height: auto;
-  min-height: 520px;
       background: white;
       border-radius: 1.5rem;
       opacity: 0;
@@ -119,8 +118,6 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
       /* no inner border so image can touch edges */
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
 
     /* Ensure parent containers don't clip the popup */
@@ -140,6 +137,29 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
       opacity: 1;
       transform: scale(1) translateY(-10px);
       pointer-events: auto;
+    }
+
+    /* Properties page specific popup sizing */
+    .property-popup.properties-listing {
+      width: 300px !important;
+      height: auto !important;
+      max-height: 420px !important;
+      left: 50% !important;
+      transform: translateX(-50%) scale(0.95) translateY(20px) !important;
+      z-index: 9999 !important;
+    }
+
+    .property-card:hover .property-popup.properties-listing {
+      opacity: 1;
+      transform: translateX(-50%) scale(1) translateY(-10px) !important;
+      pointer-events: auto;
+    }
+
+    .property-popup.properties-listing img {
+      width: 300px !important;
+      height: 200px !important;
+      object-fit: cover !important;
+      display: block;
     }
 
     /* Add breathing room around hovered cards */
@@ -314,92 +334,43 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
               </div>
 
               <!-- Hover Popup -->
-              <div class="property-popup">
+              <div class="property-popup properties-listing">
                 <div class="relative h-full flex flex-col">
                   <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
-                  <div class="absolute top-3 left-3">
-                    <span class="<?php echo getStatusBadgeColor($property['status']); ?> text-white px-3 py-1 rounded-full text-xs font-semibold"><?php echo htmlspecialchars($property['status']); ?></span>
+                  <div class="absolute top-2 left-2">
+                    <span class="<?php echo getStatusBadgeColor($property['status']); ?> text-white px-2 py-1 rounded-full text-xs font-semibold"><?php echo htmlspecialchars($property['status']); ?></span>
                   </div>
 
-                  <div class="p-4 flex-1 flex flex-col">
-                    <h3 class="font-bold text-base mb-1 text-gray-800"><?php echo htmlspecialchars($property['title']); ?></h3>
-                    <div class="flex items-center text-gray-600 mb-3">
+                  <div class="p-3 flex-1 flex flex-col">
+                    <h3 class="font-bold text-sm mb-1 text-gray-800"><?php echo htmlspecialchars($property['title']); ?></h3>
+                    <div class="flex items-center text-gray-600 mb-2">
                       <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                       </svg>
                       <span class="text-xs"><?php echo htmlspecialchars($property['location']); ?></span>
                     </div>
 
-                    <hr class="border-gray-200 mb-3">
+                    <hr class="border-gray-200 mb-2">
 
-                    <div class="space-y-2 mb-4 flex-1">
-                      <div class="flex items-center justify-between">
-                        <div class="flex items-center text-gray-600">
-                          <svg class="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                          </svg>
-                          <span class="text-xs"><?php echo htmlspecialchars($property['area']); ?></span>
-                        </div>
-                        <span class="text-xs text-gray-500">2400 Square Feet</span>
-                      </div>
+                    <div class="grid grid-cols-2 gap-2 text-gray-600 text-xs mb-2">
+                      <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18"></path></svg><span><?php echo htmlspecialchars($property['area']); ?></span></div>
+                      <div class="flex items-center justify-end"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 6v12"></path></svg><span><?php echo $property['garages'] ?? 2; ?> Garages</span></div>
 
-                      <div class="flex items-center justify-between">
-                        <div class="flex items-center text-gray-600">
-                          <svg class="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11"></path>
-                          </svg>
-                          <span class="text-xs">2 Garages</span>
-                        </div>
-                        <span class="text-xs text-gray-500">2 Garages</span>
-                      </div>
+                      <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14"></path></svg><span><?php echo $property['bedrooms']; ?> Bedrooms</span></div>
+                      <div class="flex items-center justify-end"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10a4 4 0 01-8 0"></path></svg><span><?php echo $property['bathrooms']; ?> Bathrooms</span></div>
 
-                      <div class="flex items-center justify-between">
-                        <div class="flex items-center text-gray-600">
-                          <svg class="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
-                          </svg>
-                          <span class="text-xs"><?php echo $property['bedrooms']; ?> Bedrooms</span>
-                        </div>
-                        <span class="text-xs text-gray-500">20 Bedrooms</span>
-                      </div>
-
-                      <div class="flex items-center justify-between">
-                        <div class="flex items-center text-gray-600">
-                          <svg class="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                          </svg>
-                          <span class="text-xs"><?php echo $property['bathrooms']; ?> Bathrooms</span>
-                        </div>
-                        <span class="text-xs text-gray-500">8 Bathrooms</span>
+                      <div class="col-span-2 flex items-center justify-between text-xs text-gray-500 mt-1">
+                        <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg><span>Michel Smith</span></div>
+                        <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg><span>1 days ago</span></div>
                       </div>
                     </div>
-
-                    <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
-                      <div class="flex items-center">
-                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Michel Smith</span>
-                      </div>
-                      <div class="flex items-center">
-                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>1 days ago</span>
-                      </div>
-                    </div>
-
-                    <!-- price button moved below to sit flush at the bottom -->
                   </div>
                 </div>
 
-                <!-- Full-width rounded price button flush with popup edges -->
-                <div class="w-full">
-                  <div class="bg-[#FCB305] text-white text-center px-6 py-4 rounded-full font-bold text-lg w-full inline-block">
-                    <?php echo htmlspecialchars($property['price']); ?>
-                  </div>
+                <!-- Full-width price button at bottom with no white space below -->
+                <div class="bg-[#FCB305] text-white text-center px-4 py-3 rounded-full font-bold text-sm">
+                  <?php echo htmlspecialchars($property['price']); ?>
                 </div>
-
               </div>
             </div>
             <?php endforeach; ?>
