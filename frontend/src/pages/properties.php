@@ -26,6 +26,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
   <title>Properties | Imperial Housing</title>
   <meta name="description" content="Browse all available properties at Imperial Housing.">
   <link rel="stylesheet" href="/public/assets/css/styles.css">
+  <link rel="icon" href="/public/assets/images/logo.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -170,6 +171,13 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 </head>
 <body>
   <?php include '../partials/header.php'; ?>
+
+  <?php
+  $heroTitle = 'Featured Properties';
+  $heroSubtitle = 'Browse our latest listings and find your next home';
+  $heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
+  include '../partials/hero.php';
+  ?>
 
   <!-- Properties Section -->
   <section class="py-32 bg-gray-50">

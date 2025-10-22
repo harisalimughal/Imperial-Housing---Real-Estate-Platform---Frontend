@@ -4,7 +4,7 @@ require_once __DIR__ . '/../data/properties.php';
 
 // Get all properties for carousel
 $allProperties = getProperties();
-$propertiesPerPage = 6;
+$propertiesPerPage = 9; /* increased to show more properties per page */
 $totalPages = ceil(count($allProperties) / $propertiesPerPage);
 ?>
 <!doctype html>
@@ -14,6 +14,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
   <title>Imperial Housing | Find Your Dream Space</title>
   <meta name="description" content="Luxury homes and trusted property management services.">
   <link rel="stylesheet" href="/public/assets/css/styles.css">
+  <link rel="icon" href="/public/assets/images/logo.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -42,6 +43,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
       width: 100%;
       height: auto;
       min-height: auto;
+      max-height: 500px; /* Ensure enough height for larger image + content */
       background: white;
       border-radius: 1.5rem;
       opacity: 0;
@@ -54,6 +56,13 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
       overflow: hidden;
       display: flex;
       flex-direction: column;
+    }
+
+    /* Ensure popup images match card image size */
+    .property-popup img {
+      height: 256px !important; /* Match h-64 from cards */
+      width: 100% !important;
+      object-fit: cover !important;
     }
 
 
@@ -86,7 +95,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
     .property-popup.index-popup {
       width: 350px !important;
       height: auto !important;
-      max-height: 420px !important;
+      max-height: 500px !important; /* Increased to accommodate larger image + content + button */
       left: 50% !important;
       transform: translateX(-50%) scale(0.95) translateY(20px) !important;
       z-index: 9999 !important;
@@ -100,7 +109,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
 
     .property-popup.index-popup img {
       width: 350px !important;
-      height: 220px !important;
+      height: 256px !important; /* Match card image height (h-64 = 256px) */
       object-fit: cover !important;
       display: block;
     }
@@ -115,6 +124,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
       overflow: hidden;
       padding: 60px 0; /* Add padding to prevent popup clipping */
       margin: -60px 0; /* Negative margin to maintain layout */
+      position: relative;
     }
 
     .properties-carousel {
@@ -125,9 +135,9 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
     .properties-page {
       min-width: 100%;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      padding: 0 20px; /* Add horizontal padding for side popups */
+      grid-template-columns: repeat(4, 1fr); /* show more cards per row */
+      gap: 1.5rem;
+      padding: 0 40px; /* give gap on both sides for the cards */
     }
 
     @media (max-width: 1024px) {
@@ -157,24 +167,8 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
 
   <?php include '../partials/header.php'; ?>
 
-  <!-- Main content -->
-  <section class="relative">
-  <div id="heroRoot" data-hero-images="/public/assets/images/hero1.png,/public/assets/images/hero2.png" class="h-[80vh] bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/public/assets/images/hero1.png')">
-      <div class="h-full flex items-center justify-center md:justify-start text-center md:text-left text-white px-6">
-  <div class="max-w-4xl md:pl-32">
-          <h1 class="text-5xl md:text-[60px] font-bold mb-6">Find Real Estate and<br>Get Your Dream Space</h1>
-          
-        </div>
-      </div>
-    </div>
-    <!-- Hero nav arrows -->
-    <button id="heroPrev" aria-label="Previous" class="absolute left-8 top-1/2 transform -translate-y-1/2 p-12  hover:bg-opacity-40 rounded-full text-white z-20">
-      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-    </button>
-    <button id="heroNext" aria-label="Next" class="absolute right-8 top-1/2 transform -translate-y-1/2 p-12  hover:bg-opacity-40 rounded-full text-white z-20">
-      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-    </button>
-  </section>
+  <!-- Reusable hero -->
+  <?php include '../partials/hero.php'; ?>
 
   <!-- Property Services Section (White Background) -->
 
@@ -391,9 +385,15 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
         <p class="text-[18px] uppercase text-gray-500 tracking-wide mb-2">FEATURED LISTING</p>
         <h2 class="text-[46px] font-bold mb-4 leading-tight">We Bring Dream Homes<br>To Reality</h2>
       </div>
-      <!-- Properties Carousel Container -->
-      <div class="properties-carousel-container" style="overflow: hidden;">
-        <div class="properties-carousel" style="display: flex; transition: transform 0.5s ease-in-out;">
+      <!-- Properties Carousel (wrapper) -->
+      <div class="relative">
+        <!-- Outside navigation arrows (no background) -->
+        <button id="propertiesPrev" aria-label="Previous properties" class="absolute top-1/2 transform -translate-y-1/2 p-2 z-20" style="left:-56px;">
+          <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+
+        <div class="properties-carousel-container" style="overflow: hidden;">
+          <div class="properties-carousel" style="display: flex; transition: transform 0.5s ease-in-out;">
           <?php 
           // Group properties into pages of 6
           $propertyChunks = array_chunk($allProperties, $propertiesPerPage);
@@ -466,7 +466,12 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
               <?php endforeach; ?>
             </div>
           <?php endforeach; ?>
+          </div>
         </div>
+
+        <button id="propertiesNext" aria-label="Next properties" class="absolute top-1/2 transform -translate-y-1/2 p-2 z-20" style="right:-56px;">
+          <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
       
       <!-- Carousel Navigation -->
@@ -487,81 +492,130 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
 
   <!-- About Imperial Housing Section (White Background) -->
   <section class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Imperial Housing" class="rounded-2xl shadow-2xl">
+    <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-[422px_608px] gap-12 items-stretch">
+        <!-- Image Column -->
+        <div class="order-2 lg:order-1 flex justify-center items-center overflow-visible">
+          <!-- Use object-contain and responsive sizing so the image isn't cropped on the right side -->
+          <img src="/public/assets/images/tower.png" alt="Tower Bridge London" class="w-full max-w-[400px] h-auto object-contain rounded-3xl shadow-lg" style="max-height:720px;">
         </div>
-        <div>
-          <h2 class="text-4xl font-bold mb-6">About Imperial Housing</h2>
-          <h3 class="text-2xl font-semibold text-blue-600 mb-4">Why Choose Imperial Housing?</h3>
-          <p class="text-gray-700 text-lg mb-8 leading-relaxed">Imperial Housing is a trusted name in property and housing management across the UK. We offer top-tier real estate, renovation, and management services, connecting tenants with their perfect homes and providing comprehensive property solutions.</p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="text-center p-4 bg-blue-50 rounded-lg">
-              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                </svg>
-              </div>
-              <h4 class="font-semibold text-sm">Perfect Residency</h4>
-            </div>
-            <div class="text-center p-4 bg-blue-50 rounded-lg">
-              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <h4 class="font-semibold text-sm">Trusted Across UK</h4>
-            </div>
-            <div class="text-center p-4 bg-blue-50 rounded-lg">
-              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <h4 class="font-semibold text-sm">Total Transparency</h4>
-            </div>
+        
+        <!-- Content Column -->
+  <div class="order-1 lg:order-2 flex flex-col">
+          <!-- About Us Header -->
+          <p class="text-blue-600 text-sm font-semibold uppercase tracking-wider mb-4">ABOUT US</p>
+          
+          <!-- About Imperial Housing Section -->
+          <div class="mb-8">
+            <h2 class="text-4xl font-bold text-gray-900 mb-6">About Imperial Housing</h2>
+            <p class="text-gray-700 text-[16px] leading-relaxed mb-4">
+              MKM Housing is a Managing Agent and accommodation provider based in the vibrant city of Birmingham. With a strong presence in the local market, and an increasing presence internationally, we specialise in three key categories: HMOs (House in Multiple Occupation), Serviced Accommodation, and Sales.
+            </p>
           </div>
+          
+          <!-- Why Choose Imperial Housing Section -->
+          <div class="mb-8">
+            <h3 class="text-4xl font-bold text-gray-900 mb-6">Why Choose Imperial Housing?</h3>
+            <p class="text-gray-700 text-[16px] leading-relaxed">
+              Our success is a testament to our unwavering commitment to delivering excellence in every aspect of our business. With a deep understanding of the Birmingham property market and a passion for providing top-notch services, we pride ourselves on fostering lasting relationships with property owners, tenants, and homebuyers. At MKM Housing, we're not just in the business of property management; we're in the business of creating homes and experiences. We invite you to explore our website and discover the world of possibilities we offer. Welcome to MKM Housing, where exceptional service meets the vibrant heart of Birmingham.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Features Section -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+        <!-- The Perfect Residency -->
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-lg flex items-center justify-center">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.4758 3.42541C30.1845 5.30398 26.551 6.95824 26.4012 7.10149C26.1375 7.35375 26.129 7.4342 26.129 9.67053C26.129 11.9602 26.1315 11.9815 26.426 12.276C26.8132 12.6634 27.1433 12.6506 28.125 12.2101C28.5699 12.0104 28.9559 11.8471 28.983 11.8471C29.0101 11.8471 29.0323 13.0993 29.0323 14.6298V17.4125H15.7808H2.52931L2.23246 17.7095C1.94335 17.9986 1.93548 18.0551 1.93548 19.8322C1.93548 21.6094 1.94335 21.6659 2.23246 21.955C2.51843 22.2411 2.58944 22.252 4.16794 22.252H5.80645V24.6717V27.0915H4.16794C2.58944 27.0915 2.51843 27.1024 2.23246 27.3885C1.94335 27.6775 1.93548 27.734 1.93548 29.5112C1.93548 31.2884 1.94335 31.3449 2.23246 31.6339C2.47621 31.8779 2.64919 31.931 3.2002 31.931H3.87097V43.5457V55.1605H2.23246C0.653952 55.1605 0.582944 55.1714 0.296976 55.4575C0.0078629 55.7466 0 55.8031 0 57.5803C0 59.3574 0.0078629 59.4139 0.296976 59.703L0.593831 60H30H59.4062L59.703 59.703C59.9921 59.4139 60 59.3574 60 57.5803C60 55.8031 59.9921 55.7466 59.703 55.4575C59.4171 55.1714 59.346 55.1605 57.7675 55.1605H56.129V43.5457V31.931H56.7998C57.3508 31.931 57.5238 31.8779 57.7675 31.6339C58.0567 31.3449 58.0645 31.2884 58.0645 29.5112C58.0645 27.734 58.0567 27.6775 57.7675 27.3885C57.5238 27.1446 57.3508 27.0915 56.7998 27.0915H56.129V19.4693C56.129 15.2771 56.1512 11.8471 56.1783 11.8471C56.2054 11.8471 56.5914 12.0104 57.0363 12.2101C58.0179 12.6506 58.3481 12.6634 58.7353 12.276C59.0297 11.9816 59.0323 11.9591 59.0323 9.68819C59.0323 7.68271 59.0059 7.36609 58.8206 7.14649C58.5716 6.85153 42.93 -0.0143749 42.5399 2.26112e-05C42.3959 0.00534605 38.7671 1.54684 34.4758 3.42541ZM49.7314 5.14355C53.616 6.84669 56.8625 8.26805 56.9456 8.30217C57.0469 8.34391 57.0968 8.654 57.0968 9.24381V10.1231L49.9508 6.9926C46.0206 5.27071 42.7079 3.86193 42.5892 3.86193C42.4227 3.86193 33.7454 7.60661 28.7601 9.82975L28.0645 10.14V9.2553V8.37076L35.2319 5.22195C39.1738 3.49014 42.4598 2.06733 42.5338 2.06019C42.6079 2.05305 45.8468 3.44054 49.7314 5.14355ZM48.3987 8.4315L54.1331 10.9443L54.1642 19.0179L54.1952 27.0915H42.5806H30.966L30.9971 19.0225L31.0282 10.9535L36.7137 8.44795C39.8407 7.06991 42.4588 5.93699 42.5318 5.93057C42.6047 5.92404 45.2448 7.04946 48.3987 8.4315ZM32.2325 12.87L31.9355 13.1669V16.9286V20.6902L32.2325 20.9871L32.5293 21.2841H36.7742H41.0191L41.3159 20.9871L41.6129 20.6902V16.9286V13.1669L41.3159 12.87L41.0191 12.573H36.7742H32.5293L32.2325 12.87ZM43.8454 12.87L43.5484 13.1669V16.9286V20.6902L43.8454 20.9871L44.1422 21.2841H48.3871H52.632L52.9288 20.9871L53.2258 20.6902V16.9286V13.1669L52.9288 12.87L52.632 12.573H48.3871H44.1422L43.8454 12.87ZM39.6774 16.9286V19.3483H36.7742H33.871V16.9286V14.5088H36.7742H39.6774V16.9286ZM51.2903 16.9286V19.3483H48.3871H45.4839V16.9286V14.5088H48.3871H51.2903V16.9286ZM29.0323 19.8322V20.3162H16.4516H3.87097V19.8322V19.3483H16.4516H29.0323V19.8322ZM11.6129 24.6717V27.0915H9.67742H7.74194V24.6717V22.252H9.67742H11.6129V24.6717ZM17.4194 24.6717V27.0915H15.4839H13.5484V24.6717V22.252H15.4839H17.4194V24.6717ZM23.2258 24.6717V27.0915H21.2903H19.3548V24.6717V22.252H21.2903H23.2258V24.6717ZM29.0323 24.6717V27.0915H27.0968H25.1613V24.6717V22.252H27.0968H29.0323V24.6717ZM56.129 29.5112V29.9952H30H3.87097V29.5112V29.0273H30H56.129V29.5112ZM29.0323 43.5457V55.1605H28.0645H27.0968V48.3852C27.0968 42.3549 27.1173 41.6099 27.2837 41.6099C27.3865 41.6099 27.6042 41.4763 27.7675 41.3129C28.0567 41.0239 28.0645 40.9674 28.0645 39.1902C28.0645 37.413 28.0567 37.3565 27.7675 37.0675L27.4707 36.7705H17.4194H7.36802L7.07117 37.0675C6.78206 37.3565 6.77419 37.413 6.77419 39.1902C6.77419 40.9674 6.78206 41.0239 7.07117 41.3129C7.23448 41.4763 7.45222 41.6099 7.55504 41.6099C7.72137 41.6099 7.74194 42.3549 7.74194 48.3852V55.1605H6.77419H5.80645V43.5457V31.931H17.4194H29.0323V43.5457ZM54.1935 43.5457V55.1605H48.3871H42.5806V48.6823V42.2039L42.2837 41.907L41.9868 41.6099H37.2581H32.5293L32.2325 41.907L31.9355 42.2039V48.6823V55.1605H31.4516H30.9677V43.5457V31.931H42.5806H54.1935V43.5457ZM26.129 39.1902V39.6741H17.4194H8.70968V39.1902V38.7062H17.4194H26.129V39.1902ZM25.1613 48.3852V55.1605H17.4194H9.67742V48.3852V41.6099H17.4194H25.1613V48.3852ZM43.8454 41.907L43.5484 42.2039V45.9655V49.7271L43.8454 50.024L44.1422 50.321H48.3871H52.632L52.9288 50.024L53.2258 49.7271V45.9655V42.2039L52.9288 41.907L52.632 41.6099H48.3871H44.1422L43.8454 41.907ZM40.6452 49.3531V55.1605H37.2581H33.871V49.3531V43.5457H37.2581H40.6452V49.3531ZM51.2903 45.9655V48.3852H48.3871H45.4839V45.9655V43.5457H48.3871H51.2903V45.9655ZM38.0389 47.7144C37.7594 47.994 37.7419 48.0898 37.7419 49.3531C37.7419 50.6165 37.7594 50.7123 38.0389 50.9919C38.226 51.1792 38.474 51.2889 38.7097 51.2889C38.9453 51.2889 39.1933 51.1792 39.3804 50.9919C39.66 50.7123 39.6774 50.6165 39.6774 49.3531C39.6774 48.0898 39.66 47.994 39.3804 47.7144C39.1933 47.5271 38.9453 47.4173 38.7097 47.4173C38.474 47.4173 38.226 47.5271 38.0389 47.7144ZM58.0645 57.5803V58.0642H30H1.93548V57.5803V57.0963H30H58.0645V57.5803Z" fill="#151EA6"/>
+            </svg>
+
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">The Perfect Residency</h4>
+          <p class="text-gray-600 mb-2">Comfortable, safe, and modern homes</p>
+          <p class="text-gray-600">Designed for convenience and peace of mind</p>
+        </div>
+        
+        <!-- Trusted Across The UK -->
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4  rounded-lg flex items-center justify-center">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.4758 3.42541C30.1845 5.30398 26.551 6.95824 26.4012 7.10149C26.1375 7.35375 26.129 7.4342 26.129 9.67053C26.129 11.9602 26.1315 11.9815 26.426 12.276C26.8132 12.6634 27.1433 12.6506 28.125 12.2101C28.5699 12.0104 28.9559 11.8471 28.983 11.8471C29.0101 11.8471 29.0323 13.0993 29.0323 14.6298V17.4125H15.7808H2.52931L2.23246 17.7095C1.94335 17.9986 1.93548 18.0551 1.93548 19.8322C1.93548 21.6094 1.94335 21.6659 2.23246 21.955C2.51843 22.2411 2.58944 22.252 4.16794 22.252H5.80645V24.6717V27.0915H4.16794C2.58944 27.0915 2.51843 27.1024 2.23246 27.3885C1.94335 27.6775 1.93548 27.734 1.93548 29.5112C1.93548 31.2884 1.94335 31.3449 2.23246 31.6339C2.47621 31.8779 2.64919 31.931 3.2002 31.931H3.87097V43.5457V55.1605H2.23246C0.653952 55.1605 0.582944 55.1714 0.296976 55.4575C0.0078629 55.7466 0 55.8031 0 57.5803C0 59.3574 0.0078629 59.4139 0.296976 59.703L0.593831 60H30H59.4062L59.703 59.703C59.9921 59.4139 60 59.3574 60 57.5803C60 55.8031 59.9921 55.7466 59.703 55.4575C59.4171 55.1714 59.346 55.1605 57.7675 55.1605H56.129V43.5457V31.931H56.7998C57.3508 31.931 57.5238 31.8779 57.7675 31.6339C58.0567 31.3449 58.0645 31.2884 58.0645 29.5112C58.0645 27.734 58.0567 27.6775 57.7675 27.3885C57.5238 27.1446 57.3508 27.0915 56.7998 27.0915H56.129V19.4693C56.129 15.2771 56.1512 11.8471 56.1783 11.8471C56.2054 11.8471 56.5914 12.0104 57.0363 12.2101C58.0179 12.6506 58.3481 12.6634 58.7353 12.276C59.0297 11.9816 59.0323 11.9591 59.0323 9.68819C59.0323 7.68271 59.0059 7.36609 58.8206 7.14649C58.5716 6.85153 42.93 -0.0143749 42.5399 2.26112e-05C42.3959 0.00534605 38.7671 1.54684 34.4758 3.42541ZM49.7314 5.14355C53.616 6.84669 56.8625 8.26805 56.9456 8.30217C57.0469 8.34391 57.0968 8.654 57.0968 9.24381V10.1231L49.9508 6.9926C46.0206 5.27071 42.7079 3.86193 42.5892 3.86193C42.4227 3.86193 33.7454 7.60661 28.7601 9.82975L28.0645 10.14V9.2553V8.37076L35.2319 5.22195C39.1738 3.49014 42.4598 2.06733 42.5338 2.06019C42.6079 2.05305 45.8468 3.44054 49.7314 5.14355ZM48.3987 8.4315L54.1331 10.9443L54.1642 19.0179L54.1952 27.0915H42.5806H30.966L30.9971 19.0225L31.0282 10.9535L36.7137 8.44795C39.8407 7.06991 42.4588 5.93699 42.5318 5.93057C42.6047 5.92404 45.2448 7.04946 48.3987 8.4315ZM32.2325 12.87L31.9355 13.1669V16.9286V20.6902L32.2325 20.9871L32.5293 21.2841H36.7742H41.0191L41.3159 20.9871L41.6129 20.6902V16.9286V13.1669L41.3159 12.87L41.0191 12.573H36.7742H32.5293L32.2325 12.87ZM43.8454 12.87L43.5484 13.1669V16.9286V20.6902L43.8454 20.9871L44.1422 21.2841H48.3871H52.632L52.9288 20.9871L53.2258 20.6902V16.9286V13.1669L52.9288 12.87L52.632 12.573H48.3871H44.1422L43.8454 12.87ZM39.6774 16.9286V19.3483H36.7742H33.871V16.9286V14.5088H36.7742H39.6774V16.9286ZM51.2903 16.9286V19.3483H48.3871H45.4839V16.9286V14.5088H48.3871H51.2903V16.9286ZM29.0323 19.8322V20.3162H16.4516H3.87097V19.8322V19.3483H16.4516H29.0323V19.8322ZM11.6129 24.6717V27.0915H9.67742H7.74194V24.6717V22.252H9.67742H11.6129V24.6717ZM17.4194 24.6717V27.0915H15.4839H13.5484V24.6717V22.252H15.4839H17.4194V24.6717ZM23.2258 24.6717V27.0915H21.2903H19.3548V24.6717V22.252H21.2903H23.2258V24.6717ZM29.0323 24.6717V27.0915H27.0968H25.1613V24.6717V22.252H27.0968H29.0323V24.6717ZM56.129 29.5112V29.9952H30H3.87097V29.5112V29.0273H30H56.129V29.5112ZM29.0323 43.5457V55.1605H28.0645H27.0968V48.3852C27.0968 42.3549 27.1173 41.6099 27.2837 41.6099C27.3865 41.6099 27.6042 41.4763 27.7675 41.3129C28.0567 41.0239 28.0645 40.9674 28.0645 39.1902C28.0645 37.413 28.0567 37.3565 27.7675 37.0675L27.4707 36.7705H17.4194H7.36802L7.07117 37.0675C6.78206 37.3565 6.77419 37.413 6.77419 39.1902C6.77419 40.9674 6.78206 41.0239 7.07117 41.3129C7.23448 41.4763 7.45222 41.6099 7.55504 41.6099C7.72137 41.6099 7.74194 42.3549 7.74194 48.3852V55.1605H6.77419H5.80645V43.5457V31.931H17.4194H29.0323V43.5457ZM54.1935 43.5457V55.1605H48.3871H42.5806V48.6823V42.2039L42.2837 41.907L41.9868 41.6099H37.2581H32.5293L32.2325 41.907L31.9355 42.2039V48.6823V55.1605H31.4516H30.9677V43.5457V31.931H42.5806H54.1935V43.5457ZM26.129 39.1902V39.6741H17.4194H8.70968V39.1902V38.7062H17.4194H26.129V39.1902ZM25.1613 48.3852V55.1605H17.4194H9.67742V48.3852V41.6099H17.4194H25.1613V48.3852ZM43.8454 41.907L43.5484 42.2039V45.9655V49.7271L43.8454 50.024L44.1422 50.321H48.3871H52.632L52.9288 50.024L53.2258 49.7271V45.9655V42.2039L52.9288 41.907L52.632 41.6099H48.3871H44.1422L43.8454 41.907ZM40.6452 49.3531V55.1605H37.2581H33.871V49.3531V43.5457H37.2581H40.6452V49.3531ZM51.2903 45.9655V48.3852H48.3871H45.4839V45.9655V43.5457H48.3871H51.2903V45.9655ZM38.0389 47.7144C37.7594 47.994 37.7419 48.0898 37.7419 49.3531C37.7419 50.6165 37.7594 50.7123 38.0389 50.9919C38.226 51.1792 38.474 51.2889 38.7097 51.2889C38.9453 51.2889 39.1933 51.1792 39.3804 50.9919C39.66 50.7123 39.6774 50.6165 39.6774 49.3531C39.6774 48.0898 39.66 47.994 39.3804 47.7144C39.1933 47.5271 38.9453 47.4173 38.7097 47.4173C38.474 47.4173 38.226 47.5271 38.0389 47.7144ZM58.0645 57.5803V58.0642H30H1.93548V57.5803V57.0963H30H58.0645V57.5803Z" fill="#151EA6"/>
+            </svg>
+
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">Trusted Across The UK</h4>
+          <p class="text-gray-600 mb-2">Reliable housing solutions nationwide</p>
+          <p class="text-gray-600">From shared homes to supported living</p>
+        </div>
+        
+        <!-- Total Transparency -->
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4  rounded-lg flex items-center justify-center">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.4758 3.42541C30.1845 5.30398 26.551 6.95824 26.4012 7.10149C26.1375 7.35375 26.129 7.4342 26.129 9.67053C26.129 11.9602 26.1315 11.9815 26.426 12.276C26.8132 12.6634 27.1433 12.6506 28.125 12.2101C28.5699 12.0104 28.9559 11.8471 28.983 11.8471C29.0101 11.8471 29.0323 13.0993 29.0323 14.6298V17.4125H15.7808H2.52931L2.23246 17.7095C1.94335 17.9986 1.93548 18.0551 1.93548 19.8322C1.93548 21.6094 1.94335 21.6659 2.23246 21.955C2.51843 22.2411 2.58944 22.252 4.16794 22.252H5.80645V24.6717V27.0915H4.16794C2.58944 27.0915 2.51843 27.1024 2.23246 27.3885C1.94335 27.6775 1.93548 27.734 1.93548 29.5112C1.93548 31.2884 1.94335 31.3449 2.23246 31.6339C2.47621 31.8779 2.64919 31.931 3.2002 31.931H3.87097V43.5457V55.1605H2.23246C0.653952 55.1605 0.582944 55.1714 0.296976 55.4575C0.0078629 55.7466 0 55.8031 0 57.5803C0 59.3574 0.0078629 59.4139 0.296976 59.703L0.593831 60H30H59.4062L59.703 59.703C59.9921 59.4139 60 59.3574 60 57.5803C60 55.8031 59.9921 55.7466 59.703 55.4575C59.4171 55.1714 59.346 55.1605 57.7675 55.1605H56.129V43.5457V31.931H56.7998C57.3508 31.931 57.5238 31.8779 57.7675 31.6339C58.0567 31.3449 58.0645 31.2884 58.0645 29.5112C58.0645 27.734 58.0567 27.6775 57.7675 27.3885C57.5238 27.1446 57.3508 27.0915 56.7998 27.0915H56.129V19.4693C56.129 15.2771 56.1512 11.8471 56.1783 11.8471C56.2054 11.8471 56.5914 12.0104 57.0363 12.2101C58.0179 12.6506 58.3481 12.6634 58.7353 12.276C59.0297 11.9816 59.0323 11.9591 59.0323 9.68819C59.0323 7.68271 59.0059 7.36609 58.8206 7.14649C58.5716 6.85153 42.93 -0.0143749 42.5399 2.26112e-05C42.3959 0.00534605 38.7671 1.54684 34.4758 3.42541ZM49.7314 5.14355C53.616 6.84669 56.8625 8.26805 56.9456 8.30217C57.0469 8.34391 57.0968 8.654 57.0968 9.24381V10.1231L49.9508 6.9926C46.0206 5.27071 42.7079 3.86193 42.5892 3.86193C42.4227 3.86193 33.7454 7.60661 28.7601 9.82975L28.0645 10.14V9.2553V8.37076L35.2319 5.22195C39.1738 3.49014 42.4598 2.06733 42.5338 2.06019C42.6079 2.05305 45.8468 3.44054 49.7314 5.14355ZM48.3987 8.4315L54.1331 10.9443L54.1642 19.0179L54.1952 27.0915H42.5806H30.966L30.9971 19.0225L31.0282 10.9535L36.7137 8.44795C39.8407 7.06991 42.4588 5.93699 42.5318 5.93057C42.6047 5.92404 45.2448 7.04946 48.3987 8.4315ZM32.2325 12.87L31.9355 13.1669V16.9286V20.6902L32.2325 20.9871L32.5293 21.2841H36.7742H41.0191L41.3159 20.9871L41.6129 20.6902V16.9286V13.1669L41.3159 12.87L41.0191 12.573H36.7742H32.5293L32.2325 12.87ZM43.8454 12.87L43.5484 13.1669V16.9286V20.6902L43.8454 20.9871L44.1422 21.2841H48.3871H52.632L52.9288 20.9871L53.2258 20.6902V16.9286V13.1669L52.9288 12.87L52.632 12.573H48.3871H44.1422L43.8454 12.87ZM39.6774 16.9286V19.3483H36.7742H33.871V16.9286V14.5088H36.7742H39.6774V16.9286ZM51.2903 16.9286V19.3483H48.3871H45.4839V16.9286V14.5088H48.3871H51.2903V16.9286ZM29.0323 19.8322V20.3162H16.4516H3.87097V19.8322V19.3483H16.4516H29.0323V19.8322ZM11.6129 24.6717V27.0915H9.67742H7.74194V24.6717V22.252H9.67742H11.6129V24.6717ZM17.4194 24.6717V27.0915H15.4839H13.5484V24.6717V22.252H15.4839H17.4194V24.6717ZM23.2258 24.6717V27.0915H21.2903H19.3548V24.6717V22.252H21.2903H23.2258V24.6717ZM29.0323 24.6717V27.0915H27.0968H25.1613V24.6717V22.252H27.0968H29.0323V24.6717ZM56.129 29.5112V29.9952H30H3.87097V29.5112V29.0273H30H56.129V29.5112ZM29.0323 43.5457V55.1605H28.0645H27.0968V48.3852C27.0968 42.3549 27.1173 41.6099 27.2837 41.6099C27.3865 41.6099 27.6042 41.4763 27.7675 41.3129C28.0567 41.0239 28.0645 40.9674 28.0645 39.1902C28.0645 37.413 28.0567 37.3565 27.7675 37.0675L27.4707 36.7705H17.4194H7.36802L7.07117 37.0675C6.78206 37.3565 6.77419 37.413 6.77419 39.1902C6.77419 40.9674 6.78206 41.0239 7.07117 41.3129C7.23448 41.4763 7.45222 41.6099 7.55504 41.6099C7.72137 41.6099 7.74194 42.3549 7.74194 48.3852V55.1605H6.77419H5.80645V43.5457V31.931H17.4194H29.0323V43.5457ZM54.1935 43.5457V55.1605H48.3871H42.5806V48.6823V42.2039L42.2837 41.907L41.9868 41.6099H37.2581H32.5293L32.2325 41.907L31.9355 42.2039V48.6823V55.1605H31.4516H30.9677V43.5457V31.931H42.5806H54.1935V43.5457ZM26.129 39.1902V39.6741H17.4194H8.70968V39.1902V38.7062H17.4194H26.129V39.1902ZM25.1613 48.3852V55.1605H17.4194H9.67742V48.3852V41.6099H17.4194H25.1613V48.3852ZM43.8454 41.907L43.5484 42.2039V45.9655V49.7271L43.8454 50.024L44.1422 50.321H48.3871H52.632L52.9288 50.024L53.2258 49.7271V45.9655V42.2039L52.9288 41.907L52.632 41.6099H48.3871H44.1422L43.8454 41.907ZM40.6452 49.3531V55.1605H37.2581H33.871V49.3531V43.5457H37.2581H40.6452V49.3531ZM51.2903 45.9655V48.3852H48.3871H45.4839V45.9655V43.5457H48.3871H51.2903V45.9655ZM38.0389 47.7144C37.7594 47.994 37.7419 48.0898 37.7419 49.3531C37.7419 50.6165 37.7594 50.7123 38.0389 50.9919C38.226 51.1792 38.474 51.2889 38.7097 51.2889C38.9453 51.2889 39.1933 51.1792 39.3804 50.9919C39.66 50.7123 39.6774 50.6165 39.6774 49.3531C39.6774 48.0898 39.66 47.994 39.3804 47.7144C39.1933 47.5271 38.9453 47.4173 38.7097 47.4173C38.474 47.4173 38.226 47.5271 38.0389 47.7144ZM58.0645 57.5803V58.0642H30H1.93548V57.5803V57.0963H30H58.0645V57.5803Z" fill="#151EA6"/>
+            </svg>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">Total Transparency</h4>
+          <p class="text-gray-600 mb-2">Clear communication, no hidden terms</p>
+          <p class="text-gray-600">Honest, straightforward service you can trust</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- For Tenants Section (Light Blue Background) -->
-  <section class="py-20 bg-blue-50">
-    <div class="container mx-auto px-6">
+  <!-- For Tenants Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
       <div class="text-center mb-16"><h2 class="text-4xl font-bold mb-4">For Tenants</h2></div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-          <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="h-48 w-full object-cover" alt="London Apartments">
-          <div class="p-6">
-            <h3 class="font-bold text-lg mb-2">London Apartments</h3>
-            <p class="text-gray-600 mb-4">Premium city living</p>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition w-full">View Property</button>
+
+      <!-- Carousel wrapper -->
+      <div class="relative">
+        <!-- Prev/Next buttons (no bg) -->
+        <button id="tenantsPrev" aria-label="Previous tenants" class="absolute top-1/2 transform -translate-y-1/2 p-2 z-10" style="left:-56px;">
+          <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button id="tenantsNext" aria-label="Next tenants" class="absolute top-1/2 transform -translate-y-1/2 p-2 z-10" style="right:-56px;">
+          <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </button>
+
+  <div class="tenants-carousel flex gap-6 overflow-hidden snap-x snap-mandatory scroll-smooth py-4">
+          <div class="min-w-[260px] snap-start bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover rounded-xl" alt="London Apartments">
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2">London Apartments</h3>
+              <p class="text-gray-600 mb-4">Premium city living</p>
+              <button class="bg-blue-600 text-white px-4 py-2 rounded-lg transition w-full hover:bg-brand-yellow hover:text-black">View Property</button>
+            </div>
           </div>
-        </div>
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="h-48 w-full object-cover" alt="Birmingham Flats">
-          <div class="p-6">
-            <h3 class="font-bold text-lg mb-2">Birmingham Flats</h3>
-            <p class="text-gray-600 mb-4">Modern urban living</p>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition w-full">View Property</button>
+
+          <div class="min-w-[260px] snap-start bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover rounded-xl" alt="Birmingham Flats">
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2">Birmingham Flats</h3>
+              <p class="text-gray-600 mb-4">Modern urban living</p>
+              <button class="bg-blue-600 text-white px-4 py-2 rounded-lg transition w-full hover:bg-brand-yellow hover:text-black">View Property</button>
+            </div>
           </div>
-        </div>
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="h-48 w-full object-cover" alt="Manchester Homes">
-          <div class="p-6">
-            <h3 class="font-bold text-lg mb-2">Manchester Homes</h3>
-            <p class="text-gray-600 mb-4">Family-friendly areas</p>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition w-full">View Property</button>
+
+          <div class="min-w-[260px] snap-start bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover rounded-xl" alt="Manchester Homes">
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2">Manchester Homes</h3>
+              <p class="text-gray-600 mb-4">Family-friendly areas</p>
+              <button class="bg-blue-600 text-white px-4 py-2 rounded-lg transition w-full hover:bg-brand-yellow hover:text-black">View Property</button>
+            </div>
           </div>
-        </div>
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-          <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="h-48 w-full object-cover" alt="Leeds Properties">
-          <div class="p-6">
-            <h3 class="font-bold text-lg mb-2">Leeds Properties</h3>
-            <p class="text-gray-600 mb-4">Affordable housing</p>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition w-full">View Property</button>
+
+          <div class="min-w-[260px] snap-start bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover rounded-xl" alt="Leeds Properties">
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2">Leeds Properties</h3>
+              <p class="text-gray-600 mb-4">Affordable housing</p>
+              <button class="bg-blue-600 text-white px-4 py-2 rounded-lg transition w-full hover:bg-brand-yellow hover:text-black">View Property</button>
+            </div>
           </div>
         </div>
       </div>
@@ -593,118 +647,3 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
   <script src="/public/assets/js/main.js"></script>
 </body>
 </html>
-<script>
-  (function() {
-    try {
-      const heroEl = document.getElementById('heroRoot');
-      if (!heroEl) return;
-
-      const data = heroEl.dataset && heroEl.dataset.heroImages ? heroEl.dataset.heroImages.split(',').map(s=>s.trim()).filter(Boolean) : [];
-      const images = data.length ? data : ['/public/assets/images/hero1.png','/public/assets/images/hero2.png'];
-      let idx = 0;
-
-      // Get navigation buttons
-      const nextBtn = document.getElementById('heroNext');
-      const prevBtn = document.getElementById('heroPrev');
-
-      let overlay = document.getElementById('heroOverlay');
-      if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = 'heroOverlay';
-        overlay.className = 'absolute inset-0 bg-cover bg-center transition-opacity duration-700 opacity-0 pointer-events-none';
-        heroEl.parentElement.appendChild(overlay);
-      }
-
-      function setBackground(i, instant) {
-        const url = images[i % images.length];
-        overlay.style.backgroundImage = "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('" + url + "')";
-        if (instant) {
-          overlay.classList.remove('opacity-0');
-          overlay.classList.add('opacity-100');
-          heroEl.style.backgroundImage = overlay.style.backgroundImage;
-          overlay.classList.remove('opacity-100');
-          overlay.classList.add('opacity-0');
-        } else {
-          overlay.classList.remove('opacity-0');
-          overlay.classList.add('opacity-100');
-          overlay.addEventListener('transitionend', function onEnd() {
-            overlay.removeEventListener('transitionend', onEnd);
-            heroEl.style.backgroundImage = overlay.style.backgroundImage;
-            overlay.classList.remove('opacity-100');
-            overlay.classList.add('opacity-0');
-          });
-        }
-      }
-
-      // Navigation functions
-      function next() {
-        idx = (idx + 1) % images.length;
-        setBackground(idx, false);
-      }
-
-      function prev() {
-        idx = (idx - 1 + images.length) % images.length;
-        setBackground(idx, false);
-      }
-
-      // Bind event listeners
-      if (nextBtn && !nextBtn.dataset.bound) { 
-        nextBtn.addEventListener('click', next); 
-        nextBtn.dataset.bound = '1'; 
-      }
-      if (prevBtn && !prevBtn.dataset.bound) { 
-        prevBtn.addEventListener('click', prev); 
-        prevBtn.dataset.bound = '1'; 
-      }
-
-      // Set initial background
-      setBackground(idx, true);
-
-      // Optional: Auto-advance every 5 seconds
-      setInterval(next, 5000);
-
-    } catch (e) {
-      // fail silently on pages without hero
-      console && console.warn && console.warn('hero init error', e);
-    }
-  })();
-
-  // Properties Carousel
-  (function() {
-    const carousel = document.querySelector('.properties-carousel');
-    const navBtns = document.querySelectorAll('.carousel-nav-btn');
-    let currentPage = 0;
-    const totalPages = <?php echo $totalPages; ?>;
-
-    if (!carousel || !navBtns.length) return;
-
-    // Update carousel position
-    function updateCarousel() {
-      const translateX = -(currentPage * 100);
-      carousel.style.transform = `translateX(${translateX}%)`;
-      
-      // Update navigation buttons
-      navBtns.forEach((btn, index) => {
-        if (index === currentPage) {
-          btn.className = 'carousel-nav-btn w-8 h-8 rounded bg-[#FCB305] text-white font-semibold text-sm flex items-center justify-center transition-colors';
-          btn.setAttribute('data-active', 'true');
-        } else {
-          btn.className = 'carousel-nav-btn w-8 h-8 rounded bg-gray-200 text-gray-600 font-semibold text-sm flex items-center justify-center hover:bg-gray-300 transition-colors';
-          btn.removeAttribute('data-active');
-        }
-      });
-    }
-
-    // Add click event listeners to navigation buttons
-    navBtns.forEach((btn, index) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        currentPage = index;
-        updateCarousel();
-      });
-    });
-
-    // Initialize
-    updateCarousel();
-  })();
-</script>
