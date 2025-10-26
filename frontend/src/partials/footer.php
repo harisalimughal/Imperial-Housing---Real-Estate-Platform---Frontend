@@ -18,7 +18,7 @@
   <ul class="space-y-2">
           <li><a href="/src/pages/index.php" class="text-gray-300 hover:brand-yellow">Home</a></li>
           <li><a href="/src/pages/about.php" class="text-gray-300 hover:brand-yellow">About Us</a></li>
-          <li><a href="/src/pages/services.php" class="text-gray-300 hover:brand-yellow">Services</a></li>
+          <li><a href="/src/pages/hmo.php" class="text-gray-300 hover:brand-yellow">HMO Services</a></li>
           <li><a href="#" class="text-gray-300 hover:brand-yellow">Product</a></li>
         </ul>
       </div>

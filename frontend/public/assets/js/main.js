@@ -250,6 +250,85 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })();
 
+// Testimonials carousel simple slider
+(function(){
+  function initTestimonials() {
+    const track = document.getElementById('testimonialsTrack');
+    const prev = document.getElementById('testimonialsPrev');
+    const next = document.getElementById('testimonialsNext');
+    if (!track || (!prev && !next)) return;
+
+    const slides = track.children.length;
+    let index = 0;
+
+    function update() {
+      track.style.transform = `translateX(${-index * 100}%)`;
+    }
+
+    if (prev && !prev.dataset.bound) {
+      prev.addEventListener('click', function(e){ e.preventDefault(); index = Math.max(0, index - 1); update(); });
+      prev.dataset.bound = '1';
+    }
+    if (next && !next.dataset.bound) {
+      next.addEventListener('click', function(e){ e.preventDefault(); index = Math.min(slides - 1, index + 1); update(); });
+      next.dataset.bound = '1';
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTestimonials);
+  else initTestimonials();
+})();
+
+// Count-up animation for stats (animates when visible)
+(function() {
+  function animateCount(el, target, duration) {
+    const start = 0;
+    const range = target - start;
+    const startTime = performance.now();
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = progress < 0.5 ? (2 * progress * progress) : (-1 + (4 - 2 * progress) * progress); // easeInOutQuad-ish
+      const value = Math.floor(start + eased * range);
+      el.textContent = value;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = String(target);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  function initCountups() {
+    const nodes = Array.from(document.querySelectorAll('.countup'));
+    if (!nodes.length) return;
+
+    // Observer that starts animation on enter and resets on leave, so it runs each time
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-target') || '0', 10) || 0;
+        const duration = parseInt(el.getAttribute('data-duration') || '1800', 10);
+
+        if (entry.isIntersecting) {
+          // start from 0 each time we enter
+          el.textContent = '0';
+          // small timeout to ensure text updates before animation
+          setTimeout(() => animateCount(el, target, duration), 50);
+        } else {
+          // reset so it can animate again on next enter
+          el.textContent = '0';
+        }
+      });
+    }, { threshold: 0.4 });
+
+    nodes.forEach(n => observer.observe(n));
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initCountups);
+  else initCountups();
+})();
+
 // Properties carousel: make it dynamic and page-agnostic
 (function() {
   if (window.__imperialPropertiesInit) return;
