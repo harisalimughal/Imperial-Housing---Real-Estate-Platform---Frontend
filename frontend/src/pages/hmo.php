@@ -12,13 +12,13 @@
 	</script>
 </head>
 <body>
-	<?php include '../partials/header.php'; ?>
+	<?php include 'header.php'; ?>
 
 	<?php
 	$heroTitle = 'HMO Services';
 	$heroSubtitle = 'House In Multiple Occupation - Quality shared living';
 	$heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
-	include '../partials/hero.php';
+	include 'hero.php';
 	?>
 
 	<!-- HMO Section -->
@@ -249,6 +249,6 @@
 		</div>
 	</section>
 
-	<?php include '../partials/footer.php'; ?>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

@@ -7,7 +7,7 @@ Project layout (relevant):
   - public/            (static assets: CSS, JS, images)
   - src/
     - pages/           (PHP pages: `index.php`, `properties.php`, ...)
-    - partials/        (header/footer includes)
+   - pages/           (header/footer includes)
 
 The pages use root-relative asset paths like `/public/assets/...`. To run the site locally without editing paths, serve the `frontend` folder as the webserver document root.
 

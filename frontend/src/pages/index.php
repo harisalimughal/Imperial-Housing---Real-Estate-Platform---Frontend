@@ -11,6 +11,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Imperial Housing | Find Your Dream Space</title>
   <meta name="description" content="Luxury homes and trusted property management services.">
   <link rel="stylesheet" href="/public/assets/css/styles.css">
@@ -114,6 +115,55 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
       display: block;
     }
 
+    /* Responsive tweaks for small screens */
+    @media (max-width: 640px) {
+      /* Make popups flow with document on very small screens instead of absolute overlays */
+      .property-popup.index-popup {
+        position: static !important;
+        width: calc(100% - 40px) !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 0 auto !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+      }
+
+      .property-popup {
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+
+      .property-popup img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+      }
+
+      .properties-carousel-container {
+        padding: 20px 0 !important;
+        margin: 0 !important;
+      }
+
+      /* Reduce oversized headings on small screens */
+      .text-\[46px\] { font-size: 1.75rem !important; line-height: 1.15 !important; }
+      .text-\[18px\] { font-size: 0.875rem !important; }
+    }
+
+    /* Tighter rules for very small phones (<=360px width) */
+    @media (max-width: 360px) {
+      .text-\[46px\] { font-size: 1.25rem !important; }
+      .text-\[18px\] { font-size: 0.78rem !important; }
+      .container { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+      .properties-page { padding: 0 12px !important; }
+      .properties-carousel-container { padding: 12px 0 !important; margin: 0 !important; }
+      .property-popup.index-popup { width: 100% !important; left: auto !important; transform: none !important; position: static !important; margin: 0 auto 12px auto !important; }
+      .property-popup.index-popup img { width: 100% !important; height: auto !important; }
+      .carousel-nav-btn { display: none !important; }
+      /* Slightly increase mobile menu touch area */
+      #mobileMenuBtn { padding: 0.6rem !important; }
+    }
+
     /* Add breathing room around hovered cards */
     .properties-grid {
       padding: 20px 0;
@@ -165,10 +215,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
 </head>
 <body>
 
-  <?php include '../partials/header.php'; ?>
+  <?php include 'header.php'; ?>
 
   <!-- Reusable hero -->
-  <?php include '../partials/hero.php'; ?>
+  <?php include 'hero.php'; ?>
 
   <!-- Property Services Section (White Background) -->
 
@@ -749,7 +799,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
     </div>
   </section>
 
-  <?php include '../partials/footer.php'; ?>
+  <?php include 'footer.php'; ?>
 
   <script src="/public/assets/js/main.js"></script>
 </body>

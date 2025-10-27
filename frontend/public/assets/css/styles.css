@@ -30,3 +30,81 @@ html, body {
 .font-bold { font-weight: 700; }
 .font-extrabold { font-weight: 800; }
 .font-black { font-weight: 900; }
+
+/* ===== Responsive helpers and mobile tweaks ===== */
+
+/* Make media scale inside their containers */
+img, picture, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Prevent accidental horizontal scrolling on small viewports */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* Simple container utility to match Tailwind container behaviour */
+.container { max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+
+/* Improve tappable targets for nav links on mobile */
+.nav-link { padding: 0.5rem 0.375rem; display: inline-block; }
+
+/* Collapsed mobile header adjustments */
+header { -webkit-font-smoothing:antialiased; }
+
+/* Prevent very tall fixed popups from overflowing small viewports */
+.property-popup { max-width: 100%; box-sizing: border-box; }
+
+/* General responsive spacing and typography tweaks */
+@media (max-width: 1024px) {
+  .text-\[46px\] { font-size: 2.25rem; }
+}
+
+@media (max-width: 640px) {
+  html { font-size: 15px; }
+  .text-\[46px\] { font-size: 1.5rem; }
+  .text-\[18px\] { font-size: 0.85rem; }
+  .grid { gap: 0.75rem; }
+  .min-h-\[280px\] { min-height: auto; }
+  .rounded-xl { border-radius: 0.75rem; }
+  .container { padding-left: 0.75rem; padding-right: 0.75rem; }
+  /* hide oversized outside carousel controls on small screens if present */
+  .carousel-nav-btn { display: none; }
+  /* also hide external prev/next arrows that are positioned outside the container */
+  #propertiesPrev, #propertiesNext { display: none !important; }
+}
+
+/* Small utility to improve readability on narrow devices */
+.lead { line-height: 1.4; }
+
+/* Ensure buttons and CTAs remain legible and tappable */
+a.inline-block, a.button { padding: 0.6rem 1rem; }
+
+/* Extra-tight adjustments for very small phones (<= 360px width, typical smaller Android devices) */
+@media (max-width: 360px) {
+  html { font-size: 14px; }
+  .container { padding-left: 0.5rem; padding-right: 0.5rem; }
+  .text-\[46px\] { font-size: 1.25rem; }
+  .text-\[18px\] { font-size: 0.78rem; }
+  .nav-link { padding: 0.35rem 0.25rem; font-size: 0.95rem; }
+  a.inline-block, a.button { padding: 0.45rem 0.75rem; font-size: 0.95rem; }
+  .grid { gap: 0.5rem; }
+  .min-h-\[280px\] { min-height: auto; }
+  .properties-carousel-container { padding: 12px 0 !important; }
+  .properties-page { padding: 0 12px !important; }
+  /* Ensure property popups are fully fluid on small screens */
+  .property-popup, .property-popup.index-popup {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 0 auto 12px auto !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06) !important;
+    border-radius: 12px !important;
+  }
+  .property-popup img { height: auto !important; max-height: none !important; }
+  /* Reduce visual chrome to maximise content space */
+  header { padding-left: 0.5rem; padding-right: 0.5rem; }
+  .carousel-nav-btn { display: none !important; }
+}

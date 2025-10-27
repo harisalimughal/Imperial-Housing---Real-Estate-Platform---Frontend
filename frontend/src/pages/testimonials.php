@@ -12,7 +12,7 @@
 	</script>
 </head>
 <body>
-	<?php include '../partials/header.php'; ?>
+	<?php include 'header.php'; ?>
 
 	<?php
 	// Include testimonials data
@@ -24,7 +24,7 @@
 	$heroTitle = 'Testimonials';
 	$heroSubtitle = 'Hear from our satisfied clients';
 	$heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
-	include '../partials/hero.php';
+	include 'hero.php';
 	?>
 
 	<!-- Video Testimonials Section -->
@@ -65,6 +65,6 @@
 		</div>
 	</section>
 
-	<?php include '../partials/footer.php'; ?>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

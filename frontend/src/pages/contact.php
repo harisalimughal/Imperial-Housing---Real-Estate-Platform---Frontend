@@ -12,13 +12,13 @@
 	</script>
 </head>
 <body>
-	<?php include '../partials/header.php'; ?>
+	<?php include 'header.php'; ?>
 
 	<?php
 	$heroTitle = 'Contact Us';
 	$heroSubtitle = 'Get in touch — we are here to help';
 	$heroImages = '/public/assets/images/hero2.png,/public/assets/images/hero1.png';
-	include '../partials/hero.php';
+	include 'hero.php';
 	?>
 
 	<!-- Contact Form Section -->
@@ -253,6 +253,6 @@
 		</div>
 	</section>
 
-	<?php include '../partials/footer.php'; ?>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

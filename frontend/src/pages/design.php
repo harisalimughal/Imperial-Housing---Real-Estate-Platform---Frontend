@@ -12,13 +12,13 @@
 	</script>
 </head>
 <body>
-	<?php include '../partials/header.php'; ?>
+	<?php include 'header.php'; ?>
 
 	<?php
 	$heroTitle = 'Design & Renovation';
 	$heroSubtitle = 'Transform spaces with our expert design and renovation services';
 	$heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
-	include '../partials/hero.php';
+	include 'hero.php';
 	?>
 
 	<!-- Space Planning Section -->
@@ -179,6 +179,6 @@
 		</div>
 	</section>
 
-	<?php include '../partials/footer.php'; ?>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

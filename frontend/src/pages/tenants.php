@@ -12,13 +12,13 @@
 	</script>
 </head>
 <body>
-	<?php include '../partials/header.php'; ?>
+	<?php include 'header.php'; ?>
 
 	<?php
 	$heroTitle = 'For Tenants';
 	$heroSubtitle = 'Browse homes, apply and move in with confidence';
 	$heroImages = '/public/assets/images/hero2.png,/public/assets/images/hero1.png';
-	include '../partials/hero.php';
+	include 'hero.php';
 	?>
 
 	<!-- Main Content Section -->
@@ -410,6 +410,6 @@
 		</div>
 	</section>
 
-	<?php include '../partials/footer.php'; ?>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

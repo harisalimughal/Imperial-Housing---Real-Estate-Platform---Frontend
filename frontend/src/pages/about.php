@@ -12,13 +12,13 @@
 	</script>
 </head>
 <body>
-	<?php include '../partials/header.php'; ?>
+  <?php include 'header.php'; ?>
 
 	<?php
 	$heroTitle = 'About Imperial Housing';
 	$heroSubtitle = 'Learn who we are and why we care about homes';
 	$heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
-	include '../partials/hero.php';
+  include 'hero.php';
 	?>
 
   <!-- About Imperial Housing Section (White Background) -->
@@ -306,6 +306,6 @@
     </div>
   </section>
 
-	<?php include '../partials/footer.php'; ?>
+  <?php include 'footer.php'; ?>
 </body>
 </html>

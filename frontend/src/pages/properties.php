@@ -170,13 +170,13 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
   </style>
 </head>
 <body>
-  <?php include '../partials/header.php'; ?>
+  <?php include 'header.php'; ?>
 
   <?php
   $heroTitle = 'Featured Properties';
   $heroSubtitle = 'Browse our latest listings and find your next home';
   $heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
-  include '../partials/hero.php';
+  include 'hero.php';
   ?>
 
   <!-- Properties Section -->
@@ -413,6 +413,6 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
     </div>
   </section>
 
-  <?php include '../partials/footer.php'; ?>
+  <?php include 'footer.php'; ?>
 </body>
 </html>
