@@ -22,15 +22,25 @@ $initialImage = !empty($imagesArr) ? $imagesArr[0] : '/public/assets/images/hero
         <?php if (!empty($heroSubtitle)): ?>
           <p class="text-xl opacity-90 mt-2"><?php echo $heroSubtitle; ?></p>
         <?php endif; ?>
+
+        <!-- Mobile-only centered arrows (they call the side buttons' handlers) -->
+        <div class="md:hidden flex justify-center gap-4 mt-6">
+          <button onclick="document.getElementById('heroPrev').click()" aria-label="Previous" class="p-3 text-white bg-black/10 rounded-full">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button onclick="document.getElementById('heroNext').click()" aria-label="Next" class="p-3 text-white bg-black/10 rounded-full">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
       </div>
     </div>
+    <!-- Side arrows for desktop: placed at the edges like before -->
+    <button id="heroPrev" aria-label="Previous" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-4 z-20 text-white" style="left:-48px;">
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button id="heroNext" aria-label="Next" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-4 z-20 text-white" style="right:-48px;">
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </button>
   </div>
 
-  <!-- Hero nav arrows -->
-  <button id="heroPrev" aria-label="Previous" class="absolute left-8 top-1/2 transform -translate-y-1/2 p-12  hover:bg-opacity-40 rounded-full text-white z-20">
-    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-  </button>
-  <button id="heroNext" aria-label="Next" class="absolute right-8 top-1/2 transform -translate-y-1/2 p-12  hover:bg-opacity-40 rounded-full text-white z-20">
-    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-  </button>
 </section>

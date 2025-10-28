@@ -250,6 +250,142 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })();
 
+// Custom pointer: light dot that follows the mouse with slight smoothing
+(function(){
+  if (window.__imperialCursorInitialized) return;
+  window.__imperialCursorInitialized = true;
+
+  // don't run on touch devices or if reduced motion is requested
+  try {
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  } catch(e) {}
+
+  function isInteractive(el){
+    if(!el) return false;
+    try{
+      return el.closest && (
+        el.closest('a, button, input, textarea, select, [role="button"], [data-cursor-hover]')
+      );
+    }catch(e){ return false; }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    // create cursor element
+    var cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    cursor.setAttribute('aria-hidden','true');
+    document.body.appendChild(cursor);
+
+    var mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
+    var curX = mouseX, curY = mouseY;
+    var rafId = null;
+
+    function onMove(e){
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      // ensure cursor is visible when pointer moves
+      if(cursor.style.display === 'none') cursor.style.display = '';
+    }
+
+    function loop(){
+      // basic lerp for smooth trailing
+      curX += (mouseX - curX) * 0.22;
+      curY += (mouseY - curY) * 0.22;
+      cursor.style.left = curX + 'px';
+      cursor.style.top = curY + 'px';
+      rafId = requestAnimationFrame(loop);
+    }
+
+    // enlarge when hovering interactive elements
+    var hoverTargets = 'a, button, input, textarea, select, [role="button"]';
+
+    function onPointerOver(e){
+      var target = e.target;
+      if (isInteractive(target)) cursor.classList.add('cursor--hover');
+    }
+    function onPointerOut(e){
+      var related = e.relatedTarget;
+      // if leaving to another interactive element keep hover state
+      if (isInteractive(related)) return;
+      cursor.classList.remove('cursor--hover');
+    }
+
+    // hide cursor on pointerdown briefly to avoid visual clutter when tapping
+    function onPointerDown(){ cursor.style.opacity = '0.6'; cursor.style.transform = 'translate(-50%,-50%) scale(0.9)'; }
+    function onPointerUp(){ cursor.style.opacity = ''; cursor.style.transform = ''; }
+
+    // keyboard navigation: hide custom cursor when tabbing so focus rings are clear
+    function onFirstTab(e){
+      if (e.key === 'Tab') {
+        document.documentElement.classList.add('keyboard-navigation');
+        window.removeEventListener('keydown', onFirstTab);
+      }
+    }
+
+    // attach events
+    window.addEventListener('pointermove', onMove, {passive:true});
+    document.addEventListener('pointerover', onPointerOver, true);
+    document.addEventListener('pointerout', onPointerOut, true);
+    document.addEventListener('pointerdown', onPointerDown, true);
+    document.addEventListener('pointerup', onPointerUp, true);
+    window.addEventListener('keydown', onFirstTab, true);
+
+    // Start loop
+    loop();
+
+    // Hide cursor when leaving window
+    window.addEventListener('mouseout', function(e){
+      if (!e.relatedTarget && !e.toElement) cursor.style.display = 'none';
+    });
+    window.addEventListener('mouseover', function(){ cursor.style.display = ''; });
+  });
+})();
+
+// Global reveal-on-scroll initializer
+(function(){
+  if (window.__imperialRevealInitialized) return;
+  window.__imperialRevealInitialized = true;
+
+  function initReveal(){
+    try {
+      if(!('IntersectionObserver' in window)){
+        document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('revealed'); });
+        return;
+      }
+
+      // Auto-apply .reveal to direct children of containers we care about (grid sections)
+      document.querySelectorAll('.grid, .properties-grid, .max-w-6xl, .max-w-7xl').forEach(function(grid){
+        Array.from(grid.children).forEach(function(child){
+          if(!(child instanceof HTMLElement)) return;
+          if(child.classList.contains('reveal')) return;
+          child.classList.add('reveal');
+          // choose left or right based on center
+          try{
+            var r = child.getBoundingClientRect();
+            var cx = r.left + r.width/2;
+            if(cx < window.innerWidth/2) child.classList.add('reveal-left'); else child.classList.add('reveal-right');
+          }catch(e){}
+        });
+      });
+
+      var obs = new IntersectionObserver(function(entries, observer){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+
+      document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+    } catch(e) { console && console.warn && console.warn('reveal init error', e); }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initReveal); else initReveal();
+})();
+
+
 // Testimonials carousel simple slider
 (function(){
   function initTestimonials() {

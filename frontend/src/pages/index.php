@@ -14,9 +14,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Imperial Housing | Find Your Dream Space</title>
   <meta name="description" content="Luxury homes and trusted property management services.">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/public/assets/css/styles.css">
   <link rel="icon" href="/public/assets/images/logo.png" type="image/png">
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <script>
     tailwind.config = {
       theme: {
@@ -212,6 +213,16 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
       background-color: #d1d5db;
     }
   </style>
+  <style>
+    /* Reveal on scroll animations */
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 700ms cubic-bezier(.2,.9,.2,1); will-change: transform, opacity; }
+    .reveal-left { transform: translateX(-60px); }
+    .reveal-right { transform: translateX(60px); }
+    .reveal.revealed { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right { transition: none !important; transform: none !important; opacity: 1 !important; }
+    }
+  </style>
 </head>
 <body>
 
@@ -229,7 +240,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           <p class="text-[18px] uppercase text-gray-500 tracking-wide mb-2">WHAT WE PROVIDE</p>
           <h2 class="text-[46px] font-bold text-gray-900">Property Services</h2>
         </div>
-        <a href="/src/pages/contact.php" class="inline-block bg-[#151EA6] hover:bg-[#0f1790] text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">Book Now</a>
+  <a href="/src/pages/contact.php" class="inline-block bg-[#151EA6] hover:bg-brand-yellow hover:text-black text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">Book Now</a>
       </div>
 
   <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -293,7 +304,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
     <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
       <div class="flex items-center justify-between mb-16">
         <h2 class="text-4xl font-bold text-white">How It Works</h2>
-        <a href="/src/pages/contact.php" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">Book Now</a>
+        <a href="/src/pages/contact.php" class="inline-block bg-yellow-500 hover:bg-brand-yellow hover:text-black text-black px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">Book Now</a>
       </div>
 
       <!-- Top Section with Design & Renovation and For Tenants -->
@@ -508,7 +519,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
             </div>
 
             <!-- Full-width price button at bottom with no white space below -->
-            <div class="bg-[#FCB305] text-white text-center px-4 py-3 rounded-full font-bold text-sm">
+            <div class="card-price-cta bg-[#FCB305] text-white text-center px-4 py-3 rounded-full font-bold text-sm">
               <?php echo htmlspecialchars($property['price']); ?>
             </div>
           </div>
@@ -632,10 +643,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
       <!-- Carousel wrapper -->
       <div class="relative">
         <!-- Prev/Next buttons (no bg) - enlarged, bolder and moved further out -->
-        <button id="tenantsPrev" aria-label="Previous tenants" class="absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="left:-72px;">
+        <button id="tenantsPrev" aria-label="Previous tenants" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="left:-72px;">
           <svg class="w-7 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M15 19l-7-7 7-7"/></svg>
         </button>
-        <button id="tenantsNext" aria-label="Next tenants" class="absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="right:-72px;">
+        <button id="tenantsNext" aria-label="Next tenants" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="right:-72px;">
           <svg class="w-7 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M9 5l7 7-7 7"/></svg>
         </button>
 
@@ -676,6 +687,17 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
             </div>
           </div>
         </div>
+
+          <!-- Mobile-only arrows for tenants: plain black icons, no background -->
+          <div class="md:hidden flex justify-center gap-6 mt-4">
+            <button onclick="document.getElementById('tenantsPrev').click()" aria-label="Previous tenants" class="p-3 text-black">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button onclick="document.getElementById('tenantsNext').click()" aria-label="Next tenants" class="p-3 text-black">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
       </div>
     </div>
   </section>
@@ -748,7 +770,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
 
         <!-- Carousel -->
         <div class="col-span-2 relative">
-          <button id="testimonialsPrev" aria-label="Previous testimonial" class="absolute top-1/2 transform -translate-y-1/2 p-4 z-10 text-gray-700" style="left:-48px;">
+          <button id="testimonialsPrev" aria-label="Previous testimonial" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-4 z-10 text-gray-700" style="left:-48px;">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/></svg>
           </button>
           <div class="testimonials-carousel overflow-hidden">
@@ -791,9 +813,20 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
               </div>
             </div>
           </div>
-          <button id="testimonialsNext" aria-label="Next testimonial" class="absolute top-1/2 transform -translate-y-1/2 p-4 z-10 text-gray-700" style="right:-48px;">
+          <button id="testimonialsNext" aria-label="Next testimonial" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-4 z-10 text-gray-700" style="right:-48px;">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
           </button>
+
+          <!-- Mobile-only arrows: centered under reviews on small screens -->
+          <div class="md:hidden flex justify-center gap-6 mt-4">
+            <button onclick="document.getElementById('testimonialsPrev').click()" aria-label="Previous testimonial" class="p-3 text-black">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button onclick="document.getElementById('testimonialsNext').click()" aria-label="Next testimonial" class="p-3 text-black">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -802,5 +835,6 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
   <?php include 'footer.php'; ?>
 
   <script src="/public/assets/js/main.js"></script>
+  <!-- reveal script moved to /public/assets/js/main.js for global initialization -->
 </body>
 </html>

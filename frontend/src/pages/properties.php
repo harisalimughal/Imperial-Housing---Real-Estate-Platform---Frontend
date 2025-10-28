@@ -163,6 +163,30 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
       display: block;
     }
 
+    /* Mobile: make the popup inline and full-width so it doesn't overflow */
+    @media (max-width: 767px) {
+      .property-popup.properties-listing {
+        position: relative !important;
+        width: 100% !important;
+        left: 0 !important;
+        transform: none !important;
+        max-height: none !important;
+        box-shadow: none !important;
+        margin-top: 8px;
+      }
+      .property-popup.properties-listing img {
+        width: 100% !important;
+        height: 200px !important;
+        object-fit: cover !important;
+      }
+      /* ensure hover rules still reveal popup on mobile if needed */
+      .property-card:hover .property-popup {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+    }
+
     /* Add breathing room around hovered cards */
     .properties-grid {
       padding: 20px 0;
@@ -187,10 +211,10 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
         <p class="text-xl text-gray-600">Discover your perfect home from our extensive collection</p>
       </div>
 
-      <div class="flex gap-8">
+  <div class="flex flex-col lg:flex-row gap-8">
         <!-- Filter Sidebar -->
-        <div class="w-80 flex-shrink-0">
-          <div class="bg-white rounded-2xl p-6 shadow-lg sticky top-8">
+        <div class="w-full lg:w-80 flex-shrink-0">
+          <div class="bg-white rounded-2xl p-6 shadow-lg lg:sticky lg:top-8">
             <h2 class="text-xl font-bold mb-6 text-gray-800">Find Your Property</h2>
             
             <!-- Location -->
@@ -326,7 +350,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
             <?php foreach ($properties as $property): ?>
             <div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
               <div class="relative">
-                <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
+                <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-48 sm:h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
                 <div class="absolute top-4 left-4">
                   <span class="<?php echo getStatusBadgeColor($property['status']); ?> text-white px-4 py-2 rounded-full text-sm font-semibold"><?php echo htmlspecialchars($property['status']); ?></span>
                 </div>
@@ -344,7 +368,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
               <!-- Hover Popup -->
               <div class="property-popup properties-listing">
                 <div class="relative h-full flex flex-col">
-                  <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
+                  <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-48 sm:h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
                   <div class="absolute top-2 left-2">
                     <span class="<?php echo getStatusBadgeColor($property['status']); ?> text-white px-2 py-1 rounded-full text-xs font-semibold"><?php echo htmlspecialchars($property['status']); ?></span>
                   </div>

@@ -32,7 +32,7 @@
       
       <!-- CTA Button -->
       <div class="flex items-center space-x-5">
-        <a href="/src/pages/contact.php" class="inline-block bg-[#151EA6] hover:bg-[#0f1790] text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm"> 
+        <a href="/src/pages/contact.php" class="inline-block bg-[#151EA6] hover:bg-brand-yellow hover:text-black text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm"> 
           Book Now
         </a>
         
@@ -83,3 +83,79 @@
   </div>
   </div>
 </header>
+
+<!-- Splash screen: rotating logo with blurred background -->
+<div id="splashScreen" aria-hidden="true" class="fixed inset-0 z-50 flex items-center justify-center" style="background: rgba(255,255,255,0.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: opacity .35s ease, visibility .35s;">
+  <div class="flex flex-col items-center space-y-4">
+    <img src="/public/assets/images/LogoBgblack.png" alt="Imperial Housing" id="splashLogo" class="splash-logo" style="width:120px;height:120px;object-fit:contain;">
+    <div class="text-sm text-gray-700">Loading</div>
+  </div>
+</div>
+
+<style>
+  /* Splash animations and reduced-motion handling */
+  @keyframes splash-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .splash-logo { animation: splash-spin 1s linear infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .splash-logo { animation: none !important; }
+  }
+  /* Hidden state */
+  #splashScreen.hidden { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+</style>
+
+<script>
+  (function(){
+    // Quick splash logic: show on initial load, hide shortly after load or timeout.
+    var splash = document.getElementById('splashScreen');
+    if(!splash) return;
+
+    // Helper to hide splash
+    function hideSplash(immediate){
+      if(!splash) return;
+      if(immediate) {
+        splash.classList.add('hidden');
+        return;
+      }
+      splash.classList.add('hidden');
+    }
+
+    // Auto-hide after a short timeout in case load event is delayed
+    var autoTimeout = setTimeout(function(){ hideSplash(); }, 1400);
+
+    // Prefer hiding shortly after full window load
+    window.addEventListener('load', function(){ clearTimeout(autoTimeout); setTimeout(function(){ hideSplash(); }, 350); });
+
+    // Show splash when user navigates via internal links, then navigate after animation
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a');
+      if(!a) return;
+      var href = a.getAttribute('href');
+      if(!href) return;
+      // ignore anchors, mailto, tel and external links and targets
+      if(href.indexOf('#') === 0) return;
+      if(href.indexOf('mailto:') === 0) return;
+      if(href.indexOf('tel:') === 0) return;
+      if(a.target && a.target === '_blank') return;
+      try{
+        var url = new URL(href, location.href);
+        if(url.origin !== location.origin) return; // external
+      } catch(err){ return; }
+
+      // prevent immediate navigation, show splash, then navigate
+      e.preventDefault();
+      splash.classList.remove('hidden');
+      // ensure repaint
+      // small delay so users see the animation
+      setTimeout(function(){ location.href = a.href; }, 550);
+    }, true);
+
+    // Respect reduced motion: remove animation if user prefers
+    try{
+      var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if(mq && mq.matches){
+        var logo = document.getElementById('splashLogo');
+        if(logo) logo.style.animation = 'none';
+      }
+    } catch(e) {}
+  })();
+</script>

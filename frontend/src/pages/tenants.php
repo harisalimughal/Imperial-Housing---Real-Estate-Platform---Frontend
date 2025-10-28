@@ -30,7 +30,7 @@
 				<div class="space-y-8">
 					<!-- Book Now Button -->
 					<div>
-						<button class="inline-block bg-[#151EA6] hover:bg-[#0f1790] text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">
+						<button class="inline-block bg-[#151EA6] hover:bg-brand-yellow hover:text-black text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">
 							Book Now
 						</button>
 					</div>

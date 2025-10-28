@@ -95,6 +95,9 @@
           <p class="text-gray-600 mb-2">Clear communication, no hidden terms</p>
           <p class="text-gray-600">Honest, straightforward service you can trust</p>
         </div>
+
+          
+
       </div>
     </div>
   </section>
@@ -105,9 +108,10 @@
       <div class="flex items-start justify-between">
         <div>
           <p class="text-[18px] uppercase text-gray-500 tracking-wide mb-2">WHAT WE DO</p>
-          <h2 class="text-[46px] font-bold text-gray-900">Our Main Speciality</h2>
+          <h2 class="text-4xl md:text-[46px] font-bold text-gray-900">Our Main Speciality</h2>
         </div>
-        <a href="/src/pages/contact.php" class="inline-block bg-[#151EA6] hover:bg-[#0f1790] text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">Book Now</a>
+  <!-- Match header CTA size and tappable area: ensure same padding and min height -->
+  <a href="/src/pages/contact.php" class="inline-block bg-[#151EA6] hover:bg-brand-yellow hover:text-black text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">Book Now</a>
       </div>
 
   <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -162,12 +166,23 @@
             <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Long-term property care</span></li>
           </ul>
         </div>
+
+          <!-- Mobile-only arrows for tenants: plain black icons, no background -->
+          <div class="md:hidden flex justify-center gap-6 mt-4">
+            <button onclick="document.getElementById('tenantsPrev').click()" aria-label="Previous tenants" class="p-3 text-black">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button onclick="document.getElementById('tenantsNext').click()" aria-label="Next tenants" class="p-3 text-black">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
       </div>
     </div>
   </section>
 
   <!-- For Tenants Section -->
-  <section class="bg-white">
+  <section class="py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
@@ -182,10 +197,10 @@
       <!-- Carousel wrapper -->
       <div class="relative">
         <!-- Prev/Next buttons (no bg) - enlarged, bolder and moved further out -->
-        <button id="tenantsPrev" aria-label="Previous tenants" class="absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="left:-72px;">
+        <button id="tenantsPrev" aria-label="Previous tenants" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="left:-72px;">
           <svg class="w-7 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M15 19l-7-7 7-7"/></svg>
         </button>
-        <button id="tenantsNext" aria-label="Next tenants" class="absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="right:-72px;">
+        <button id="tenantsNext" aria-label="Next tenants" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="right:-72px;">
           <svg class="w-7 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M9 5l7 7-7 7"/></svg>
         </button>
 
@@ -226,6 +241,17 @@
             </div>
           </div>
         </div>
+
+          <!-- Mobile-only arrows for tenants: plain black icons, no background -->
+          <div class="md:hidden flex justify-center gap-6 mt-4">
+            <button onclick="document.getElementById('tenantsPrev').click()" aria-label="Previous tenants" class="p-3 text-black">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button onclick="document.getElementById('tenantsNext').click()" aria-label="Next tenants" class="p-3 text-black">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
       </div>
     </div>
   </section>
@@ -255,7 +281,7 @@
 
         <!-- Carousel -->
         <div class="col-span-2 relative">
-          <button id="testimonialsPrev" aria-label="Previous testimonial" class="absolute top-1/2 transform -translate-y-1/2 p-4 z-10 text-gray-700" style="left:-48px;">
+          <button id="testimonialsPrev" aria-label="Previous testimonial" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-4 z-10 text-gray-700" style="left:-48px;">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/></svg>
           </button>
           <div class="testimonials-carousel overflow-hidden">
@@ -298,9 +324,18 @@
               </div>
             </div>
           </div>
-          <button id="testimonialsNext" aria-label="Next testimonial" class="absolute top-1/2 transform -translate-y-1/2 p-4 z-10 text-gray-700" style="right:-48px;">
+          <button id="testimonialsNext" aria-label="Next testimonial" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-4 z-10 text-gray-700" style="right:-48px;">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
           </button>
+          <!-- Mobile-only arrows: appear below the review cards on small screens -->
+          <div class="md:hidden flex justify-center gap-6 mt-4">
+            <button onclick="document.getElementById('testimonialsPrev').click()" aria-label="Previous testimonial" class="p-3 text-black">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button onclick="document.getElementById('testimonialsNext').click()" aria-label="Next testimonial" class="p-3 text-black">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>

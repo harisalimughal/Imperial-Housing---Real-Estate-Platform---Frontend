@@ -72,6 +72,93 @@ header { -webkit-font-smoothing:antialiased; }
   .carousel-nav-btn { display: none; }
   /* also hide external prev/next arrows that are positioned outside the container */
   #propertiesPrev, #propertiesNext { display: none !important; }
+
+  /* Mobile-only: show full property popup inline and hide the compact summary
+     Keep desktop hover behavior unchanged. This makes the featured card
+     expand into the detailed card with the yellow CTA at the bottom on mobile. */
+  .property-card > .p-4 { display: none !important; }
+  .property-card .property-popup {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    margin: 0 0 12px 0 !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+    border-radius: 12px !important;
+  }
+  .property-card .property-popup img { height: auto !important; max-height: none !important; display: block !important; border-top-left-radius: 12px !important; border-top-right-radius: 12px !important; }
+  /* Prevent duplicate images on mobile: hide the card's primary image
+    (the image that sits above the compact summary) so only the popup
+    image is visible when the popup is shown inline). Desktop is unaffected. */
+  .property-card > .relative img { display: none !important; }
+  /* Full-width yellow CTA at the bottom of the mobile card */
+  .property-card .card-price-cta {
+    display: block !important;
+    width: calc(100% - 0px) !important;
+    margin: 8px 0 0 0 !important;
+    padding: 12px 16px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+  color: inherit !important;
+    background: #FCB305 !important;
+  }
+}
+
+/* Reflow hero nav arrows on mobile: stack them below the hero text and center */
+@media (max-width: 640px) {
+  /* Place the arrows directly under the hero text on mobile with space between them */
+  .hero-arrows-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 18px; /* more space between arrows */
+    position: static;
+    width: 100%;
+    margin-top: 12px; /* space under the text */
+    pointer-events: auto;
+  }
+  .hero-arrows-mobile button#heroPrev,
+  .hero-arrows-mobile button#heroNext {
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0.45rem !important; /* tappable circle */
+    min-width: 44px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0,0,0,0.42) !important; /* contrast with hero */
+    color: #fff !important;
+    border-radius: 9999px !important;
+  }
+  .hero-arrows-mobile button#heroPrev svg,
+  .hero-arrows-mobile button#heroNext svg { width: 20px !important; height: 20px !important; stroke-width: 2.2 !important; }
+}
+
+/* Further reduce hero heading size on small screens so it fits nicely over the image */
+@media (max-width: 640px) {
+  /* Slightly larger hero heading on small phones so it's not too small */
+  #heroRoot h1 {
+    font-size: 2.25rem !important; /* ~36px */
+    line-height: 1.05 !important;
+    margin-bottom: 0.5rem !important;
+  }
+  #heroRoot p { font-size: 1rem !important; }
+}
+
+@media (max-width: 360px) {
+  /* Tighter but still readable on very small phones */
+  #heroRoot h1 {
+    font-size: 1.6rem !important; /* ~25.6px on very small phones */
+    line-height: 1.05 !important;
+  }
 }
 
 /* Small utility to improve readability on narrow devices */
@@ -108,3 +195,51 @@ a.inline-block, a.button { padding: 0.6rem 1rem; }
   header { padding-left: 0.5rem; padding-right: 0.5rem; }
   .carousel-nav-btn { display: none !important; }
 }
+
+/* Reveal-on-scroll animations (global) */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 700ms cubic-bezier(.2,.9,.2,1); will-change: transform, opacity; }
+.reveal-left { transform: translateX(-60px); }
+.reveal-right { transform: translateX(60px); }
+.reveal.revealed { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right { transition: none !important; transform: none !important; opacity: 1 !important; }
+}
+
+/* Custom pointer (small dot) */
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  /* white center with a subtle dark halo so the pointer stays visible on white backgrounds */
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.16), /* soft drop */
+              0 0 0 6px rgba(0,0,0,0.08); /* light blackish halo */
+  pointer-events: none; /* Let clicks pass through */
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 150ms cubic-bezier(.2,.9,.2,1), box-shadow 150ms ease, background 150ms ease;
+  z-index: 99999;
+  mix-blend-mode: normal;
+}
+
+/* Enlarged state when hovering interactive elements */
+.custom-cursor.cursor--hover {
+  transform: translate(-50%, -50%) scale(1.8);
+  /* keep white center, but add a warmer brand-colored outer ring for emphasis */
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18), 0 0 0 8px rgba(252,179,5,0.12);
+}
+
+/* Hide custom cursor when keyboard focus is present (so focus ring remains visible) */
+html.keyboard-navigation .custom-cursor { display: none !important; }
+
+/* Respect reduced motion: do not show the custom cursor if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor { display: none !important; }
+}
+
+/* On touch devices, custom cursor is hidden via JS (no CSS change needed) */
+
+
