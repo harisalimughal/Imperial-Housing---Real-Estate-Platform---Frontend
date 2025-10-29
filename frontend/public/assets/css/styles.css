@@ -196,6 +196,55 @@ a.inline-block, a.button { padding: 0.6rem 1rem; }
   .carousel-nav-btn { display: none !important; }
 }
 
+/* Hero arrows: ensure desktop arrows are visible and positioned even when utility classes
+   like `relative`/`absolute` (Tailwind-like) are not present in the stylesheet. */
+#heroRoot { position: relative; overflow: visible; }
+
+#heroPrev, #heroNext {
+  display: none; /* default hidden on small screens; shown in desktop media query */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  /* no background per design request */
+  background: transparent !important;
+  color: #fff;
+  border-radius: 9999px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  box-shadow: none !important;
+}
+
+@media (min-width: 768px) {
+  /* show side nav on medium+ screens */
+  #heroPrev, #heroNext { display: inline-flex !important; }
+  /* move slightly inward from the edges so the arrows are clear but not flush */
+  #heroPrev { left: 28px !important; }
+  #heroNext { right: 28px !important; }
+}
+
+/* Mobile wrapper already exists in template; ensure styles in this file apply to it */
+.hero-arrows-mobile {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* Ensure mobile arrows have no solid background if the button markup includes a bg class */
+.hero-arrows-mobile button#heroPrev,
+.hero-arrows-mobile button#heroNext {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #fff !important;
+}
+
+
 /* Reveal-on-scroll animations (global) */
 .reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 700ms cubic-bezier(.2,.9,.2,1); will-change: transform, opacity; }
 .reveal-left { transform: translateX(-60px); }

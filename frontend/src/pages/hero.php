@@ -23,8 +23,8 @@ $initialImage = !empty($imagesArr) ? $imagesArr[0] : '/public/assets/images/hero
           <p class="text-xl opacity-90 mt-2"><?php echo $heroSubtitle; ?></p>
         <?php endif; ?>
 
-        <!-- Mobile-only centered arrows (they call the side buttons' handlers) -->
-        <div class="md:hidden flex justify-center gap-4 mt-6">
+  <!-- Mobile-only centered arrows (they call the side buttons' handlers) -->
+  <div class="md:hidden hero-arrows-mobile flex justify-center gap-4 mt-6">
           <button onclick="document.getElementById('heroPrev').click()" aria-label="Previous" class="p-3 text-white bg-black/10 rounded-full">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
           </button>
