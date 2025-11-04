@@ -210,7 +210,7 @@
             <div class="p-6">
               <h3 class="font-bold text-lg mb-2">London Apartments</h3>
               <p class="text-gray-600 mb-4">Premium city living</p>
-              <button class="bg-blue-600 text-white px-4 py-2 rounded-lg transition w-full hover:bg-brand-yellow hover:text-black">View Property</button>
+              <a href="product.php?id=5" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg w-full text-center block transition-colors">View Property</a>
             </div>
           </div>
 
@@ -219,7 +219,7 @@
             <div class="p-6">
               <h3 class="font-bold text-lg mb-2">Birmingham Flats</h3>
               <p class="text-gray-600 mb-4">Modern urban living</p>
-              <button class="bg-blue-600 text-white px-4 py-2 rounded-lg transition w-full hover:bg-brand-yellow hover:text-black">View Property</button>
+              <a href="product.php?id=12" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg w-full text-center block transition-colors">View Property</a>
             </div>
           </div>
 

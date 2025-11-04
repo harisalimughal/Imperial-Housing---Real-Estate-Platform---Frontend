@@ -96,7 +96,7 @@
 				<!-- Portfolio Item 1 -->
 				<div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
 					<div class="relative">
-						<img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0" alt="Modern Living Room" class="h-64 w-full object-cover rounded-3xl">
+						<img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7" alt="Modern Living Room" class="h-64 w-full object-cover rounded-3xl">
 						<a href="#" class="absolute top-4 right-4 w-8 h-8  rounded-full flex items-center justify-center shadow-md hover:bg-blue-700 transition-colors">
 							<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M7.89355 0.607422H11.5359M11.5359 0.607422V4.43193M11.5359 0.607422L4.55469 7.93774M8.19708 7.93774H4.55469M4.55469 7.93774V4.11322" stroke="white" stroke-width="1.21413" stroke-linecap="round" stroke-linejoin="round"/>
@@ -156,8 +156,76 @@
 						</a>
 					</div>
 					<div class="p-4 text-center">
-						<h3 class="font-bold text-lg mb-2">Why Imperial Housing is the right Property managing agency for Birmingham Landlords.</h3>
-						<div class="text-gray-600 text-sm">As a landlord in Birmingham it can be challenging to ensure your rental properties and...</div>
+						<h3 class="font-bold text-lg mb-2">Modern House Renovation Project</h3>
+						<div class="text-gray-600 text-sm">Complete transformation of a traditional house into a modern family home...</div>
+					</div>
+				</div>
+
+				<!-- Portfolio Item 5 -->
+				<div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
+					<div class="relative">
+						<img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6" alt="Contemporary Bedroom" class="h-64 w-full object-cover rounded-3xl">
+						<a href="#" class="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center shadow-md hover:bg-blue-700 transition-colors">
+							<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7.89355 0.607422H11.5359M11.5359 0.607422V4.43193M11.5359 0.607422L4.55469 7.93774M8.19708 7.93774H4.55469M4.55469 7.93774V4.11322" stroke="white" stroke-width="1.21413" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M5.46394 0.607422H1.21449C1.05348 0.607422 0.899074 0.674578 0.785227 0.794117C0.67138 0.913657 0.607422 1.07579 0.607422 1.24484V11.4435C0.607422 11.6126 0.67138 11.7747 0.785227 11.8943C0.899074 12.0138 1.05348 12.081 1.21449 12.081H10.9275C11.0885 12.081 11.2429 12.0138 11.3568 11.8943C11.4706 11.7747 11.5346 11.6126 11.5346 11.4435V6.98161" stroke="white" stroke-width="1.21413" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</a>
+					</div>
+					<div class="p-4 text-center">
+						<h3 class="font-bold text-lg mb-2">Contemporary Bedroom Design</h3>
+						<div class="text-gray-600 text-sm">Elegant bedroom renovation with modern fixtures and comfortable living spaces...</div>
+					</div>
+				</div>
+
+				<!-- Portfolio Item 6 -->
+				<div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
+					<div class="relative">
+						<img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9" alt="Modern Exterior" class="h-64 w-full object-cover rounded-3xl">
+						<a href="#" class="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center shadow-md hover:bg-blue-700 transition-colors">
+							<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7.89355 0.607422H11.5359M11.5359 0.607422V4.43193M11.5359 0.607422L4.55469 7.93774M8.19708 7.93774H4.55469M4.55469 7.93774V4.11322" stroke="white" stroke-width="1.21413" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M5.46394 0.607422H1.21449C1.05348 0.607422 0.899074 0.674578 0.785227 0.794117C0.67138 0.913657 0.607422 1.07579 0.607422 1.24484V11.4435C0.607422 11.6126 0.67138 11.7747 0.785227 11.8943C0.899074 12.0138 1.05348 12.081 1.21449 12.081H10.9275C11.0885 12.081 11.2429 12.0138 11.3568 11.8943C11.4706 11.7747 11.5346 11.6126 11.5346 11.4435V6.98161" stroke="white" stroke-width="1.21413" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</a>
+					</div>
+					<div class="p-4 text-center">
+						<h3 class="font-bold text-lg mb-2">Exterior Renovation Project</h3>
+						<div class="text-gray-600 text-sm">Complete exterior makeover with modern architectural elements and landscaping...</div>
+					</div>
+				</div>
+
+				<!-- Portfolio Item 7 -->
+				<div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
+					<div class="relative">
+						<img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Living Space" class="h-64 w-full object-cover rounded-3xl">
+						<a href="#" class="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center shadow-md hover:bg-blue-700 transition-colors">
+							<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7.89355 0.607422H11.5359M11.5359 0.607422V4.43193M11.5359 0.607422L4.55469 7.93774M8.19708 7.93774H4.55469M4.55469 7.93774V4.11322" stroke="white" stroke-width="1.21413" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M5.46394 0.607422H1.21449C1.05348 0.607422 0.899074 0.674578 0.785227 0.794117C0.67138 0.913657 0.607422 1.07579 0.607422 1.24484V11.4435C0.607422 11.6126 0.67138 11.7747 0.785227 11.8943C0.899074 12.0138 1.05348 12.081 1.21449 12.081H10.9275C11.0885 12.081 11.2429 12.0138 11.3568 11.8943C11.4706 11.7747 11.5346 11.6126 11.5346 11.4435V6.98161" stroke="white" stroke-width="1.21413" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</a>
+					</div>
+					<div class="p-4 text-center">
+						<h3 class="font-bold text-lg mb-2">Open Plan Living Design</h3>
+						<div class="text-gray-600 text-sm">Spacious open plan renovation creating seamless flow between living areas...</div>
+					</div>
+				</div>
+
+				<!-- Portfolio Item 8 -->
+				<div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
+					<div class="relative">
+						<img src="https://images.unsplash.com/photo-1595514535316-47e0ed123915" alt="Kitchen Design" class="h-64 w-full object-cover rounded-3xl">
+						<a href="#" class="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center shadow-md hover:bg-blue-700 transition-colors">
+							<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7.89355 0.607422H11.5359M11.5359 0.607422V4.43193M11.5359 0.607422L4.55469 7.93774M8.19708 7.93774H4.55469M4.55469 7.93774V4.11322" stroke="white" stroke-width="1.21413" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M5.46394 0.607422H1.21449C1.05348 0.607422 0.899074 0.674578 0.785227 0.794117C0.67138 0.913657 0.607422 1.07579 0.607422 1.24484V11.4435C0.607422 11.6126 0.67138 11.7747 0.785227 11.8943C0.899074 12.0138 1.05348 12.081 1.21449 12.081H10.9275C11.0885 12.081 11.2429 12.0138 11.3568 11.8943C11.4706 11.7747 11.5346 11.6126 11.5346 11.4435V6.98161" stroke="white" stroke-width="1.21413" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</a>
+					</div>
+					<div class="p-4 text-center">
+						<h3 class="font-bold text-lg mb-2">Classic Kitchen Renovation</h3>
+						<div class="text-gray-600 text-sm">Traditional kitchen design with modern functionality and timeless appeal...</div>
 					</div>
 				</div>
 			</div>
@@ -180,5 +248,73 @@
 	</section>
 
 	<?php include 'footer.php'; ?>
+
+	<script>
+		// Portfolio Carousel Functionality
+		document.addEventListener('DOMContentLoaded', function() {
+			const portfolioGrid = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4.gap-6');
+			const paginationButtons = document.querySelectorAll('[data-page]');
+			const portfolioItems = portfolioGrid.querySelectorAll('.property-card');
+			
+			// Create slides by grouping items (4 items per slide)
+			const itemsPerSlide = 4;
+			const totalSlides = Math.ceil(portfolioItems.length / itemsPerSlide);
+			let currentSlide = 0;
+
+			// Hide all items initially
+			portfolioItems.forEach(item => {
+				item.style.display = 'none';
+			});
+
+			function showSlide(slideIndex) {
+				// Hide all items
+				portfolioItems.forEach(item => {
+					item.style.display = 'none';
+				});
+
+				// Show items for current slide
+				const startIndex = slideIndex * itemsPerSlide;
+				const endIndex = Math.min(startIndex + itemsPerSlide, portfolioItems.length);
+				
+				for (let i = startIndex; i < endIndex; i++) {
+					if (portfolioItems[i]) {
+						portfolioItems[i].style.display = 'block';
+					}
+				}
+
+				// Update pagination buttons
+				paginationButtons.forEach((btn, index) => {
+					btn.classList.remove('bg-[#FCB305]', 'text-white');
+					btn.classList.add('hover:bg-gray-200');
+					btn.setAttribute('data-active', 'false');
+					
+					if (index === slideIndex) {
+						btn.classList.add('bg-[#FCB305]', 'text-white');
+						btn.classList.remove('hover:bg-gray-200');
+						btn.setAttribute('data-active', 'true');
+					}
+				});
+
+				currentSlide = slideIndex;
+			}
+
+			// Add click event listeners to pagination buttons
+			paginationButtons.forEach((button, index) => {
+				button.addEventListener('click', function(e) {
+					e.preventDefault();
+					showSlide(index);
+				});
+			});
+
+			// Show first slide initially
+			showSlide(0);
+
+			// Auto-advance carousel (optional)
+			// setInterval(() => {
+			//     const nextSlide = (currentSlide + 1) % totalSlides;
+			//     showSlide(nextSlide);
+			// }, 5000);
+		});
+	</script>
 </body>
 </html>
