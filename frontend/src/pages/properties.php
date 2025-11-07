@@ -442,5 +442,224 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
   </section>
 
   <?php include 'footer.php'; ?>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all filter elements with more specific selectors
+      const locationSelect = document.querySelector('.custom-select:nth-of-type(1)');
+      const areaSelect = document.querySelector('.custom-select:nth-of-type(2)');
+      const typeSelect = document.querySelector('.custom-select:nth-of-type(3)');
+      const bedroomSlider = document.querySelector('.range-slider:nth-of-type(1)');
+      const bathroomSlider = document.querySelector('.range-slider:nth-of-type(2)');
+      const amenityButtons = document.querySelectorAll('.grid.grid-cols-2.gap-2 button');
+      const propertyCards = document.querySelectorAll('.property-card');
+
+      console.log('Filter elements found:', {
+        locationSelect: !!locationSelect,
+        areaSelect: !!areaSelect,
+        typeSelect: !!typeSelect,
+        bedroomSlider: !!bedroomSlider,
+        bathroomSlider: !!bathroomSlider,
+        amenityButtons: amenityButtons.length,
+        propertyCards: propertyCards.length
+      });
+
+      // Store original properties data for filtering
+      const propertiesData = [];
+      propertyCards.forEach((card, index) => {
+        try {
+          const titleElement = card.querySelector('h3 a');
+          const locationElement = card.querySelector('.p-4 .flex.items-center.justify-center.text-gray-600 span');
+          
+          // Get bedroom and bathroom data from the popup
+          const bedroomsElement = card.querySelector('.property-popup .grid.grid-cols-2 div:nth-child(3) span');
+          const bathroomsElement = card.querySelector('.property-popup .grid.grid-cols-2 div:nth-child(4) span');
+          
+          const title = titleElement ? titleElement.textContent.trim() : '';
+          const location = locationElement ? locationElement.textContent.trim() : '';
+          const bedroomsText = bedroomsElement ? bedroomsElement.textContent : '0';
+          const bathroomsText = bathroomsElement ? bathroomsElement.textContent : '0';
+          
+          const bedrooms = parseInt(bedroomsText.match(/\d+/)?.[0] || '0');
+          const bathrooms = parseInt(bathroomsText.match(/\d+/)?.[0] || '0');
+          
+          console.log(`Property ${index}:`, { title, location, bedrooms, bathrooms });
+          
+          propertiesData.push({
+            element: card,
+            title: title.toLowerCase(),
+            location: location.toLowerCase(),
+            bedrooms: bedrooms,
+            bathrooms: bathrooms,
+            amenities: []
+          });
+        } catch (error) {
+          console.error(`Error processing property ${index}:`, error);
+        }
+      });
+
+      // Selected amenities tracking
+      let selectedAmenities = [];
+
+      // Filter function
+      function filterProperties() {
+        console.log('Filtering properties...');
+        
+        const selectedLocation = locationSelect ? locationSelect.value.toLowerCase() : '';
+        const selectedArea = areaSelect ? areaSelect.value.toLowerCase() : '';
+        const selectedType = typeSelect ? typeSelect.value.toLowerCase() : '';
+        const minBedrooms = bedroomSlider ? parseInt(bedroomSlider.value) : 1;
+        const minBathrooms = bathroomSlider ? parseInt(bathroomSlider.value) : 1;
+
+        console.log('Filter values:', {
+          selectedLocation,
+          selectedArea,
+          selectedType,
+          minBedrooms,
+          minBathrooms,
+          selectedAmenities
+        });
+
+        let visibleCount = 0;
+
+        propertiesData.forEach((property, index) => {
+          let shouldShow = true;
+
+          // Location filter
+          if (selectedLocation && selectedLocation !== 'new york, us' && selectedLocation !== 'select your location') {
+            const locationMatch = property.location.includes(selectedLocation.split(',')[0].trim());
+            if (!locationMatch) {
+              shouldShow = false;
+              console.log(`Property ${index} filtered out by location`);
+            }
+          }
+
+          // Area filter
+          if (selectedArea && selectedArea !== 'select your area') {
+            // Basic area matching - you can enhance this
+            const areaKeywords = {
+              'downtown': ['downtown', 'city center', 'central'],
+              'suburbs': ['suburb', 'residential'],
+              'waterfront': ['beach', 'waterfront', 'ocean'],
+              'hills': ['hills', 'highland', 'mountain'],
+              'beach area': ['beach', 'coastal', 'shore']
+            };
+            
+            if (areaKeywords[selectedArea]) {
+              const hasAreaMatch = areaKeywords[selectedArea].some(keyword => 
+                property.location.includes(keyword) || property.title.includes(keyword)
+              );
+              if (!hasAreaMatch) {
+                shouldShow = false;
+                console.log(`Property ${index} filtered out by area`);
+              }
+            }
+          }
+
+          // Type filter
+          if (selectedType && selectedType !== 'select your type') {
+            const typeKeywords = {
+              'house': ['house', 'home'],
+              'apartment': ['apartment', 'apt'],
+              'condo': ['condo', 'condominium'],
+              'villa': ['villa'],
+              'townhouse': ['townhouse', 'town house'],
+              'mansion': ['mansion', 'estate'],
+              'studio': ['studio'],
+              'penthouse': ['penthouse']
+            };
+            
+            if (typeKeywords[selectedType]) {
+              const hasTypeMatch = typeKeywords[selectedType].some(keyword => 
+                property.title.includes(keyword)
+              );
+              if (!hasTypeMatch) {
+                shouldShow = false;
+                console.log(`Property ${index} filtered out by type`);
+              }
+            }
+          }
+
+          // Bedrooms filter
+          if (property.bedrooms < minBedrooms) {
+            shouldShow = false;
+            console.log(`Property ${index} filtered out by bedrooms: ${property.bedrooms} < ${minBedrooms}`);
+          }
+
+          // Bathrooms filter
+          if (property.bathrooms < minBathrooms) {
+            shouldShow = false;
+            console.log(`Property ${index} filtered out by bathrooms: ${property.bathrooms} < ${minBathrooms}`);
+          }
+
+          // Show/hide property
+          if (shouldShow) {
+            property.element.style.display = 'block';
+            visibleCount++;
+          } else {
+            property.element.style.display = 'none';
+          }
+        });
+
+        console.log(`Showing ${visibleCount} of ${propertiesData.length} properties`);
+
+        // Update results count
+        const resultsText = document.querySelector('.text-center.mt-8.text-gray-600');
+        if (resultsText) {
+          resultsText.textContent = `Showing ${visibleCount} of ${propertiesData.length} properties`;
+        }
+      }
+
+      // Add event listeners
+      if (locationSelect) locationSelect.addEventListener('change', filterProperties);
+      if (areaSelect) areaSelect.addEventListener('change', filterProperties);
+      if (typeSelect) typeSelect.addEventListener('change', filterProperties);
+      if (bedroomSlider) bedroomSlider.addEventListener('input', filterProperties);
+      if (bathroomSlider) bathroomSlider.addEventListener('input', filterProperties);
+
+      // Amenity buttons
+      amenityButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const amenity = this.textContent.trim().toLowerCase();
+          
+          if (this.classList.contains('bg-[#FCB305]')) {
+            // Remove amenity
+            this.classList.remove('bg-[#FCB305]', 'text-white');
+            this.classList.add('border', 'border-gray-300', 'hover:border-[#FCB305]', 'hover:text-[#FCB305]');
+            selectedAmenities = selectedAmenities.filter(a => a !== amenity);
+          } else {
+            // Add amenity
+            this.classList.add('bg-[#FCB305]', 'text-white');
+            this.classList.remove('border', 'border-gray-300', 'hover:border-[#FCB305]', 'hover:text-[#FCB305]');
+            selectedAmenities.push(amenity);
+          }
+          
+          filterProperties();
+        });
+      });
+
+      // Update slider display values
+      function updateSliderDisplay() {
+        if (bedroomSlider && bathroomSlider) {
+          const bedroomValue = bedroomSlider.value;
+          const bathroomValue = bathroomSlider.value;
+          console.log(`Slider values - Bedrooms: ${bedroomValue}, Bathrooms: ${bathroomValue}`);
+        }
+      }
+
+      if (bedroomSlider) bedroomSlider.addEventListener('input', updateSliderDisplay);
+      if (bathroomSlider) bathroomSlider.addEventListener('input', updateSliderDisplay);
+
+      // Initialize
+      updateSliderDisplay();
+      
+      // Test filter on page load
+      setTimeout(() => {
+        console.log('Testing initial filter...');
+        filterProperties();
+      }, 1000);
+    });
+  </script>
 </body>
 </html>

@@ -179,11 +179,7 @@ if (!$property) {
             <img id="mainImage" src="<?php echo htmlspecialchars($property['image']); ?>" 
                  class="w-full h-[400px] object-cover rounded-2xl transition-all duration-300" 
                  alt="<?php echo htmlspecialchars($property['title']); ?>">
-            <div class="absolute top-4 left-4">
-              <span class="bg-red-600 text-white px-3 py-1 rounded-md text-sm font-semibold">
-                <?php echo htmlspecialchars($property['status']); ?>
-              </span>
-            </div>
+
           </div>
           
           <!-- Thumbnail Images -->
@@ -455,13 +451,11 @@ if (!$property) {
                   <div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
                     <div class="relative">
                       <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
-                      <div class="absolute top-4 left-4">
-                        <span class="<?php echo getStatusBadgeColor($property['status']); ?> text-white px-4 py-2 rounded-full text-sm font-semibold"><?php echo htmlspecialchars($property['status']); ?></span>
-                      </div>
+
                     </div>
                     <div class="p-4 text-center">
                       <h3 class="font-bold text-lg mb-2 text-gray-800">
-                        <a href="product.php?id=<?php echo $property['id']; ?>" class="hover:text-[#151EA6] transition-colors underline decoration-2 underline-offset-2">
+                        <a href="product.php?id=<?php echo $property['id']; ?>" class="hover:text-[#151EA6] transition-colors">
                           <?php echo htmlspecialchars($property['title']); ?>
                         </a>
                       </h3>
@@ -483,9 +477,7 @@ if (!$property) {
                     <div class="property-popup index-popup">
                       <div class="relative h-full flex flex-col">
                         <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
-                        <div class="absolute top-2 left-2">
-                          <span class="<?php echo getStatusBadgeColor($property['status']); ?> text-white px-2 py-1 rounded-full text-xs font-semibold"><?php echo htmlspecialchars($property['status']); ?></span>
-                        </div>
+
 
                         <div class="p-3 flex-1 flex flex-col">
                           <h3 class="font-bold text-sm mb-1 text-gray-800">
