@@ -150,7 +150,7 @@
 							</svg>
 						</div>
 						<h3 class="font-semibold text-gray-900 mb-1">Email Info</h3>
-						<p class="text-gray-600">info@mlinhousing.co.uk</p>
+						<p class="text-gray-600">info@imperialhousing.co.uk</p>
 					</div>
 
 					<!-- Address -->
@@ -162,7 +162,7 @@
 							</svg>
 						</div>
 						<h3 class="font-semibold text-gray-900 mb-1">Address</h3>
-						<p class="text-gray-600">Grosvenor House 11 St Paul's Square</p>
+						<p class="text-gray-600">Imperial Housing, United Kingdom</p>
 					</div>
 				</div>
 			</div>

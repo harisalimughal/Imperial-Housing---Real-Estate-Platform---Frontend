@@ -40,15 +40,18 @@
           <div class="mb-8">
             <h2 class="text-4xl font-bold text-gray-900 mb-6">About Imperial Housing</h2>
             <p class="text-gray-700 text-[16px] leading-relaxed mb-4">
-              MKM Housing is a Managing Agent and accommodation provider based in the vibrant city of Birmingham. With a strong presence in the local market, and an increasing presence internationally, we specialise in three key categories: HMOs (House in Multiple Occupation), Serviced Accommodation, and Sales.
+              Imperial Housing is a Managing Agent and accommodation provider based in the vibrant city of Birmingham. With a strong presence in the local market, and an increasing presence internationally, we specialise in three key categories: HMOs (House in Multiple Occupation), Serviced Accommodation, and Sales.
             </p>
           </div>
           
           <!-- Why Choose Imperial Housing Section -->
           <div class="mb-8">
             <h3 class="text-4xl font-bold text-gray-900 mb-6">Why Choose Imperial Housing?</h3>
+            <p class="text-gray-700 text-[16px] leading-relaxed mb-4">
+              Since January 2020, Imperial Housing has been a trusted provider of HMO / Supported Accommodation, Serviced Accommodation, and Transitional Housing across Birmingham and the UK. We specialise in creating safe, comfortable, and well-managed homes for individuals, while providing landlords with professional property management that maximises their investment.
+            </p>
             <p class="text-gray-700 text-[16px] leading-relaxed">
-              Our success is a testament to our unwavering commitment to delivering excellence in every aspect of our business. With a deep understanding of the Birmingham property market and a passion for providing top-notch services, we pride ourselves on fostering lasting relationships with property owners, tenants, and homebuyers. At MKM Housing, we're not just in the business of property management; we're in the business of creating homes and experiences. We invite you to explore our website and discover the world of possibilities we offer. Welcome to MKM Housing, where exceptional service meets the vibrant heart of Birmingham.
+              With deep knowledge of the Birmingham property market and an expanding UK presence, we deliver tailored solutions that benefit both landlords and tenants. From expert HMO management in Birmingham to serviced accommodation nationwide and Transitional Housing for individuals, Imperial Housing combines professionalism, care, and results-driven service. Choose Imperial Housing for a partner who creates thriving homes, supports landlords, and expands innovative accommodation services across the UK.
             </p>
           </div>
         </div>

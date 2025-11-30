@@ -15,8 +15,8 @@
 	<?php include 'header.php'; ?>
 
 	<?php
-	$heroTitle = 'Design & Renovation';
-	$heroSubtitle = 'Transform spaces with our expert design and renovation services';
+	$heroTitle = 'Property Management';
+	$heroSubtitle = 'Professional Property Management with Guaranteed Rent Across Birmingham and Beyond';
 	$heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
 	include 'hero.php';
 	?>
@@ -25,9 +25,9 @@
 	<section class="py-20 bg-white">
 		<div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
 			<div class="text-center mb-12">
-				<h2 class="text-4xl md:text-5xl font-bold text-black mb-6">Space Planning</h2>
+				<h2 class="text-4xl md:text-5xl font-bold text-black mb-6">Why Choose Imperial Housing?</h2>
 				<p class="text-gray-600 text-lg max-w-3xl mx-auto">
-					Transforming your dream space to reality through meticulous design, quality craftsmanship and modern living. Design & Renovation Ltd. is ready to work with you to build the cottage or home you've been dreaming of. A finished product is only as good as the team managing the project. Building on time, on budget, and presenting you, the client, with a product to be proud of, means years of satisfaction for us all. Build it right the first time.
+					At Imperial Housing, we provide comprehensive property management with guaranteed rent for landlords, investors, and housing partners. Established in Birmingham, we've built a trusted reputation for delivering high-quality, compliant, and well-managed accommodation — and are now expanding into new areas across the UK. We specialise in HMO and supported accommodation management, offering landlords peace of mind through our Guaranteed Rent Scheme. This means you receive fixed monthly rent — on time, every time — even if your property is empty or tenants fall behind on payments.
 				</p>
 			</div>
 

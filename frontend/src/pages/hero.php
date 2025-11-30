@@ -7,8 +7,8 @@
  *   $heroImages   - comma-separated list of hero image URLs (default: hero1,hero2)
  */
 
-$heroTitle = isset($heroTitle) ? $heroTitle : "Find Real Estate and<br>Get Your Dream Space";
-$heroSubtitle = isset($heroSubtitle) ? $heroSubtitle : '';
+$heroTitle = isset($heroTitle) ? $heroTitle : "Your Home. Your Investment.<br>Your Peace of Mind.";
+$heroSubtitle = isset($heroSubtitle) ? $heroSubtitle : 'Whether you\'re looking for a quality home or a reliable partner to manage your property, Imperial Housing delivers comfort, returns, and care.';
 $heroImages = isset($heroImages) ? $heroImages : '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
 
 $imagesArr = array_values(array_filter(array_map('trim', explode(',', $heroImages))));

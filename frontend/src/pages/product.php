@@ -324,7 +324,7 @@ if (!$property) {
 
   <!-- Contact Form Section -->
   <section class="py-12 bg-gray-50">
-    <div class="max-w-3xl mx-auto px-8 sm:px-12 lg:px-16">
+    <div class="max-w-5xl mx-auto px-8 sm:px-12 lg:px-16">
       <form class="space-y-6">
         <!-- First Row: Name and Email -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -402,7 +402,7 @@ if (!$property) {
           </div>
           <div>
             <h4 class="font-semibold text-gray-900">Email Info</h4>
-            <p class="text-gray-600 text-sm">info@mkm-housing.co.uk</p>
+            <p class="text-gray-600 text-sm">info@imperialhousing.co.uk</p>
           </div>
         </div>
 
@@ -432,7 +432,7 @@ if (!$property) {
       
       <!-- Properties Carousel Container -->
       <div class="relative">
-        <div class="properties-carousel-container overflow-hidden">
+        <div class="properties-carousel-container overflow-visible">
           <div class="properties-carousel flex transition-transform duration-500 ease-in-out" id="similarPropertiesCarousel">
             <?php 
             // Get all properties excluding current one
@@ -446,7 +446,7 @@ if (!$property) {
             $propertyPages = array_chunk($similarProperties, $propertiesPerPage);
             
             foreach ($propertyPages as $pageIndex => $propertiesPage): ?>
-              <div class="properties-page min-w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-page="<?php echo $pageIndex; ?>">
+              <div class="properties-page min-w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-20" data-page="<?php echo $pageIndex; ?>">
                 <?php foreach ($propertiesPage as $property): ?>
                   <div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
                     <div class="relative">

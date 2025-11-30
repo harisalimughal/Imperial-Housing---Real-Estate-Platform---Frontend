@@ -38,7 +38,7 @@
 					<!-- Paragraph -->
 					<div>
 						<p class="text-gray-600 text-lg leading-relaxed">
-							At Imperial Housing, we provide more than just a place to live — we offer safe and supportive accommodation that helps you move toward independent living. Our homes provide comfort, stability, and personalized support, empowering you to take the next step in life with confidence. Whether you're transitioning from care, overcoming challenges, or rebuilding independence, we're here to help you feel truly at home.
+							At Imperial Housing, we provide more than just a place to live. We offer safe, supportive accommodation designed to help you move toward independent living. Our homes give you the comfort, stability, and personal support you need to take your next step in life with confidence. Whether you're leaving care, overcoming challenges, or rebuilding your independence, we're here to help you feel at home.
 						</p>
 					</div>
 					
@@ -71,7 +71,7 @@
 					What Is Supported Accommodation?
 				</h2>
 				<p class="text-white text-lg md:text-xl leading-relaxed max-w-6xl mx-auto">
-					Supported accommodation is housing where you have your own space and privacy, while also getting access to support from trained staff who can help you manage daily life. We work with people who may need extra support to live independently — whether that's managing money, accessing benefits, building life skills, or finding education or work opportunities. At MKM Housing, we believe everyone deserves a safe and supportive place to live.
+					Supported accommodation is housing where you have your own space and privacy, while also getting access to support from trained staff who can help you manage daily life. We work with people who may need extra support to live independently — whether that's managing money, accessing benefits, building life skills, or finding education or work opportunities. At Imperial Housing, we believe everyone deserves a safe and supportive place to live.
 				</p>
 			</div>
 		</div>
@@ -251,7 +251,7 @@
 					Need More Information?
 				</h2>
 				<p class="text-gray-700 text-lg mb-8">
-					And say goodbye to stressing about viewing, listing, and rent. We will take care of your concerns and make sure that you are satisfied with our services. With MKM Housing, your property is in safe hands.
+					And say goodbye to stressing about viewing, listing, and rent. We will take care of your concerns and make sure that you are satisfied with our services. With Imperial Housing, your property is in safe hands.
 				</p>
 				
 				<!-- Contact Info -->
@@ -395,7 +395,7 @@
 					<!-- Consent -->
 					<div class="flex items-start space-x-3">
 						<input type="checkbox" id="consent" class="w-4 h-4 text-gray-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
-						<label for="consent" class="text-gray-700 text-sm">I give consent for MKM Housing to use my information to process this application.</label>
+						<label for="consent" class="text-gray-700 text-sm">I give consent for Imperial Housing to use my information to process this application.</label>
 					</div>
 					
 					<button type="submit" class="w-full bg-[#FCB305] hover:bg-[#e6a004] text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors duration-300">
@@ -404,7 +404,7 @@
 				</form>
 				
 				<p class="text-center text-gray-600 text-sm mt-6">
-					MKM Housing complies with the Supported Accommodation Quality Standards and follows the National Statement of Expectations for Supported Housing to ensure every tenant receives safe, respectful, and high-quality support.
+					Imperial Housing complies with the Supported Accommodation Quality Standards and follows the National Statement of Expectations for Supported Housing to ensure every tenant receives safe, respectful, and high-quality support.
 				</p>
 			</div>
 		</div>

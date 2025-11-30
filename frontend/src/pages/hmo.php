@@ -65,7 +65,7 @@
 							<div>
 								<h3 class="text-lg font-semibold text-black mb-2">Diverse HMO Properties</h3>
 								<p class="text-gray-600 text-sm leading-relaxed">
-									A range of well-maintained shared homes Designed for comfort, convenience, and community
+									Our portfolio includes a wide range of HMO properties, from spacious student houses to comfortable shared flats and boarding houses. We understand the unique needs of our tenants and offer suitable accommodation options.
 								</p>
 							</div>
 						</div>
@@ -83,7 +83,7 @@
 							<div>
 								<h3 class="text-lg font-semibold text-black mb-2">Compliance & Safety</h3>
 								<p class="text-gray-600 text-sm leading-relaxed">
-									Fully licensed and regularly inspected Fire, gas, and electrical safety assured
+									Your safety is our top priority. All our HMO properties meet or exceed local regulations and licensing requirements. We invest in fire safety measures, annual gas safety checks, and electrical safety certifications to ensure your peace of mind.
 								</p>
 							</div>
 						</div>
@@ -101,7 +101,7 @@
 							<div>
 								<h3 class="text-lg font-semibold text-black mb-2">Professional Management</h3>
 								<p class="text-gray-600 text-sm leading-relaxed">
-									Dedicated team handling maintenance and support Hassle-free living for every resident
+									Managing an HMO property can be complex, but we've got it covered. Our dedicated property management team handles all aspects, from maintenance of common areas to resolving tenant concerns. We make your HMO experience hassle-free.
 								</p>
 							</div>
 						</div>
@@ -122,7 +122,7 @@
 							<div>
 								<h3 class="text-lg font-semibold text-black mb-2">Supportive Environment</h3>
 								<p class="text-gray-600 text-sm leading-relaxed">
-									Inclusive spaces that promote respect and connection. Comfortable, well balanced shared living
+									We believe in fostering a supportive and inclusive environment in our HMO properties. We encourage positive tenant interactions and provide a comfortable living space for all residents.
 								</p>
 							</div>
 						</div>
@@ -140,7 +140,7 @@
 							<div>
 								<h3 class="text-lg font-semibold text-black mb-2">Convenient Locations</h3>
 								<p class="text-gray-600 text-sm leading-relaxed">
-									Close to transport, schools, and local amenities Easy access to everything you need
+									Our HMO properties are strategically located near essential amenities, transportation links, and educational institutions, making your daily life more convenient.
 								</p>
 							</div>
 						</div>
@@ -243,7 +243,7 @@
 			</div>
 
 			<p class="text-center text-sm text-gray-400 font-semibold max-w-4xl mx-auto">
-				At MKM Housing, We Are Dedicated To Providing Safe, Comfortable, And Supportive Living Environments For All Our Tenants,
+				At Imperial Housing, We Are Dedicated To Providing Safe, Comfortable, And Supportive Living Environments For All Our Tenants,
 				Whether They Are Seeking An HMO Property Or Supported Accommodation. Your Well-Being And Satisfaction Are Our Top Priorities.
 			</p>
 		</div>
