@@ -1,4 +1,9 @@
 <?php 
+// Prevent caching to fix back button issues
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 // Include data file
 require_once __DIR__ . '/../data/properties.php';
 
@@ -199,7 +204,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
   <?php
   $heroTitle = 'Featured Properties';
   $heroSubtitle = 'Browse our latest listings and find your next home';
-  $heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
+  $heroImages = '/public/assets/images/hero1.jpg,/public/assets/images/hero2.jpg';
   include 'hero.php';
   ?>
 
@@ -221,18 +226,8 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
             <div class="mb-6">
               <label class="block text-sm font-semibold text-gray-700 mb-2">Location</label>
               <div class="relative">
-                <select class="custom-select w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#FCB305] focus:border-transparent">
-                  <option>New York, US</option>
-                  <option>Los Angeles, CA</option>
-                  <option>Beverly Hills, CA</option>
-                  <option>Santa Monica, CA</option>
-                  <option>Hollywood, CA</option>
-                  <option>West Hollywood, CA</option>
-                  <option>Malibu, CA</option>
-                  <option>Venice, CA</option>
-                  <option>Manhattan Beach, CA</option>
-                  <option>Bel Air, CA</option>
-                  <option>Studio City, CA</option>
+                <select id="locationSelect" class="custom-select w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#FCB305] focus:border-transparent">
+                  <option>Birmingham</option>
                 </select>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                   <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,15 +241,12 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
             <div class="mb-6">
               <label class="block text-sm font-semibold text-gray-700 mb-2">Property Area</label>
               <div class="relative">
-                <select class="custom-select w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#FCB305] focus:border-transparent">
+                <select id="areaSelect" class="custom-select w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#FCB305] focus:border-transparent">
                   <option>Select your Area</option>
-                  <option>Downtown</option>
-                  <option>Suburbs</option>
-                  <option>Waterfront</option>
-                  <option>Hills</option>
-                  <option>Beach Area</option>
-                  <option>City Center</option>
-                  <option>Residential</option>
+                  <option>Hodge Hill</option>
+                  <option>Winson Green</option>
+                  <option>Erdington</option>
+                  <option>Lozells</option>
                 </select>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                   <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -268,16 +260,10 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
             <div class="mb-6">
               <label class="block text-sm font-semibold text-gray-700 mb-2">Property Type</label>
               <div class="relative">
-                <select class="custom-select w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#FCB305] focus:border-transparent">
+                <select id="typeSelect" class="custom-select w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#FCB305] focus:border-transparent">
                   <option>Select your Type</option>
                   <option>House</option>
-                  <option>Apartment</option>
-                  <option>Condo</option>
-                  <option>Villa</option>
-                  <option>Townhouse</option>
-                  <option>Mansion</option>
-                  <option>Studio</option>
-                  <option>Penthouse</option>
+                  <option>Flats</option>
                 </select>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                   <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -289,14 +275,18 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 
             <!-- Bedrooms Range -->
             <div class="mb-6">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Bedrooms</label>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Bedrooms: <span id="bedroomValue" class="text-[#FCB305] font-bold">1</span></label>
               <div class="flex items-center justify-between text-sm text-gray-600 mb-2">
                 <span>01</span>
-                <span>6</span>
+                <span>10</span>
               </div>
               <div class="relative">
-                <input type="range" min="1" max="6" value="3" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider">
+                <input type="range" min="1" max="10" value="1" id="bedroomSlider" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider">
                 <div class="flex justify-between text-xs text-gray-500 mt-1">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
@@ -309,14 +299,19 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 
             <!-- Bathroom Range -->
             <div class="mb-6">
-              <label class="block text-sm font-semibold text-gray-700 mb-2">Bathroom</label>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Bathroom: <span id="bathroomValue" class="text-[#FCB305] font-bold">1</span></label>
               <div class="flex items-center justify-between text-sm text-gray-600 mb-2">
                 <span>01</span>
-                <span>5</span>
+                <span>10</span>
               </div>
               <div class="relative">
-                <input type="range" min="1" max="5" value="2" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider">
+                <input type="range" min="1" max="10" value="1" id="bathroomSlider" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer range-slider">
                 <div class="flex justify-between text-xs text-gray-500 mt-1">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
@@ -326,21 +321,6 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
               </div>
             </div>
 
-            <!-- Amenities -->
-            <div class="mb-6">
-              <label class="block text-sm font-semibold text-gray-700 mb-4">Amenities</label>
-              <div class="grid grid-cols-2 gap-2">
-                <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:border-[#FCB305] hover:text-[#FCB305] transition-colors">Backyard</button>
-                <button class="px-3 py-2 text-sm bg-[#FCB305] text-white rounded-lg">Balcony</button>
-                <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:border-[#FCB305] hover:text-[#FCB305] transition-colors">Fireplace</button>
-                <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:border-[#FCB305] hover:text-[#FCB305] transition-colors">Gym</button>
-                <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:border-[#FCB305] hover:text-[#FCB305] transition-colors">Swimming Pool</button>
-                <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:border-[#FCB305] hover:text-[#FCB305] transition-colors">Garage</button>
-                <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:border-[#FCB305] hover:text-[#FCB305] transition-colors">Playground</button>
-                <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:border-[#FCB305] hover:text-[#FCB305] transition-colors">Surveillance Cameras</button>
-                <button class="px-3 py-2 text-sm border border-gray-300 rounded-lg hover:border-[#FCB305] hover:text-[#FCB305] transition-colors">Laundry</button>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -348,7 +328,7 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
         <div class="flex-1">
           <div class="properties-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" style="overflow: visible;">
             <?php foreach ($properties as $property): ?>
-            <div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;">
+            <div class="property-card bg-white rounded-3xl shadow-lg hover:shadow-xl transition duration-300 relative" style="overflow: visible;" data-type="<?php echo htmlspecialchars($property['type']); ?>">
               <div class="relative">
                 <img src="<?php echo htmlspecialchars($property['image']); ?>" class="h-48 sm:h-64 w-full object-cover rounded-3xl" alt="<?php echo htmlspecialchars($property['title']); ?>">
 
@@ -388,25 +368,18 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 
                     <hr class="border-gray-200 mb-2">
 
-                    <div class="grid grid-cols-2 gap-2 text-gray-600 text-xs mb-2">
-                      <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18"></path></svg><span><?php echo htmlspecialchars($property['area']); ?></span></div>
-                      <div class="flex items-center justify-end"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 6v12"></path></svg><span><?php echo $property['garages'] ?? 2; ?> Garages</span></div>
-
-                      <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14"></path></svg><span><?php echo $property['bedrooms']; ?> Bedrooms</span></div>
-                      <div class="flex items-center justify-end"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10a4 4 0 01-8 0"></path></svg><span><?php echo $property['bathrooms']; ?> Bathrooms</span></div>
-
-                      <div class="col-span-2 flex items-center justify-between text-xs text-gray-500 mt-1">
-                        <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg><span>Michel Smith</span></div>
-                        <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg><span>1 days ago</span></div>
-                      </div>
+                    <div class="flex justify-center items-center gap-4 text-gray-600 text-xs mb-2">
+                      <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 640 512"><path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/></svg><span><?php echo $property['bedrooms']; ?> beds</span></div>
+                      <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 512 512"><path d="M96 77.3c0-7.3 5.9-13.3 13.3-13.3c3.5 0 6.9 1.4 9.4 3.9l14.9 14.9C130 91.8 128 101.7 128 112c0 19.9 7.2 38 19.2 52c-5.3 9.2-4 21.1 3.8 29c9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9c-7.9-7.9-19.8-9.1-29-3.8C246 39.2 227.9 32 208 32c-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0C66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3zM32 352v16c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V464H384v16c0 17.7 14.3 32 32 32s32-14.3 32-32V439.6c19.6-17.6 32-43.1 32-71.6V352H32z"/></svg><span><?php echo $property['bathrooms']; ?> baths</span></div>
+                      <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 448 512"><path d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48h8V196.9c-1.9 1.4-3.8 2.9-5.6 4.4C10.9 214.5 0 232.9 0 256c0 46.9 14.3 84.1 37 112.5c14.2 17.7 31.1 31.3 48.5 41.8L65.6 469.9c-3.3 9.8-1.6 20.5 4.4 28.8s15.7 13.3 26 13.3H352c10.3 0 19.9-4.9 26-13.3s7.7-19.1 4.4-28.8l-19.8-59.5c17.4-10.5 34.3-24.1 48.5-41.8c22.7-28.4 37-65.5 37-112.5c0-23.1-10.9-41.5-26.4-54.6c-1.8-1.5-3.7-3-5.6-4.4V48h8c13.3 0 24-10.7 24-24s-10.7-24-24-24H24zM384 256.3c0 1-.3 2.6-3.8 5.6c-4.8 4.1-14 9-29.3 13.4C320.5 284 276.1 288 224 288s-96.5-4-126.9-12.8c-15.3-4.4-24.5-9.3-29.3-13.4c-3.5-3-3.8-4.6-3.8-5.6l0-.3 0-.1 0 0 0 0c0 0 0 0 0 0s0 0 0 0c0-33.9 4.3-66.6 11.3-95.8c6.9-28.9 16.7-53.1 27.6-68.3c10.7-15 21.8-20.8 28.8-22.7c6.9-1.9 18.1-2.9 34.5-2.9h91.8c16.4 0 27.6 1.1 34.5 2.9c6.9 1.9 18.1 7.7 28.8 22.7c10.9 15.2 20.7 39.4 27.6 68.3c6.9 29.2 11.3 61.9 11.3 95.8l0 0 0 0 0 0 0 .1 0 .3zM216 464h16c13.3 0 24-10.7 24-24s-10.7-24-24-24H216c-13.3 0-24 10.7-24 24s10.7 24 24 24z"/></svg><span><?php echo $property['wc']; ?> WC</span></div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Full-width price button at bottom with no white space below -->
-                <div class="bg-[#FCB305] text-white text-center px-4 py-3 rounded-full font-bold text-sm">
-                  <?php echo htmlspecialchars($property['price']); ?>
-                </div>
+                <!-- Full-width View Property button at bottom with no white space below -->
+                <a href="product.php?id=<?php echo $property['id']; ?>" class="block bg-[#FCB305] text-white text-center px-4 py-3 rounded-full font-bold text-sm hover:bg-[#e0a004] transition-colors">
+                  View Property
+                </a>
               </div>
             </div>
             <?php endforeach; ?>
@@ -446,11 +419,11 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Get all filter elements with more specific selectors
-      const locationSelect = document.querySelector('.custom-select:nth-of-type(1)');
-      const areaSelect = document.querySelector('.custom-select:nth-of-type(2)');
-      const typeSelect = document.querySelector('.custom-select:nth-of-type(3)');
-      const bedroomSlider = document.querySelector('.range-slider:nth-of-type(1)');
-      const bathroomSlider = document.querySelector('.range-slider:nth-of-type(2)');
+      const locationSelect = document.getElementById('locationSelect');
+      const areaSelect = document.getElementById('areaSelect');
+      const typeSelect = document.getElementById('typeSelect');
+      const bedroomSlider = document.getElementById('bedroomSlider');
+      const bathroomSlider = document.getElementById('bathroomSlider');
       const amenityButtons = document.querySelectorAll('.grid.grid-cols-2.gap-2 button');
       const propertyCards = document.querySelectorAll('.property-card');
 
@@ -471,24 +444,29 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
           const titleElement = card.querySelector('h3 a');
           const locationElement = card.querySelector('.p-4 .flex.items-center.justify-center.text-gray-600 span');
           
-          // Get bedroom and bathroom data from the popup
-          const bedroomsElement = card.querySelector('.property-popup .grid.grid-cols-2 div:nth-child(3) span');
-          const bathroomsElement = card.querySelector('.property-popup .grid.grid-cols-2 div:nth-child(4) span');
+          // Get bedroom and bathroom data from the popup - updated selectors for flex layout
+          const bedroomsElement = card.querySelector('.property-popup .flex.justify-center.items-center.gap-4 div:nth-child(1) span');
+          const bathroomsElement = card.querySelector('.property-popup .flex.justify-center.items-center.gap-4 div:nth-child(2) span');
           
           const title = titleElement ? titleElement.textContent.trim() : '';
           const location = locationElement ? locationElement.textContent.trim() : '';
           const bedroomsText = bedroomsElement ? bedroomsElement.textContent : '0';
           const bathroomsText = bathroomsElement ? bathroomsElement.textContent : '0';
           
+          // Extract area from title (e.g., "Hodge Hill, B36" -> "Hodge Hill")
+          const area = title.split(',')[0].trim().toLowerCase();
+          
           const bedrooms = parseInt(bedroomsText.match(/\d+/)?.[0] || '0');
           const bathrooms = parseInt(bathroomsText.match(/\d+/)?.[0] || '0');
           
-          console.log(`Property ${index}:`, { title, location, bedrooms, bathrooms });
+          console.log(`Property ${index}:`, { title, location, area, bedrooms, bathrooms });
           
           propertiesData.push({
             element: card,
             title: title.toLowerCase(),
             location: location.toLowerCase(),
+            area: area,
+            type: card.getAttribute('data-type')?.toLowerCase() || '',
             bedrooms: bedrooms,
             bathrooms: bathrooms,
             amenities: []
@@ -534,49 +512,31 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
             }
           }
 
-          // Area filter
+          // Area filter - match against the area extracted from title
           if (selectedArea && selectedArea !== 'select your area') {
-            // Basic area matching - you can enhance this
-            const areaKeywords = {
-              'downtown': ['downtown', 'city center', 'central'],
-              'suburbs': ['suburb', 'residential'],
-              'waterfront': ['beach', 'waterfront', 'ocean'],
-              'hills': ['hills', 'highland', 'mountain'],
-              'beach area': ['beach', 'coastal', 'shore']
-            };
-            
-            if (areaKeywords[selectedArea]) {
-              const hasAreaMatch = areaKeywords[selectedArea].some(keyword => 
-                property.location.includes(keyword) || property.title.includes(keyword)
-              );
-              if (!hasAreaMatch) {
-                shouldShow = false;
-                console.log(`Property ${index} filtered out by area`);
-              }
+            const areaMatch = property.area.includes(selectedArea);
+            if (!areaMatch) {
+              shouldShow = false;
+              console.log(`Property ${index} filtered out by area: ${property.area} !== ${selectedArea}`);
             }
           }
 
           // Type filter
           if (selectedType && selectedType !== 'select your type') {
-            const typeKeywords = {
-              'house': ['house', 'home'],
-              'apartment': ['apartment', 'apt'],
-              'condo': ['condo', 'condominium'],
-              'villa': ['villa'],
-              'townhouse': ['townhouse', 'town house'],
-              'mansion': ['mansion', 'estate'],
-              'studio': ['studio'],
-              'penthouse': ['penthouse']
-            };
+            let typeMatch = false;
             
-            if (typeKeywords[selectedType]) {
-              const hasTypeMatch = typeKeywords[selectedType].some(keyword => 
-                property.title.includes(keyword)
-              );
-              if (!hasTypeMatch) {
-                shouldShow = false;
-                console.log(`Property ${index} filtered out by type`);
-              }
+            // Map filter values to property types
+            if (selectedType === 'flats') {
+              // 'Flats' in filter should match 'Flat' or 'Apartment' type
+              typeMatch = (property.type === 'flat' || property.type === 'apartment');
+            } else {
+              // Direct match for other types (e.g., 'house' === 'house')
+              typeMatch = (property.type === selectedType);
+            }
+            
+            if (!typeMatch) {
+              shouldShow = false;
+              console.log(`Property ${index} filtered out by type: property.type="${property.type}" selectedType="${selectedType}"`);
             }
           }
 
@@ -641,15 +601,31 @@ if (isset($_GET['debug']) && $_GET['debug'] == '1') {
 
       // Update slider display values
       function updateSliderDisplay() {
-        if (bedroomSlider && bathroomSlider) {
-          const bedroomValue = bedroomSlider.value;
-          const bathroomValue = bathroomSlider.value;
-          console.log(`Slider values - Bedrooms: ${bedroomValue}, Bathrooms: ${bathroomValue}`);
+        const bedroomValueSpan = document.getElementById('bedroomValue');
+        const bathroomValueSpan = document.getElementById('bathroomValue');
+        
+        if (bedroomSlider && bedroomValueSpan) {
+          bedroomValueSpan.textContent = bedroomSlider.value;
+        }
+        
+        if (bathroomSlider && bathroomValueSpan) {
+          bathroomValueSpan.textContent = bathroomSlider.value;
         }
       }
 
-      if (bedroomSlider) bedroomSlider.addEventListener('input', updateSliderDisplay);
-      if (bathroomSlider) bathroomSlider.addEventListener('input', updateSliderDisplay);
+      if (bedroomSlider) {
+        bedroomSlider.addEventListener('input', () => {
+          updateSliderDisplay();
+          filterProperties();
+        });
+      }
+      
+      if (bathroomSlider) {
+        bathroomSlider.addEventListener('input', () => {
+          updateSliderDisplay();
+          filterProperties();
+        });
+      }
 
       // Initialize
       updateSliderDisplay();

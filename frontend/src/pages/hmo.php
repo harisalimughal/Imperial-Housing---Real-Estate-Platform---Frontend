@@ -17,7 +17,7 @@
 	<?php
 	$heroTitle = 'HMO Services';
 	$heroSubtitle = 'House In Multiple Occupation - Quality shared living';
-	$heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
+	$heroImages = '/public/assets/images/hero1.jpg,/public/assets/images/hero2.jpg';
 	include 'hero.php';
 	?>
 
@@ -40,7 +40,7 @@
 				<div class="lg:col-span-2">
 					<div class="relative">
 						<img 
-							src="/public/assets/images/house1.png" 
+							src="/public/assets/images/hero7.jpg" 
 							alt="HMO Property" 
 							class="w-full h-auto rounded-2xl shadow-2xl"
 						>
@@ -65,7 +65,7 @@
 							<div>
 								<h3 class="text-lg font-semibold text-black mb-2">Diverse HMO Properties</h3>
 								<p class="text-gray-600 text-sm leading-relaxed">
-									Our portfolio includes a wide range of HMO properties, from spacious student houses to comfortable shared flats and boarding houses. We understand the unique needs of our tenants and offer suitable accommodation options.
+									Our portfolio includes a wide range of HMO properties, from spacious houses to comfortable shared flats. We understand the unique needs of our tenants and offer suitable accommodation options.
 								</p>
 							</div>
 						</div>

@@ -17,7 +17,7 @@
 	<?php
 	$heroTitle = 'Contact Us';
 	$heroSubtitle = 'Get in touch — we are here to help';
-	$heroImages = '/public/assets/images/hero2.png,/public/assets/images/hero1.png';
+	$heroImages = '/public/assets/images/hero2.jpg,/public/assets/images/hero1.jpg';
 	include 'hero.php';
 	?>
 
@@ -49,7 +49,7 @@
 						</div>
 					</div>
 
-					<!-- Second Row - Contact Number and Subject -->
+					<!-- Second Row - Contact Number and Required Moving Date -->
 					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 						<div>
 							<input 
@@ -62,9 +62,9 @@
 						</div>
 						<div>
 							<input 
-								type="text" 
-								name="subject" 
-								placeholder="Subject" 
+								type="date" 
+								name="required_moving_date" 
+								placeholder="Required Moving Date" 
 								required 
 								class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 placeholder-gray-500"
 							>
@@ -88,16 +88,32 @@
 								class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 appearance-none bg-white"
 							>
 								<option value="" disabled selected class="text-gray-500">Area</option>
-								<option value="london">London</option>
-								<option value="manchester">Manchester</option>
-								<option value="birmingham">Birmingham</option>
-								<option value="liverpool">Liverpool</option>
-								<option value="leeds">Leeds</option>
-								<option value="sheffield">Sheffield</option>
-								<option value="bristol">Bristol</option>
-								<option value="glasgow">Glasgow</option>
-								<option value="edinburgh">Edinburgh</option>
-								<option value="cardiff">Cardiff</option>
+								<option value="aston">Aston</option>
+								<option value="balsall-heath">Balsall Heath</option>
+								<option value="bartley-green">Bartley Green</option>
+								<option value="bournville">Bournville</option>
+								<option value="edgbaston">Edgbaston</option>
+								<option value="erdington">Erdington</option>
+								<option value="hall-green">Hall Green</option>
+								<option value="handsworth">Handsworth</option>
+								<option value="harborne">Harborne</option>
+								<option value="hodge-hill">Hodge Hill</option>
+								<option value="kings-heath">Kings Heath</option>
+								<option value="ladywood">Ladywood</option>
+								<option value="lozells">Lozells</option>
+								<option value="moseley">Moseley</option>
+								<option value="northfield">Northfield</option>
+								<option value="perry-barr">Perry Barr</option>
+								<option value="quinton">Quinton</option>
+								<option value="selly-oak">Selly Oak</option>
+								<option value="selly-park">Selly Park</option>
+								<option value="small-heath">Small Heath</option>
+								<option value="sparkbrook">Sparkbrook</option>
+								<option value="sparkhill">Sparkhill</option>
+								<option value="stirchley">Stirchley</option>
+								<option value="sutton-coldfield">Sutton Coldfield</option>
+								<option value="winson-green">Winson Green</option>
+								<option value="yardley">Yardley</option>
 							</select>
 							<div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
 								<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,7 +155,7 @@
 							</svg>
 						</div>
 						<h3 class="font-semibold text-gray-900 mb-1">Reservation</h3>
-						<p class="text-gray-600">+44 (0) 203 370 6999</p>
+						<p class="text-gray-600">07557538026</p>
 					</div>
 
 					<!-- Email Info -->
@@ -150,7 +166,7 @@
 							</svg>
 						</div>
 						<h3 class="font-semibold text-gray-900 mb-1">Email Info</h3>
-						<p class="text-gray-600">info@imperialhousing.co.uk</p>
+						<p class="text-gray-600">imperialhousingwm@gmail.com</p>
 					</div>
 
 					<!-- Address -->
@@ -162,7 +178,7 @@
 							</svg>
 						</div>
 						<h3 class="font-semibold text-gray-900 mb-1">Address</h3>
-						<p class="text-gray-600">Imperial Housing, United Kingdom</p>
+						<p class="text-gray-600">1250, Coventry Road, B25 8BJ, Birmingham</p>
 					</div>
 				</div>
 			</div>
@@ -172,27 +188,18 @@
 	<!-- Google Map Section -->
 	<section class="py-0 bg-white">
 		<div class="w-full h-96 relative">
-			<div id="map" class="w-full h-full bg-gray-200 relative overflow-hidden">
+			<div id="map" class="w-full h-full bg-gray-200 relative overflow-hidden group">
 				<!-- Map Container -->
 				<iframe 
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.394407857956!2d-0.1276474!3d51.5073509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604b900d26973%3A0x4291f3172409ea92!2sLondon%2C%20UK!5e0!3m2!1sen!2sus!4v1635000000000!5m2!1sen!2sus"
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155358.8942334246!2d-1.9690508!3d52.4796992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870942d1b417173%3A0xca81fef0aeee7998!2sBirmingham%2C%20UK!5e0!3m2!1sen!2sus!4v1635000000000!5m2!1sen!2sus"
 					width="100%" 
 					height="100%" 
-					style="border:0;" 
+					style="border:0;pointer-events:none;" 
 					allowfullscreen="" 
 					loading="lazy" 
 					referrerpolicy="no-referrer-when-downgrade"
 					class="grayscale">
 				</iframe>
-				
-				<!-- Location Markers -->
-				<div class="absolute top-12 left-16">
-					<div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-						<svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-						</svg>
-					</div>
-				</div>
 
 				<div class="absolute top-8 right-20">
 					<div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
@@ -234,24 +241,35 @@
 					</div>
 				</div>
 
-				<!-- Center Large Marker -->
-				<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-					<div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center shadow-xl border-4 border-white">
-						<div class="w-3 h-3 bg-white rounded-full"></div>
-					</div>
-				</div>
-
-				<!-- Map Controls -->
-				<div class="absolute bottom-6 right-6">
-					<div class="bg-green-500 rounded-lg p-3 shadow-lg cursor-pointer hover:bg-green-600 transition duration-300">
-						<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-						</svg>
-					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+
+	<script>
+		// Make map clickable to open Google Maps
+		document.addEventListener('DOMContentLoaded', function() {
+			const mapContainer = document.getElementById('map');
+			if (mapContainer) {
+				mapContainer.style.cursor = 'pointer';
+				mapContainer.addEventListener('click', function() {
+					window.open('https://www.google.com/maps/place/Birmingham,+UK/@52.4796992,-1.9026911,12z', '_blank');
+				});
+				
+				// Add hover effect to remove grayscale
+				const iframe = mapContainer.querySelector('iframe');
+				if (iframe) {
+					mapContainer.addEventListener('mouseenter', function() {
+						iframe.classList.remove('grayscale');
+					});
+					mapContainer.addEventListener('mouseleave', function() {
+						iframe.classList.add('grayscale');
+					});
+				}
+			}
+		});
+	</script>
 
 	<?php include 'footer.php'; ?>
 </body>

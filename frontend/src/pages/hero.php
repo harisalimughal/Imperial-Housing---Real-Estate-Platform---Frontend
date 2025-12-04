@@ -9,10 +9,10 @@
 
 $heroTitle = isset($heroTitle) ? $heroTitle : "Your Home. Your Investment.<br>Your Peace of Mind.";
 $heroSubtitle = isset($heroSubtitle) ? $heroSubtitle : 'Whether you\'re looking for a quality home or a reliable partner to manage your property, Imperial Housing delivers comfort, returns, and care.';
-$heroImages = isset($heroImages) ? $heroImages : '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
+$heroImages = isset($heroImages) ? $heroImages : '/public/assets/images/hero1.jpg,/public/assets/images/hero2.jpg,/public/assets/images/hero3.jpg,/public/assets/images/hero4.jpg';
 
 $imagesArr = array_values(array_filter(array_map('trim', explode(',', $heroImages))));
-$initialImage = !empty($imagesArr) ? $imagesArr[0] : '/public/assets/images/hero1.png';
+$initialImage = !empty($imagesArr) ? $imagesArr[0] : '/public/assets/images/hero1.jpg';
 ?>
 <section class="relative">
   <div id="heroRoot" data-hero-images="<?php echo htmlspecialchars($heroImages); ?>" class="h-[80vh] bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?php echo htmlspecialchars($initialImage); ?>')">

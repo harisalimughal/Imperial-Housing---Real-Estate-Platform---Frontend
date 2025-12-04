@@ -17,7 +17,7 @@
 	<?php
 	$heroTitle = 'Property Management';
 	$heroSubtitle = 'Professional Property Management with Guaranteed Rent Across Birmingham and Beyond';
-	$heroImages = '/public/assets/images/hero1.png,/public/assets/images/hero2.png';
+	$heroImages = '/public/assets/images/hero1.jpg,/public/assets/images/hero2.jpg';
 	include 'hero.php';
 	?>
 

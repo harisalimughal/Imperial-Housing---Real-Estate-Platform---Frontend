@@ -1,0 +1,20 @@
+{
+  "name": "imperial-housing---real-estate-platform---frontend",
+  "version": "1.0.0",
+  "description": "Imperial Housing Real Estate Platform Frontend",
+  "private": true,
+  "scripts": {
+    "start": "php -S localhost:8000 -t frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harisalimughal/Imperial-Housing---Real-Estate-Platform---Frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harisalimughal/Imperial-Housing---Real-Estate-Platform---Frontend/issues"
+  },
+  "homepage": "https://github.com/harisalimughal/Imperial-Housing---Real-Estate-Platform---Frontend#readme"
+}

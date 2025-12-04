@@ -17,7 +17,7 @@
 	<?php
 	$heroTitle = 'For Tenants';
 	$heroSubtitle = 'Browse homes, apply and move in with confidence';
-	$heroImages = '/public/assets/images/hero2.png,/public/assets/images/hero1.png';
+	$heroImages = '/public/assets/images/hero2.jpg,/public/assets/images/hero1.jpg';
 	include 'hero.php';
 	?>
 
@@ -28,13 +28,6 @@
 				
 				<!-- Left Content -->
 				<div class="space-y-8">
-					<!-- Book Now Button -->
-					<div>
-						<button class="inline-block bg-[#151EA6] hover:bg-brand-yellow hover:text-black text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">
-							Book Now
-						</button>
-					</div>
-					
 					<!-- Paragraph -->
 					<div>
 						<p class="text-gray-600 text-lg leading-relaxed">
@@ -53,7 +46,7 @@
 				<!-- Right Image -->
 				<div class="flex justify-center lg:justify-end">
 					<div class="relative">
-						<img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+						<img src="/public/assets/images/hero2.jpg" 
 							 alt="Beautiful family home with brick exterior and well-manicured garden" 
 							 class="rounded-3xl shadow-2xl w-full max-w-lg h-auto object-cover">
 					</div>
@@ -155,7 +148,7 @@
 				<!-- Right Image -->
 				<div class="flex justify-center lg:justify-end">
 					<div class="relative">
-						<img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+						<img src="/public/assets/images/hero8.jpg" 
 							 alt="Beautiful family home with brick exterior and well-manicured garden" 
 							 class="rounded-3xl shadow-2xl w-full max-w-lg h-auto object-cover">
 					</div>
@@ -266,7 +259,7 @@
 							</div>
 							<div class="text-left">
 								<div class="text-sm font-medium text-gray-600">Reservation</div>
-								<div class="text-sm text-gray-800">+44 (0) 203 370 6999</div>
+								<div class="text-sm text-gray-800">07557538026</div>
 							</div>
 						</div>
 						<div class="flex items-center justify-center space-x-2">
@@ -278,7 +271,7 @@
 							</div>
 							<div class="text-left">
 								<div class="text-sm font-medium text-gray-600">Email Info</div>
-								<div class="text-sm text-gray-800">info@mkhousing.co.uk</div>
+								<div class="text-sm text-gray-800">imperialhousingwm@gmail.com</div>
 							</div>
 						</div>
 						<div class="flex items-center justify-center space-x-2">
@@ -289,7 +282,7 @@
 							</div>
 							<div class="text-left">
 								<div class="text-sm font-medium text-gray-600">Address</div>
-								<div class="text-sm text-gray-800">Grosvenor House 11 St Paul's Square</div>
+								<div class="text-sm text-gray-800">1250, Coventry Road, B25 8BJ, Birmingham</div>
 							</div>
 						</div>
 					</div>

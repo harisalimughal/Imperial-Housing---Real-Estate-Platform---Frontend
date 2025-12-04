@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!heroEl) return;
 
       const data = heroEl.dataset && heroEl.dataset.heroImages ? heroEl.dataset.heroImages.split(',').map(s=>s.trim()).filter(Boolean) : [];
-      const images = data.length ? data : ['/public/assets/images/hero1.png','/public/assets/images/hero2.png'];
+      const images = data.length ? data : ['/public/assets/images/hero1.jpg','/public/assets/images/hero2.jpg'];
       let idx = 0;
 
       const nextBtn = document.getElementById('heroNext');

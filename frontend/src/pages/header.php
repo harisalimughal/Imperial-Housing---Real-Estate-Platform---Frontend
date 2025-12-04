@@ -10,8 +10,6 @@
       <!-- Navigation -->
       <nav class="hidden md:flex items-center space-x-8">
   <a href="/src/pages/index.php" class="nav-link text-gray-700 hover:brand-yellow transition-colors duration-200">Home</a>
-  <a href="/src/pages/about.php" class="nav-link text-gray-700 hover:brand-yellow transition-colors duration-200">About</a>
-  <a href="/src/pages/properties.php" class="nav-link text-gray-700 hover:brand-yellow transition-colors duration-200">Properties</a>
 
         <!-- Services dropdown -->
         <div class="relative group">
@@ -20,20 +18,21 @@
             <svg id="servicesCaret" class="w-4 h-4 transform transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
           </button>
           <div id="servicesMenu" class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 absolute right-0 mt-2 w-56 bg-white text-gray-700 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50 py-1 transform translate-y-1 group-hover:translate-y-0">
-            <a href="/src/pages/hmo.php" class="block px-4 py-2 text-sm text-gray-700 hover:brand-yellow transition-colors duration-150">HMO (Supported Living)</a>
-            <a href="/src/pages/design.php" class="block px-4 py-2 text-sm text-gray-700 hover:brand-yellow transition-colors duration-150">Property Management</a>
+            <a href="/src/pages/hmo.php" class="block px-4 py-2 text-sm text-gray-700 hover:brand-yellow transition-colors duration-150">HMO (Supported Accomodation)</a>
+            <a href="/src/pages/design.php" class="block px-4 py-2 text-sm text-gray-700 hover:brand-yellow transition-colors duration-150">Design & Renovation</a>
           </div>
         </div>
 
-  <a href="/src/pages/testimonials.php" class="nav-link text-gray-700 hover:brand-yellow transition-colors duration-200">Testimonials</a>
+  <a href="/src/pages/properties.php" class="nav-link text-gray-700 hover:brand-yellow transition-colors duration-200">Properties</a>
   <a href="/src/pages/tenants.php" class="nav-link text-gray-700 hover:brand-yellow transition-colors duration-200">Tenants</a>
+  <a href="/src/pages/about.php" class="nav-link text-gray-700 hover:brand-yellow transition-colors duration-200">About</a>
   <a href="/src/pages/contact.php" class="nav-link text-gray-700 hover:brand-yellow transition-colors duration-200">Contact</a>
       </nav>
       
       <!-- CTA Button -->
       <div class="flex items-center space-x-5">
         <a href="/src/pages/contact.php" class="inline-block bg-[#151EA6] hover:bg-brand-yellow hover:text-black text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm"> 
-          Book Now
+          Request Call Back
         </a>
         
         <!-- Mobile Menu Button -->
@@ -62,8 +61,6 @@
         </div>
         <div class="px-6 py-4 space-y-2">
           <a href="/src/pages/index.php" class="block py-2 text-gray-700 hover:brand-yellow">Home</a>
-          <a href="/src/pages/about.php" class="block py-2 text-gray-700 hover:brand-yellow">About</a>
-          <a href="/src/pages/properties.php" class="block py-2 text-gray-700 hover:brand-yellow">Properties</a>
           <div class="border-t my-2"></div>
           <!-- Mobile services toggle -->
           <button id="mobileServicesBtn" aria-expanded="false" class="w-full text-left py-2 text-gray-700 font-medium flex items-center justify-between">
@@ -71,11 +68,12 @@
             <svg class="w-4 h-4 text-gray-700 transform transition-transform mobile-services-caret" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
           </button>
           <div id="mobileServicesMenu" class="pl-4 hidden">
-            <a href="/src/pages/hmo.php" class="block py-1 text-gray-600 hover:brand-yellow">HMO (Supported Living)</a>
-            <a href="/src/pages/design.php" class="block py-1 text-gray-600 hover:brand-yellow">Property Management</a>
+            <a href="/src/pages/hmo.php" class="block py-1 text-gray-600 hover:brand-yellow">Supported Accomodation</a>
+            <a href="/src/pages/design.php" class="block py-1 text-gray-600 hover:brand-yellow">Design & Renovation</a>
           </div>
-          <a href="/src/pages/testimonials.php" class="block py-2 text-gray-700 hover:brand-yellow">Testimonials</a>
+          <a href="/src/pages/properties.php" class="block py-2 text-gray-700 hover:brand-yellow">Properties</a>
           <a href="/src/pages/tenants.php" class="block py-2 text-gray-700 hover:brand-yellow">Tenants</a>
+          <a href="/src/pages/about.php" class="block py-2 text-gray-700 hover:brand-yellow">About</a>
           <a href="/src/pages/contact.php" class="block py-2 text-gray-700 hover:brand-yellow">Contact</a>
         </div>
       </div>

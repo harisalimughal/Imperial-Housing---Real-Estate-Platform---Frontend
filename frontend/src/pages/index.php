@@ -1,4 +1,9 @@
 <?php 
+// Prevent caching to fix back button issues
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 // Include data file
 require_once __DIR__ . '/../data/properties.php';
 
@@ -240,12 +245,11 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           <p class="text-[18px] uppercase text-gray-500 tracking-wide mb-2">WHAT WE PROVIDE</p>
           <h2 class="text-[46px] font-bold text-gray-900">Property Services</h2>
         </div>
-  <a href="/src/pages/contact.php" class="inline-block bg-[#151EA6] hover:bg-brand-yellow hover:text-black text-white px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">Book Now</a>
       </div>
 
   <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Tenants card -->
-    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm h-auto">
+    <div class="bg-white border border-[#151EA6] rounded-xl p-6 shadow-sm h-auto">
           <div class="flex items-start justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Tenants</h3>
             <svg width="45" height="40" viewBox="0 0 45 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -256,31 +260,32 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
 
           </div>
           <ul class="space-y-2 text-gray-600 text-sm">
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Modern, quality homes</span></li>
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Transparent &amp; flexible stays</span></li>
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Support for vulnerable adults (if needed)</span></li>
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Safe, convenient locations</span></li>
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Only available to those claiming benefits (Universal credit, JSA, DSS, ESA, PIP, or DLA etc)</span></li>
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Quality and shared homes</span></li>
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>All bills included</span></li>
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Fast Wifi all properties</span></li>
+            <li class="flex items-start gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Available immediately</span></li>
           </ul>
         </div>
 
         <!-- HMO card -->
-        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm h-auto">
+        <div class="bg-white border border-[#151EA6] rounded-xl p-6 shadow-sm h-auto">
           <div class="flex items-start justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">HMO</h3>
+            <h3 class="text-xl font-semibold text-gray-900">Landlords</h3>
             <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M22.5861 2.82941C19.8734 4.01694 17.5765 5.06267 17.4818 5.15322C17.3151 5.31268 17.3098 5.36354 17.3098 6.77722C17.3098 8.22463 17.3113 8.23809 17.4975 8.42425C17.7423 8.66914 17.951 8.66103 18.5715 8.38257C18.8528 8.25637 19.0968 8.15312 19.1139 8.15312C19.131 8.15312 19.145 8.9447 19.145 9.91219V11.6713H10.7682H2.39137L2.20371 11.859C2.02095 12.0417 2.01598 12.0775 2.01598 13.2009C2.01598 14.3243 2.02095 14.36 2.20371 14.5427C2.38449 14.7236 2.42937 14.7305 3.42722 14.7305H4.46299V16.2601V17.7898H3.42722C2.42937 17.7898 2.38449 17.7966 2.20371 17.9775C2.02095 18.1602 2.01598 18.196 2.01598 19.3194C2.01598 20.4428 2.02095 20.4785 2.20371 20.6613C2.3578 20.8154 2.46715 20.849 2.81547 20.849H3.23949V28.1912V35.5334H2.20371C1.20587 35.5334 1.16098 35.5403 0.980212 35.7212C0.797451 35.9039 0.79248 35.9396 0.79248 37.063C0.79248 38.1865 0.797451 38.2222 0.980212 38.4049L1.16787 38.5927H19.7568H38.3457L38.5334 38.4049C38.7161 38.2222 38.7211 38.1865 38.7211 37.063C38.7211 35.9396 38.7161 35.9039 38.5334 35.7212C38.3526 35.5403 38.3077 35.5334 37.3098 35.5334H36.2741V28.1912V20.849H36.6981C37.0464 20.849 37.1558 20.8154 37.3098 20.6613C37.4926 20.4785 37.4976 20.4428 37.4976 19.3194C37.4976 18.196 37.4926 18.1602 37.3098 17.9775C37.1558 17.8233 37.0464 17.7898 36.6981 17.7898H36.2741V12.9714C36.2741 10.3214 36.2881 8.15312 36.3052 8.15312C36.3223 8.15312 36.5663 8.25637 36.8476 8.38257C37.4681 8.66103 37.6768 8.66914 37.9216 8.42425C38.1077 8.23817 38.1093 8.22394 38.1093 6.78839C38.1093 5.52064 38.0927 5.32049 37.9755 5.18167C37.8181 4.99521 27.9304 0.654976 27.6838 0.664077C27.5928 0.667442 25.2989 1.64189 22.5861 2.82941ZM32.2299 3.91552C34.6855 4.99215 36.7377 5.89065 36.7902 5.91222C36.8543 5.93861 36.8858 6.13463 36.8858 6.50747V7.06334L32.3686 5.08439C29.8841 3.99591 27.79 3.10536 27.715 3.10536C27.6097 3.10536 22.1244 5.47253 18.973 6.87787L18.5333 7.07397V6.51474V5.95559L23.0641 3.96508C25.556 2.87033 27.6332 1.97091 27.68 1.9664C27.7268 1.96189 29.7742 2.83897 32.2299 3.91552ZM31.3874 5.99398L35.0123 7.58242L35.032 12.6861L35.0516 17.7898H27.7096H20.3675L20.3871 12.689L20.4068 7.58823L24.0008 6.00438C25.9775 5.13326 27.6325 4.41709 27.6787 4.41304C27.7248 4.40891 29.3937 5.12033 31.3874 5.99398ZM21.168 8.79977L20.9803 8.98746V11.3653V13.7432L21.168 13.9309L21.3557 14.1187H24.039H26.7224L26.9101 13.9309L27.0978 13.7432V11.3653V8.98746L26.9101 8.79977L26.7224 8.61201H24.039H21.3557L21.168 8.79977ZM28.509 8.79977L28.3213 8.98746V11.3653V13.7432L28.509 13.9309L28.6967 14.1187H31.3801H34.0634L34.2511 13.9309L34.4388 13.7432V11.3653V8.98746L34.2511 8.79977L34.0634 8.61201H31.3801H28.6967L28.509 8.79977ZM25.8743 11.3653V12.895H24.039H22.2038V11.3653V9.83571H24.039H25.8743V11.3653ZM33.2153 11.3653V12.895H31.3801H29.5448V11.3653V9.83571H31.3801H33.2153V11.3653ZM19.145 13.2009V13.5068H11.1923H3.23949V13.2009V12.895H11.1923H19.145V13.2009ZM8.1335 16.2601V17.7898H6.91H5.68649V16.2601V14.7305H6.91H8.1335V16.2601ZM11.804 16.2601V17.7898H10.5805H9.357V16.2601V14.7305H10.5805H11.804V16.2601ZM15.4745 16.2601V17.7898H14.251H13.0275V16.2601V14.7305H14.251H15.4745V16.2601ZM19.145 16.2601V17.7898H17.9215H16.698V16.2601V14.7305H17.9215H19.145V16.2601ZM36.2741 19.3194V19.6253H19.7568H3.23949V19.3194V19.0135H19.7568H36.2741V19.3194ZM19.145 28.1912V35.5334H18.5333H17.9215V31.2505C17.9215 27.4384 17.9345 26.9675 18.0397 26.9675C18.1047 26.9675 18.2423 26.883 18.3455 26.7798C18.5283 26.597 18.5333 26.5613 18.5333 25.4379C18.5333 24.3145 18.5283 24.2787 18.3455 24.096L18.1579 23.9083H11.804H5.45013L5.26247 24.096C5.07971 24.2787 5.07474 24.3145 5.07474 25.4379C5.07474 26.5613 5.07971 26.597 5.26247 26.7798C5.36571 26.883 5.50335 26.9675 5.56835 26.9675C5.67349 26.9675 5.68649 27.4384 5.68649 31.2505V35.5334H5.07474H4.46299V28.1912V20.849H11.804H19.145V28.1912ZM35.0506 28.1912V35.5334H31.3801H27.7096V31.4382V27.343L27.5218 27.1553L27.3342 26.9675H24.3449H21.3557L21.168 27.1553L20.9803 27.343V31.4382V35.5334H20.6744H20.3685V28.1912V20.849H27.7096H35.0506V28.1912ZM17.3098 25.4379V25.7438H11.804H6.29824V25.4379V25.132H11.804H17.3098V25.4379ZM16.698 31.2505V35.5334H11.804H6.91V31.2505V26.9675H11.804H16.698V31.2505ZM28.509 27.1553L28.3213 27.343V29.7208V32.0987L28.509 32.2864L28.6967 32.4742H31.3801H34.0634L34.2511 32.2864L34.4388 32.0987V29.7208V27.343L34.2511 27.1553L34.0634 26.9675H31.3801H28.6967L28.509 27.1553ZM26.486 31.8623V35.5334H24.3449H22.2038V31.8623V28.1912H24.3449H26.486V31.8623ZM33.2153 29.7208V31.2505H31.3801H29.5448V29.7208V28.1912H31.3801H33.2153V29.7208ZM24.8385 30.8264C24.6618 31.0031 24.6508 31.0637 24.6508 31.8623C24.6508 32.6609 24.6618 32.7215 24.8385 32.8983C24.9568 33.0166 25.1136 33.086 25.2625 33.086C25.4115 33.086 25.5683 33.0166 25.6866 32.8983C25.8633 32.7215 25.8743 32.6609 25.8743 31.8623C25.8743 31.0637 25.8633 31.0031 25.6866 30.8264C25.5683 30.708 25.4115 30.6386 25.2625 30.6386C25.1136 30.6386 24.9568 30.708 24.8385 30.8264ZM37.4976 37.063V37.369H19.7568H2.01598V37.063V36.7571H19.7568H37.4976V37.063Z" fill="#151EA6"/>
             </svg>
           </div>
           <ul class="space-y-2 text-gray-600 text-sm">
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Guaranteed rent</span></li>
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Full management</span></li>
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tenant vetting &amp; occupancy</span></li>
-            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Compliance &amp; maintenance handled</span></li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Stress Free property management </span></li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Guaranteed rents</span></li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Compliance and maintenance managements</span></li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" stroke-width="2"/><path d="m6 10 2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Competitive rental returns</span></li>
           </ul>
         </div>
 
         <!-- Design & Renovation card -->
-       <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm h-auto">
+       <div class="bg-white border border-[#151EA6] rounded-xl p-6 shadow-sm h-auto">
           <div class="flex items-start justify-between mb-4">
             <h3 class="text-xl font-semibold text-gray-900">Design &amp; Renovation</h3>
             <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -302,18 +307,17 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
   <!-- How It Works Section (Black Background) -->
   <section class="bg-black text-white py-20">
     <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="flex items-center justify-between mb-16">
+      <div class="mb-16">
         <h2 class="text-4xl font-bold text-white">How It Works</h2>
-        <a href="/src/pages/contact.php" class="inline-block bg-yellow-500 hover:bg-brand-yellow hover:text-black text-black px-6 md:px-8 py-2 md:py-3 rounded-2xl font-medium text-sm md:text-base transition-shadow shadow-sm">Book Now</a>
       </div>
 
       <!-- Top Section with Design & Renovation and For Tenants -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <!-- Design & Renovation -->
-        <div class="space-y-4">
-          <div class="border border-gray-700 rounded-xl p-6">
+        <a href="/src/pages/design.php" class="space-y-4 block group">
+          <div class="border border-gray-700 rounded-xl p-6 transition-all duration-300 hover:scale-95 cursor-pointer">
             <div class="flex items-start justify-between">
-              <h3 class="text-[27px] font-semibold text-white">Design & Renovation</h3>
+              <h3 class="text-[27px] font-semibold text-white group-hover:text-[#FCB305] transition-colors">Design & Renovation</h3>
               <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M23.7632 2.56833C20.8661 3.83654 18.4132 4.95332 18.3121 5.05003C18.134 5.22033 18.1283 5.27464 18.1283 6.78438C18.1283 8.33013 18.13 8.3445 18.3288 8.5433C18.5902 8.80484 18.8131 8.79618 19.4758 8.49879C19.7761 8.36402 20.0367 8.25376 20.055 8.25376C20.0733 8.25376 20.0883 9.09912 20.0883 10.1323V12.0109H11.1423H2.19629L1.99589 12.2115C1.80071 12.4066 1.7954 12.4447 1.7954 13.6445C1.7954 14.8443 1.80071 14.8824 1.99589 15.0775C2.18894 15.2707 2.23688 15.278 3.30252 15.278H4.40867V16.9116V18.5451H3.30252C2.23688 18.5451 2.18894 18.5525 1.99589 18.7457C1.80071 18.9408 1.7954 18.9789 1.7954 20.1787C1.7954 21.3785 1.80071 21.4166 1.99589 21.6117C2.16044 21.7764 2.27722 21.8123 2.64921 21.8123H3.10204V29.6533V37.4944H1.99589C0.930248 37.4944 0.882311 37.5017 0.689256 37.6949C0.494078 37.89 0.48877 37.9282 0.48877 39.1279C0.48877 40.3277 0.494078 40.3658 0.689256 40.561L0.889661 40.7615H20.7416H40.5935L40.7939 40.561C40.9891 40.3658 40.9944 40.3277 40.9944 39.1279C40.9944 37.9282 40.9891 37.89 40.7939 37.6949C40.6009 37.5017 40.5529 37.4944 39.4873 37.4944H38.3811V29.6533V21.8123H38.834C39.2059 21.8123 39.3227 21.7764 39.4873 21.6117C39.6825 21.4166 39.6878 21.3785 39.6878 20.1787C39.6878 18.9789 39.6825 18.9408 39.4873 18.7457C39.3227 18.581 39.2059 18.5451 38.834 18.5451H38.3811V13.3995C38.3811 10.5693 38.3961 8.25376 38.4144 8.25376C38.4327 8.25376 38.6933 8.36402 38.9936 8.49879C39.6563 8.79618 39.8792 8.80484 40.1406 8.5433C40.3394 8.34458 40.3411 8.32939 40.3411 6.7963C40.3411 5.44241 40.3233 5.22866 40.1982 5.08041C40.0301 4.88128 29.4706 0.246155 29.2072 0.255875C29.11 0.259468 26.6602 1.30012 23.7632 2.56833ZM34.0621 3.72824C36.6846 4.87802 38.8763 5.83757 38.9324 5.8606C39.0008 5.88878 39.0345 6.09812 39.0345 6.4963V7.08993L34.2103 4.97652C31.557 3.81408 29.3206 2.86303 29.2405 2.86303C29.128 2.86303 23.2701 5.39103 19.9045 6.89186L19.435 7.10128V6.50406V5.90691L24.2736 3.78117C26.9348 2.61203 29.1531 1.6515 29.2031 1.64668C29.2531 1.64186 31.4396 2.57854 34.0621 3.72824ZM33.1624 5.94791L37.0337 7.64428L37.0547 13.0947L37.0756 18.5451H29.2347H21.3938L21.4147 13.0978L21.4357 7.65049L25.274 5.95902C27.385 5.02871 29.1525 4.26388 29.2017 4.25955C29.251 4.25514 31.0333 5.01491 33.1624 5.94791ZM22.2487 8.94434L22.0482 9.14478V11.6842V14.2237L22.2487 14.4241L22.4491 14.6246H25.3148H28.1805L28.3809 14.4241L28.5814 14.2237V11.6842V9.14478L28.3809 8.94434L28.1805 8.74382H25.3148H22.4491L22.2487 8.94434ZM30.0885 8.94434L29.888 9.14478V11.6842V14.2237L30.0885 14.4241L30.2889 14.6246H33.1546H36.0203L36.2207 14.4241L36.4212 14.2237V11.6842V9.14478L36.2207 8.94434L36.0203 8.74382H33.1546H30.2889L30.0885 8.94434ZM27.2748 11.6842V13.3178H25.3148H23.3549V11.6842V10.0507H25.3148H27.2748V11.6842ZM35.1146 11.6842V13.3178H33.1546H31.1947V11.6842V10.0507H33.1546H35.1146V11.6842ZM20.0883 13.6445V13.9712H11.5952H3.10204V13.6445V13.3178H11.5952H20.0883V13.6445ZM8.32857 16.9116V18.5451H7.02194H5.7153V16.9116V15.278H7.02194H8.32857V16.9116ZM12.2485 16.9116V18.5451H10.9418H9.6352V16.9116V15.278H10.9418H12.2485V16.9116ZM16.1684 16.9116V18.5451H14.8617H13.5551V16.9116V15.278H14.8617H16.1684V16.9116ZM20.0883 16.9116V18.5451H18.7816H17.475V16.9116V15.278H18.7816H20.0883V16.9116ZM38.3811 20.1787V20.5054H20.7416H3.10204V20.1787V19.852H20.7416H38.3811V20.1787ZM20.0883 29.6533V37.4944H19.435H18.7816V32.9204C18.7816 28.8494 18.7955 28.3465 18.9078 28.3465C18.9772 28.3465 19.1242 28.2562 19.2345 28.146C19.4296 27.9508 19.435 27.9127 19.435 26.7129C19.435 25.5132 19.4296 25.475 19.2345 25.2799L19.0341 25.0794H12.2485H5.46288L5.26247 25.2799C5.06729 25.475 5.06199 25.5132 5.06199 26.7129C5.06199 27.9127 5.06729 27.9508 5.26247 28.146C5.37272 28.2562 5.51972 28.3465 5.58913 28.3465C5.70142 28.3465 5.7153 28.8494 5.7153 32.9204V37.4944H5.06199H4.40867V29.6533V21.8123H12.2485H20.0883V29.6533ZM37.0745 29.6533V37.4944H33.1546H29.2347V33.1209V28.7474L29.0342 28.547L28.8338 28.3465H25.6415H22.4491L22.2487 28.547L22.0482 28.7474V33.1209V37.4944H21.7216H21.3949V29.6533V21.8123H29.2347H37.0745V29.6533ZM18.1283 26.7129V27.0396H12.2485H6.36862V26.7129V26.3862H12.2485H18.1283V26.7129ZM17.475 32.9204V37.4944H12.2485H7.02194V32.9204V28.3465H12.2485H17.475V32.9204ZM30.0885 28.547L29.888 28.7474V31.2869V33.8263L30.0885 34.0268L30.2889 34.2273H33.1546H36.0203L36.2207 34.0268L36.4212 33.8263V31.2869V28.7474L36.2207 28.547L36.0203 28.3465H33.1546H30.2889L30.0885 28.547ZM27.9281 33.5739V37.4944H25.6415H23.3549V33.5739V29.6533H25.6415H27.9281V33.5739ZM35.1146 31.2869V32.9204H33.1546H31.1947V31.2869V29.6533H33.1546H35.1146V31.2869ZM26.1686 32.4675C25.9799 32.6563 25.9681 32.721 25.9681 33.5739C25.9681 34.4267 25.9799 34.4914 26.1686 34.6802C26.2949 34.8066 26.4624 34.8807 26.6214 34.8807C26.7805 34.8807 26.9479 34.8066 27.0743 34.6802C27.263 34.4914 27.2748 34.4267 27.2748 33.5739C27.2748 32.721 27.263 32.6563 27.0743 32.4675C26.9479 32.3411 26.7805 32.267 26.6214 32.267C26.4624 32.267 26.2949 32.3411 26.1686 32.4675ZM39.6878 39.1279V39.4547H20.7416H1.7954V39.1279V38.8012H20.7416H39.6878V39.1279Z" fill="#FCB305"/>
               </svg>
@@ -321,13 +325,13 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
             </div>
           </div>
           <p class="text-gray-300 text-sm text-center">Contact Us → Property Assessment → Guaranteed<br>Long Term Rent → Full Management</p>
-        </div>
+        </a>
 
         <!-- For Tenants -->
-        <div class="space-y-4">
-          <div class="border border-gray-700 rounded-xl p-6">
+        <a href="/src/pages/tenants.php" class="space-y-4 block group">
+          <div class="border border-gray-700 rounded-xl p-6 transition-all duration-300 hover:scale-95 cursor-pointer">
             <div class="flex items-start justify-between">
-              <h3 class="text-[27px] font-semibold text-white">For Tenants</h3>
+              <h3 class="text-[27px] font-semibold text-white group-hover:text-[#FCB305] transition-colors">For Tenants</h3>
               <svg width="45" height="42" viewBox="0 0 45 42" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5053 2.50724C7.09898 4.36193 6.78184 4.58663 6.59326 5.27954C6.45294 5.79527 6.5462 7.59278 6.76647 8.61872C7.30637 11.1336 8.74107 13.9317 10.4532 15.8088L10.902 16.301L10.6869 17.2752C10.1762 19.5884 10.1637 21.7938 10.6481 24.0717C10.7439 24.5224 10.8283 24.9218 10.8356 24.9592C10.8429 24.9966 10.5187 25.1531 10.1152 25.3072C9.71163 25.4612 9.25761 25.6759 9.10621 25.7841L8.8309 25.981L8.73936 25.7393C8.4096 24.8681 7.92423 24.3165 7.15248 23.9359L6.64092 23.6836H4.57993H2.51894L2.02275 23.936C1.43717 24.2338 0.820851 24.8644 0.559191 25.4331C0.372156 25.8398 0.37207 25.8434 0.37207 32.3524V38.8648L0.610115 39.3516C0.900028 39.9444 1.46568 40.4849 2.11747 40.7918C2.60086 41.0194 2.62078 41.0212 4.57993 41.0212C6.53908 41.0212 6.559 41.0194 7.04239 40.7918C8.00719 40.3375 8.69805 39.4595 8.80514 38.5518C8.83622 38.2879 8.89221 38.138 8.95052 38.1623C9.00273 38.184 10.2622 38.7515 11.7493 39.4232C13.2364 40.0951 14.7241 40.7179 15.0554 40.8072C15.9705 41.054 16.8434 41.1492 19.0069 41.2379C21.5567 41.3425 31.272 41.3422 32.0742 41.2375C32.8179 41.1404 33.5453 40.8936 34.0391 40.5706C34.3738 40.3517 42.4602 32.9097 43.3439 32.0074C43.5529 31.7939 43.843 31.3669 43.9885 31.0586C44.2232 30.5615 44.2532 30.4099 44.2532 29.7216C44.2532 29.0271 44.2242 28.8837 43.978 28.3609C43.5023 27.3505 42.6033 26.6543 41.4416 26.3965C41.1701 26.3363 40.9479 26.2805 40.9479 26.2727C40.9479 26.2648 41.0458 25.9702 41.1656 25.6179C41.613 24.3014 41.8177 23.032 41.8675 21.2664C41.9298 19.0608 41.7564 17.7525 41.1476 15.8342C40.5354 13.9047 39.1 11.3362 38.4912 11.0807C37.9055 10.8348 37.3411 11.2174 37.3411 11.8603C37.3411 12.0869 37.4815 12.3775 37.9038 13.0249C38.8641 14.4971 39.5413 16.1479 39.932 17.9691C40.0927 18.7179 40.1223 19.1303 40.1255 20.6646C40.1299 22.7193 40.0256 23.4702 39.5143 25.0633C39.1256 26.2741 38.8763 26.7664 38.5243 27.018C38.3695 27.1286 36.9096 28.4577 35.2801 29.9715C33.6507 31.4853 32.1822 32.7858 32.0169 32.8616C31.7534 32.9824 31.027 33.0026 26.1345 33.0259C22.3271 33.044 20.4522 33.023 20.2369 32.9597C19.3341 32.6942 19.2052 31.5287 20.0286 31.0757C20.2625 30.9471 20.7099 30.9239 23.6892 30.886L27.0834 30.8429L27.65 30.5626C28.6861 30.05 29.3513 29.0665 29.4042 27.9693C29.4302 27.4315 29.4463 27.3934 29.7185 27.225C30.3097 26.8594 30.6516 26.5388 30.985 26.0373C32.4354 23.8557 31.487 20.9818 29.0204 20.0832C28.5962 19.9286 28.2533 19.9015 26.1345 19.8545C23.4377 19.7945 23.4705 19.8018 22.8566 19.1329C21.8857 18.0748 22.1648 16.4554 23.4406 15.7457L23.9017 15.4892L27.5804 15.446L31.2591 15.4029L31.4663 15.1609C31.7584 14.8196 31.7423 14.4049 31.423 14.0457L31.1725 13.764L29.0614 13.7382L26.9503 13.7124V12.5024V11.2924L26.6993 11.0403C26.4163 10.7561 26.0596 10.7111 25.6746 10.9111C25.3038 11.1037 25.2328 11.3757 25.2328 12.6036V13.7209H24.7292C22.5948 13.7209 20.9122 15.0951 20.5798 17.1098C20.2337 19.208 21.8112 21.2889 23.9604 21.5693C24.306 21.6144 25.4216 21.6524 26.4397 21.6539C28.2564 21.6565 28.2988 21.6607 28.7369 21.88C29.9926 22.5084 30.3365 24.1173 29.4471 25.2011C29.3115 25.3663 29.0666 25.5739 28.9028 25.6625L28.605 25.8236L28.2714 25.5555C28.088 25.4079 27.7446 25.1981 27.5085 25.0892L27.0791 24.8912L19.847 24.8677L12.6148 24.8443L12.529 24.5227C11.9911 22.5058 11.8888 20.3942 12.2313 18.3767C12.3075 17.9271 12.3766 17.5518 12.3846 17.5426C12.3926 17.5334 12.6637 17.6596 12.9869 17.8229C13.7782 18.223 14.1348 18.2182 14.9211 17.7965C16.7896 16.7948 18.5656 14.7302 19.8662 12.0478C20.5103 10.7194 20.8619 9.6908 21.1057 8.42205C21.203 7.91581 21.2826 7.48547 21.2826 7.46563C21.2826 7.44588 21.6068 7.3303 22.0032 7.20893C24.9083 6.31885 28.1007 6.41166 30.9435 7.46874C32.2878 7.96868 32.5837 7.97144 32.878 7.48651C33.2162 6.92929 32.9984 6.42624 32.2829 6.11209C29.1938 4.75544 25.1016 4.48614 21.8772 5.42712L21.3126 5.59196L21.2074 5.19673C21.138 4.93615 20.9914 4.69713 20.7772 4.49546C20.3531 4.09618 14.3844 0.861193 13.9832 0.813148C13.7232 0.782096 13.254 1.01059 10.5053 2.50724ZM16.7212 4.15319C18.2145 4.96349 19.4716 5.66079 19.5149 5.70288C19.6313 5.81614 19.5778 7.27975 19.43 8.02596C19.0983 9.70003 18.2703 11.6409 17.2035 13.2449C16.5758 14.1888 15.2525 15.5604 14.506 16.0411L13.9553 16.3957L13.5371 16.1581C12.197 15.3967 10.5996 13.4668 9.56272 11.3564C8.76272 9.72824 8.34682 8.21598 8.25502 6.60134L8.20582 5.73549L11.0301 4.20814C12.5835 3.36808 13.8886 2.68061 13.9303 2.68044C13.9721 2.68018 15.228 3.34298 16.7212 4.15319ZM14.8772 8.02492L13.5317 9.40202L13.006 8.92864C12.7169 8.66831 12.3935 8.43257 12.2872 8.4048C11.7696 8.26946 11.2352 8.68358 11.2352 9.22001C11.2352 9.6381 11.3561 9.79638 12.3975 10.7412C13.1488 11.4227 13.2376 11.4782 13.5749 11.4782C13.9361 11.4782 13.9556 11.4617 15.6341 9.73152C16.7231 8.60906 17.3543 7.89235 17.4003 7.72604C17.565 7.1319 17.203 6.64783 16.5941 6.64783C16.228 6.64783 16.204 6.66707 14.8772 8.02492ZM34.93 8.45259C34.4131 8.97185 34.6929 9.79975 35.4184 9.89748C35.7243 9.93871 35.8094 9.91059 36.0603 9.68537C36.302 9.46852 36.3497 9.36596 36.3497 9.06303C36.3497 8.76285 36.3016 8.65727 36.0711 8.45043C35.6899 8.10825 35.2721 8.10902 34.93 8.45259ZM6.42452 25.5167C6.58888 25.5996 6.81113 25.7994 6.9183 25.9606L7.11323 26.2537L7.11289 32.3436C7.11263 38.3044 7.10894 38.4396 6.93891 38.7197C6.83234 38.8953 6.61422 39.073 6.37454 39.1795C6.02177 39.3362 5.83722 39.3503 4.46615 39.3246C2.81684 39.2936 2.63152 39.2453 2.26131 38.7498C2.09386 38.5256 2.08896 38.3671 2.06681 32.4387C2.04517 26.6408 2.05161 26.3435 2.20464 26.0557C2.29283 25.8896 2.51559 25.6671 2.69962 25.5611C3.0116 25.3815 3.1387 25.3684 4.57993 25.3672C5.88205 25.366 6.17273 25.3897 6.42452 25.5167ZM26.9572 26.7737C27.8524 27.2492 27.9068 28.3863 27.0597 28.9153C26.7373 29.1167 26.7177 29.118 23.3435 29.1609L19.9515 29.204L19.4162 29.4525C18.3705 29.9375 17.7373 30.8808 17.73 31.9643C17.7227 33.0451 18.3533 34.0123 19.3806 34.4961L19.8656 34.7245L25.635 34.7484C31.9613 34.7746 32.2195 34.758 33.0499 34.2741C33.2762 34.1423 34.82 32.7729 36.4807 31.2311C38.1415 29.6892 39.6231 28.362 39.7732 28.2816C40.4351 27.9272 41.3604 28.0172 41.9335 28.4918C42.286 28.7836 42.5746 29.3242 42.5776 29.6983C42.5829 30.3577 42.4824 30.4652 37.7573 34.8508C34.9396 37.4661 33.0723 39.1365 32.8407 39.2491C32.2369 39.5427 31.273 39.5968 26.6927 39.5945C19.2935 39.5907 16.2348 39.437 15.1317 39.0134C14.9015 38.9251 13.3896 38.2563 11.7719 37.5271L8.83073 36.2015V32.2154V28.2294L9.29007 27.8077C9.54271 27.5758 10.0007 27.2618 10.3078 27.1099C11.3886 26.5754 11.1731 26.5883 19.2296 26.5804L26.5797 26.5732L26.9572 26.7737Z" fill="#FCB305"/>
               </svg>
@@ -335,13 +339,13 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
             </div>
           </div>
           <p class="text-gray-300 text-sm text-center">Browse → Apply → Move In → Support</p>
-        </div>
+        </a>
       </div>
 
       <!-- Bottom Section with 8 Process Steps -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <!-- Contact Us -->
-        <div class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 cursor-pointer group">
+        <a href="/src/pages/contact.php" class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 hover:scale-95 cursor-pointer group">
           <div class="w-20 h-20 bg-green-500 group-hover:bg-black rounded-full flex items-center justify-center mx-auto mb-4 transition-colors duration-300">
             <svg width="39" height="46" viewBox="0 0 39 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M26.5477 39H32.7144V32L30.0715 29H25.6668L20.3811 23V18L17.7382 15H11.5715V22L26.5477 39Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -350,10 +354,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           </div>
           <h4 class="text-white group-hover:text-black font-semibold mb-2 transition-colors duration-300">Contact Us</h4>
           <p class="text-gray-300 group-hover:text-black text-xs transition-colors duration-300">Landlords reach out through our website or phone, sharing property details, and we immediately plan the process with personalized assistance.</p>
-        </div>
+        </a>
 
         <!-- Property Assessment -->
-        <div class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 cursor-pointer group">
+        <a href="/src/pages/properties.php" class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 hover:scale-95 cursor-pointer group">
           <div class="w-20 h-20 bg-green-500 group-hover:bg-black rounded-full flex items-center justify-center mx-auto mb-4 transition-colors duration-300">
             <svg width="43" height="44" viewBox="0 0 43 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M32.6485 4.31584H1.9205V0H32.6485V4.31584ZM23.1228 17.2634H3.91782L5.07012 10.7896H29.4989L30.2671 15.1054C31.6883 15.1918 33.0518 15.5154 34.3577 16.0981L32.6485 6.47376H1.9205L0 17.2634V21.5792H1.9205V34.5267H18.2448C17.611 32.8004 17.2845 30.9662 17.2845 29.1319V30.2109H5.7615V21.5792H17.2845V29.1319C17.2845 25.5498 18.5136 21.9461 20.9335 19.2055C21.6248 18.4502 22.3546 17.8028 23.1228 17.2634ZM43 41.0005L40.3305 44L34.3385 37.3752C33.0134 38.3031 31.4386 38.8426 29.7678 38.8426C24.9665 38.8426 21.1255 34.5267 21.1255 29.1319C21.1255 23.7371 24.9665 19.4213 29.7678 19.4213C34.569 19.4213 38.41 23.7371 38.41 29.1319C38.41 31.0309 37.9299 32.822 37.0849 34.3109L43 41.0005ZM34.569 29.1319C34.569 27.7011 34.0632 26.3289 33.1628 25.3172C32.2623 24.3055 31.0411 23.7371 29.7678 23.7371C28.4944 23.7371 27.2732 24.3055 26.3728 25.3172C25.4723 26.3289 24.9665 27.7011 24.9665 29.1319C24.9665 30.5627 25.4723 31.9349 26.3728 32.9466C27.2732 33.9584 28.4944 34.5267 29.7678 34.5267C31.0411 34.5267 32.2623 33.9584 33.1628 32.9466C34.0632 31.9349 34.569 30.5627 34.569 29.1319Z" fill="white"/>
@@ -361,10 +365,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           </div>
           <h4 class="text-white group-hover:text-black font-semibold mb-2 transition-colors duration-300">Property Assessment</h4>
           <p class="text-gray-300 group-hover:text-black text-xs transition-colors duration-300">Our experts assess the property's condition, location, and potential, ensuring compliance and preparing it for reliable tenants and maximum returns.</p>
-        </div>
+        </a>
 
         <!-- Browse -->
-        <div class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 cursor-pointer group">
+        <a href="/src/pages/tenants.php" class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 hover:scale-95 cursor-pointer group">
           <div class="w-20 h-20 bg-green-500 group-hover:bg-black rounded-full flex items-center justify-center mx-auto mb-4  transition-colors duration-300">
             <svg width="45" height="46" viewBox="0 0 45 46" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M32.3571 40.2956C28.942 43.3426 24.7243 44.999 20.3806 44.9992C9.67647 44.9992 1 35.1502 1 22.9983C1 10.8503 9.67647 1 20.3817 1C31.0835 1 39.7612 10.849 39.7612 22.9996C39.7611 24.7659 39.5738 26.5258 39.2034 28.2413M25.3968 1.75051L15.3655 44.2487M1.66116 17.3055L27.6429 25.2089M6.67741 7.44331L39.1012 17.3055M1.66116 28.695L25.8895 36.0643" stroke="white" stroke-width="1.319" stroke-linecap="round" stroke-linejoin="round"/>
@@ -377,10 +381,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           </div>
           <h4 class="text-white font-semibold mb-2 group-hover:text-black transition-colors duration-300">Browse</h4>
           <p class="text-gray-300 text-xs group-hover:text-black transition-colors duration-300">Tenants can easily browse available homes online, exploring property photos, amenities, and details to find the perfect place.</p>
-        </div>
+        </a>
 
         <!-- Apply -->
-        <div class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 cursor-pointer group">
+        <a href="/src/pages/contact.php" class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 hover:scale-95 cursor-pointer group">
           <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-black transition-colors duration-300">
             <svg width="40" height="44" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10.9995 22L18.1995 28L27.1995 14M19.9995 42C29.9409 42 37.9995 33.046 37.9995 22C37.9995 10.954 29.9409 2 19.9995 2C10.0581 2 1.99951 10.954 1.99951 22C1.99951 33.046 10.0581 42 19.9995 42Z" stroke="white" stroke-width="4"/>
@@ -389,10 +393,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           </div>
           <h4 class="text-white font-semibold mb-2 group-hover:text-black transition-colors duration-300">Apply</h4>
           <p class="text-gray-300 text-xs group-hover:text-black transition-colors duration-300">Once interested, tenants submit a simple online application, providing personal details, references, and documents for quick screening and approval.</p>
-        </div>
+        </a>
 
         <!-- Guaranteed Long Term Rent -->
-        <div class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 cursor-pointer group">
+        <a href="/src/pages/tenants.php" class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 hover:scale-95 cursor-pointer group">
           <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-black transition-colors duration-300">
             <svg width="46" height="44" viewBox="0 0 46 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M44.4667 40.48H41.4V24.6403L41.8485 25.155C42.1367 25.4853 42.5274 25.6706 42.9347 25.6702C43.3419 25.6698 43.7324 25.4837 44.0201 25.1528C44.3078 24.822 44.4692 24.3736 44.4689 23.9061C44.4685 23.4387 44.3064 22.9905 44.0182 22.6603L25.1677 1.03016C24.5927 0.370535 23.813 0 23 0C22.187 0 21.4073 0.370535 20.8323 1.03016L1.98183 22.6603C1.69437 22.9905 1.53298 23.4383 1.53316 23.9051C1.53334 24.372 1.69508 24.8196 1.98279 25.1495C2.27051 25.4795 2.66063 25.6647 3.06734 25.6645C3.47406 25.6643 3.86404 25.4787 4.1515 25.1484L4.6 24.6403V40.48H1.53333C1.12667 40.48 0.736659 40.6655 0.449103 40.9955C0.161547 41.3256 0 41.7732 0 42.24C0 42.7068 0.161547 43.1545 0.449103 43.4845C0.736659 43.8146 1.12667 44 1.53333 44H44.4667C44.8733 44 45.2633 43.8146 45.5509 43.4845C45.8385 43.1545 46 42.7068 46 42.24C46 41.7732 45.8385 41.3256 45.5509 40.9955C45.2633 40.6655 44.8733 40.48 44.4667 40.48ZM7.66667 21.1203L23 3.52052L38.3333 21.1203V40.48H29.1333V28.1602C29.1333 27.6934 28.9718 27.2458 28.6842 26.9157C28.3967 26.5857 28.0067 26.4002 27.6 26.4002H18.4C17.9933 26.4002 17.6033 26.5857 17.3158 26.9157C17.0282 27.2458 16.8667 27.6934 16.8667 28.1602V40.48H7.66667V21.1203ZM26.0667 40.48H19.9333V29.9202H26.0667V40.48Z" fill="white"/>
@@ -400,10 +404,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           </div>
           <h4 class="text-white font-semibold mb-2 group-hover:text-black transition-colors duration-300">Guaranteed Long Term Rent</h4>
           <p class="text-gray-300 text-xs group-hover:text-black transition-colors duration-300">We provide guaranteed, fixed monthly rent for the long term, ensuring landlords enjoy consistent income without risks of vacancies or delays.</p>
-        </div>
+        </a>
 
         <!-- Full Management -->
-        <div class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 cursor-pointer group">
+        <a href="/src/pages/tenants.php" class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 hover:scale-95 cursor-pointer group">
           <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-black transition-colors duration-300">
             <svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M42.2651 29.5885C41.7189 29.148 41.083 28.8455 40.4071 28.7044C39.7311 28.5633 39.0332 28.5875 38.3676 28.775L30.6901 30.625C30.8687 29.8342 30.8742 29.0113 30.7062 28.218C30.5382 27.4247 30.201 26.6815 29.72 26.0441C29.2389 25.4068 28.6265 24.8918 27.9285 24.5378C27.2305 24.1838 26.4652 23.9999 25.6897 24H16.5038C15.7324 23.998 14.9682 24.1562 14.2555 24.4655C13.5427 24.7748 12.8955 25.229 12.3513 25.8019L8.20053 30.1539H2.93597C2.1573 30.1539 1.41053 30.478 0.859926 31.0551C0.309325 31.6321 0 32.4147 0 33.2308L0 40.9231C0 41.7391 0.309325 42.5218 0.859926 43.0988C1.41053 43.6758 2.1573 44 2.93597 44H22.0198C22.1398 43.9999 22.2593 43.9844 22.3758 43.9538L34.1196 40.8769C34.1945 40.8582 34.2676 40.8324 34.338 40.8L41.4706 37.6192L41.5513 37.5808C42.2368 37.2218 42.8238 36.6858 43.257 36.0234C43.6903 35.3609 43.9554 34.5938 44.0276 33.7943C44.0997 32.9948 43.9764 32.1891 43.6694 31.4533C43.3623 30.7175 42.8816 30.0758 42.2725 29.5885H42.2651ZM2.93597 33.2308H7.33993V40.9231H2.93597V33.2308ZM40.265 34.8096L33.2921 37.9212L21.8363 40.9231H10.2759V32.3289L14.4285 27.9789C14.7001 27.6919 15.0235 27.4644 15.3797 27.3096C15.736 27.1547 16.1181 27.0756 16.5038 27.0769H25.6897C26.2737 27.0769 26.8338 27.3201 27.2468 27.7528C27.6597 28.1856 27.8917 28.7726 27.8917 29.3846C27.8917 29.9967 27.6597 30.5836 27.2468 31.0164C26.8338 31.4492 26.2737 31.6923 25.6897 31.6923H20.5518C20.1625 31.6923 19.7891 31.8544 19.5138 32.1429C19.2385 32.4314 19.0838 32.8228 19.0838 33.2308C19.0838 33.6388 19.2385 34.0301 19.5138 34.3186C19.7891 34.6072 20.1625 34.7692 20.5518 34.7692H26.4237C26.5342 34.7689 26.6444 34.756 26.7522 34.7308L39.0466 31.7673L39.1035 31.7519C39.4788 31.6427 39.8793 31.6829 40.2281 31.8646C40.5769 32.0463 40.8492 32.3568 40.9927 32.7363C41.1362 33.1158 41.1407 33.5375 41.0053 33.9202C40.87 34.303 40.6043 34.6198 40.2595 34.8096H40.265Z" fill="white"/>
@@ -412,10 +416,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           </div>
           <h4 class="text-white font-semibold mb-2 group-hover:text-black transition-colors duration-300">Full Management</h4>
           <p class="text-gray-300 text-xs group-hover:text-black transition-colors duration-300">From tenant placement to maintenance, compliance & rent collection, we handle everything, giving landlords stress-free property ownership & dependable financial security.</p>
-        </div>
+        </a>
 
         <!-- Move In -->
-        <div class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 cursor-pointer group">
+        <a href="/src/pages/tenants.php" class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 hover:scale-95 cursor-pointer group">
           <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-black transition-colors duration-300">
             <svg width="34" height="40" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M34 34L28.6316 28V32H21.4737V36H28.6316V40L34 34ZM17.5368 40H3.57895C1.61053 40 0 38.2 0 36V4C0 1.8 1.61053 0 3.57895 0H17.8947L28.6316 12V22.2C28.0947 22 27.3789 22 26.8421 22C26.3053 22 25.5895 22 25.0526 22.2V14H16.1053V4H3.57895V36H16.2842C16.4632 37.4 17 38.8 17.5368 40ZM7.15789 20H21.4737V23.6C21.2947 23.8 21.1158 23.8 20.9368 24H7.15789V20ZM7.15789 28H16.1053V32H7.15789V28Z" fill="white"/>
@@ -423,10 +427,10 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           </div>
           <h4 class="text-white font-semibold mb-2 group-hover:text-black transition-colors duration-300">Move In</h4>
           <p class="text-gray-300 text-xs group-hover:text-black transition-colors duration-300">After approval, tenants sign agreements, receive keys, and smoothly move into their new home, ready to enjoy comfort & convenience.</p>
-        </div>
+        </a>
 
         <!-- Support -->
-        <div class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 cursor-pointer group">
+        <a href="/src/pages/contact.php" class="text-center border border-gray-700 rounded-b-xl rounded-tr-xl py-8 px-6 min-h-[280px] flex flex-col hover:bg-brand-yellow transition-all duration-300 hover:scale-95 cursor-pointer group">
           <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-black transition-colors duration-300">
             <svg width="32" height="44" viewBox="0 0 32 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.0672 28.9699L13.0576 28.9442C12.8645 28.8919 12.6724 28.8344 12.4816 28.7719L12.4672 28.7664C10.6421 28.1652 8.95653 27.1062 7.5328 25.6661C5.96702 24.0834 4.76291 22.0858 4.02545 19.8475C3.288 17.6092 3.03959 15.1981 3.30188 12.8246C3.56418 10.451 4.32922 8.187 5.5303 6.22996C6.73137 4.27293 8.33202 2.68228 10.1927 1.59671C12.0533 0.511146 14.1175 -0.0363804 16.2052 0.00187546C18.2928 0.0401313 20.3407 0.663008 22.1701 1.81619C23.9995 2.96938 25.5549 4.61786 26.7007 6.6179C27.8466 8.61794 28.5481 10.9088 28.744 13.2908C28.8064 14.048 28.264 14.6658 27.6 14.6658C26.9376 14.6658 26.408 14.048 26.3312 13.2926C26.1197 11.2086 25.4318 9.22547 24.337 7.54376C23.2422 5.86204 21.7793 4.54133 20.0962 3.71513C18.4132 2.88893 16.5696 2.58653 14.7519 2.83849C12.9341 3.09045 11.2067 3.88785 9.74408 5.15007C8.2815 6.4123 7.13566 8.09461 6.42239 10.0269C5.70912 11.9593 5.4537 14.0731 5.68195 16.1548C5.91021 18.2366 6.61404 20.2123 7.72231 21.8824C8.83057 23.5525 10.304 24.8577 11.9936 25.6661L12.0576 25.6973C12.3776 25.8476 12.7061 25.9802 13.0432 26.0951C13.3264 25.311 13.8382 24.6637 14.4913 24.2636C15.1444 23.8635 15.8984 23.7354 16.6247 23.9011C17.3511 24.0668 18.0048 24.516 18.4744 25.1722C18.944 25.8284 19.2005 26.6509 19.2 27.4995C19.2007 28.3422 18.9481 29.1595 18.4846 29.8138C18.0212 30.4681 17.3752 30.9195 16.6554 31.0921C15.9355 31.2647 15.1858 31.1479 14.5323 30.7614C13.8788 30.3749 13.3614 29.7422 13.0672 28.9699ZM11.4896 31.302C8.64726 30.289 6.12703 28.3421 4.2416 25.7028C3.07314 25.8596 1.99563 26.5027 1.2137 27.5099C0.431761 28.5171 -0.00014479 29.8182 3.64106e-08 31.1663V32.4772C3.64106e-08 39.2937 6.736 44 16 44C25.264 44 32 39.0352 32 32.4772V31.1663C32 29.7076 31.4943 28.3086 30.5941 27.2771C29.6939 26.2456 28.473 25.6661 27.2 25.6661H21.368C21.7454 27.1146 21.6645 28.6692 21.1394 30.0559C20.6144 31.4427 19.6789 32.5725 18.498 33.2462C17.3171 33.92 15.9665 34.0943 14.6844 33.7387C13.4022 33.383 12.2708 32.52 11.4896 31.302ZM24 14.6658C24 11.8937 22.928 9.40949 21.2304 7.72827C20.3786 6.88631 19.3815 6.25965 18.304 5.8892C17.2266 5.51874 16.0931 5.41283 14.9775 5.57836C13.8619 5.74389 12.7893 6.17714 11.8298 6.84985C10.8702 7.52255 10.0452 8.41957 9.40873 9.48236C8.77222 10.5451 8.33846 11.7498 8.13578 13.0177C7.93309 14.2856 7.96604 15.5882 8.23247 16.8405C8.49889 18.0928 8.99281 19.2667 9.68197 20.2854C10.3711 21.3042 11.2401 22.145 12.232 22.7529C13.2629 21.6783 14.6064 21.0828 16 21.0827C17.3942 21.0823 18.7383 21.6779 19.7696 22.7529C21.0479 21.9704 22.1166 20.8047 22.8617 19.3803C23.6068 17.956 24.0003 16.3265 24 14.6658Z" fill="white"/>
@@ -434,7 +438,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           </div>
           <h4 class="text-white font-semibold mb-2 group-hover:text-black transition-colors duration-300">Support</h4>
           <p class="text-gray-300 text-xs group-hover:text-black transition-colors duration-300">Ongoing support is provided through responsive management, handling maintenance requests, questions, and ensuring tenants feel safe & cared for.</p>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -478,11 +482,11 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
               </svg>
               <span class="text-sm"><?php echo htmlspecialchars($property['location']); ?></span>
             </div>
-            <div class="text-brand-yellow font-bold text-xl mb-2"><?php echo htmlspecialchars($property['price']); ?></div>
+
             <div class="flex justify-center items-center gap-4 text-gray-600 text-sm">
               <span><?php echo $property['bedrooms']; ?> beds</span>
               <span><?php echo $property['bathrooms']; ?> baths</span>
-              <span><?php echo htmlspecialchars($property['area']); ?></span>
+              <span><?php echo $property['wc']; ?> WC</span>
             </div>
           </div>
 
@@ -507,25 +511,18 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
 
                 <hr class="border-gray-200 mb-2">
 
-                <div class="grid grid-cols-2 gap-2 text-gray-600 text-xs mb-2">
-                  <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18"></path></svg><span><?php echo htmlspecialchars($property['area']); ?></span></div>
-                  <div class="flex items-center justify-end"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 6v12"></path></svg><span><?php echo $property['garages'] ?? 2; ?> Garages</span></div>
-
-                  <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14"></path></svg><span><?php echo $property['bedrooms']; ?> Bedrooms</span></div>
-                  <div class="flex items-center justify-end"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10a4 4 0 01-8 0"></path></svg><span><?php echo $property['bathrooms']; ?> Bathrooms</span></div>
-
-                  <div class="col-span-2 flex items-center justify-between text-xs text-gray-500 mt-1">
-                    <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg><span>Michel Smith</span></div>
-                    <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg><span>1 days ago</span></div>
-                  </div>
+                <div class="flex justify-center items-center gap-4 text-gray-600 text-xs mb-2">
+                  <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14"></path></svg><span><?php echo $property['bedrooms']; ?> beds</span></div>
+                  <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10a4 4 0 01-8 0"></path></svg><span><?php echo $property['bathrooms']; ?> baths</span></div>
+                  <div class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 6v12"></path></svg><span><?php echo $property['wc']; ?> WC</span></div>
                 </div>
               </div>
             </div>
 
-            <!-- Full-width price display at bottom -->
-            <div class="card-price-cta bg-[#FCB305] text-white text-center px-4 py-3 rounded-full font-bold text-sm">
-              <?php echo htmlspecialchars($property['price']); ?>
-            </div>
+            <!-- Full-width View Property button at bottom -->
+            <a href="product.php?id=<?php echo $property['id']; ?>" class="block bg-[#FCB305] text-white text-center px-4 py-3 rounded-full font-bold text-sm hover:bg-[#e0a004] transition-colors">
+              View Property
+            </a>
           </div>
         </div>
               <?php endforeach; ?>
@@ -551,157 +548,6 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
           <?php endfor; ?>
         </div>
         <a href="properties.php" class="text-gray-800 font-semibold text-sm hover:text-[#FCB305] transition-colors">VIEW ALL</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Imperial Housing Section (White Background) -->
-  <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="grid grid-cols-1 lg:grid-cols-[422px_608px] gap-12 items-stretch">
-        <!-- Image Column -->
-        <div class="order-2 lg:order-1 flex justify-center items-center overflow-visible">
-          <!-- Use object-contain and responsive sizing so the image isn't cropped on the right side -->
-          <img src="/public/assets/images/tower.png" alt="Tower Bridge London" class="w-full max-w-[400px] h-auto object-contain rounded-3xl shadow-lg" style="max-height:720px;">
-        </div>
-        
-        <!-- Content Column -->
-  <div class="order-1 lg:order-2 flex flex-col">
-          <!-- About Us Header -->
-          <p class="text-black text-[18px] font-semibold uppercase tracking-wider mb-4">ABOUT US</p>
-          
-          <!-- About Imperial Housing Section -->
-          <div class="mb-8">
-            <h2 class="text-4xl font-bold text-gray-900 mb-6">About Imperial Housing</h2>
-            <p class="text-gray-700 text-[16px] leading-relaxed mb-4">
-              Imperial Housing is a Managing Agent and accommodation provider based in the vibrant city of Birmingham. With a strong presence in the local market, and an increasing presence internationally, we specialise in three key categories: HMOs (House in Multiple Occupation), Serviced Accommodation, and Sales.
-            </p>
-          </div>
-          
-          <!-- Why Choose Imperial Housing Section -->
-          <div class="mb-8">
-            <h3 class="text-4xl font-bold text-gray-900 mb-6">Why Choose Imperial Housing?</h3>
-            <p class="text-gray-700 text-[16px] leading-relaxed">
-              Our success is a testament to our unwavering commitment to delivering excellence in every aspect of our business. With a deep understanding of the Birmingham property market and a passion for providing top-notch services, we pride ourselves on fostering lasting relationships with property owners, tenants, and homebuyers. At Imperial Housing, we're not just in the business of property management; we're in the business of creating homes and experiences. We invite you to explore our website and discover the world of possibilities we offer. Welcome to Imperial Housing, where exceptional service meets the vibrant heart of Birmingham.
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Features Section -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-        <!-- The Perfect Residency -->
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-lg flex items-center justify-center">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.4758 3.42541C30.1845 5.30398 26.551 6.95824 26.4012 7.10149C26.1375 7.35375 26.129 7.4342 26.129 9.67053C26.129 11.9602 26.1315 11.9815 26.426 12.276C26.8132 12.6634 27.1433 12.6506 28.125 12.2101C28.5699 12.0104 28.9559 11.8471 28.983 11.8471C29.0101 11.8471 29.0323 13.0993 29.0323 14.6298V17.4125H15.7808H2.52931L2.23246 17.7095C1.94335 17.9986 1.93548 18.0551 1.93548 19.8322C1.93548 21.6094 1.94335 21.6659 2.23246 21.955C2.51843 22.2411 2.58944 22.252 4.16794 22.252H5.80645V24.6717V27.0915H4.16794C2.58944 27.0915 2.51843 27.1024 2.23246 27.3885C1.94335 27.6775 1.93548 27.734 1.93548 29.5112C1.93548 31.2884 1.94335 31.3449 2.23246 31.6339C2.47621 31.8779 2.64919 31.931 3.2002 31.931H3.87097V43.5457V55.1605H2.23246C0.653952 55.1605 0.582944 55.1714 0.296976 55.4575C0.0078629 55.7466 0 55.8031 0 57.5803C0 59.3574 0.0078629 59.4139 0.296976 59.703L0.593831 60H30H59.4062L59.703 59.703C59.9921 59.4139 60 59.3574 60 57.5803C60 55.8031 59.9921 55.7466 59.703 55.4575C59.4171 55.1714 59.346 55.1605 57.7675 55.1605H56.129V43.5457V31.931H56.7998C57.3508 31.931 57.5238 31.8779 57.7675 31.6339C58.0567 31.3449 58.0645 31.2884 58.0645 29.5112C58.0645 27.734 58.0567 27.6775 57.7675 27.3885C57.5238 27.1446 57.3508 27.0915 56.7998 27.0915H56.129V19.4693C56.129 15.2771 56.1512 11.8471 56.1783 11.8471C56.2054 11.8471 56.5914 12.0104 57.0363 12.2101C58.0179 12.6506 58.3481 12.6634 58.7353 12.276C59.0297 11.9816 59.0323 11.9591 59.0323 9.68819C59.0323 7.68271 59.0059 7.36609 58.8206 7.14649C58.5716 6.85153 42.93 -0.0143749 42.5399 2.26112e-05C42.3959 0.00534605 38.7671 1.54684 34.4758 3.42541ZM49.7314 5.14355C53.616 6.84669 56.8625 8.26805 56.9456 8.30217C57.0469 8.34391 57.0968 8.654 57.0968 9.24381V10.1231L49.9508 6.9926C46.0206 5.27071 42.7079 3.86193 42.5892 3.86193C42.4227 3.86193 33.7454 7.60661 28.7601 9.82975L28.0645 10.14V9.2553V8.37076L35.2319 5.22195C39.1738 3.49014 42.4598 2.06733 42.5338 2.06019C42.6079 2.05305 45.8468 3.44054 49.7314 5.14355ZM48.3987 8.4315L54.1331 10.9443L54.1642 19.0179L54.1952 27.0915H42.5806H30.966L30.9971 19.0225L31.0282 10.9535L36.7137 8.44795C39.8407 7.06991 42.4588 5.93699 42.5318 5.93057C42.6047 5.92404 45.2448 7.04946 48.3987 8.4315ZM32.2325 12.87L31.9355 13.1669V16.9286V20.6902L32.2325 20.9871L32.5293 21.2841H36.7742H41.0191L41.3159 20.9871L41.6129 20.6902V16.9286V13.1669L41.3159 12.87L41.0191 12.573H36.7742H32.5293L32.2325 12.87ZM43.8454 12.87L43.5484 13.1669V16.9286V20.6902L43.8454 20.9871L44.1422 21.2841H48.3871H52.632L52.9288 20.9871L53.2258 20.6902V16.9286V13.1669L52.9288 12.87L52.632 12.573H48.3871H44.1422L43.8454 12.87ZM39.6774 16.9286V19.3483H36.7742H33.871V16.9286V14.5088H36.7742H39.6774V16.9286ZM51.2903 16.9286V19.3483H48.3871H45.4839V16.9286V14.5088H48.3871H51.2903V16.9286ZM29.0323 19.8322V20.3162H16.4516H3.87097V19.8322V19.3483H16.4516H29.0323V19.8322ZM11.6129 24.6717V27.0915H9.67742H7.74194V24.6717V22.252H9.67742H11.6129V24.6717ZM17.4194 24.6717V27.0915H15.4839H13.5484V24.6717V22.252H15.4839H17.4194V24.6717ZM23.2258 24.6717V27.0915H21.2903H19.3548V24.6717V22.252H21.2903H23.2258V24.6717ZM29.0323 24.6717V27.0915H27.0968H25.1613V24.6717V22.252H27.0968H29.0323V24.6717ZM56.129 29.5112V29.9952H30H3.87097V29.5112V29.0273H30H56.129V29.5112ZM29.0323 43.5457V55.1605H28.0645H27.0968V48.3852C27.0968 42.3549 27.1173 41.6099 27.2837 41.6099C27.3865 41.6099 27.6042 41.4763 27.7675 41.3129C28.0567 41.0239 28.0645 40.9674 28.0645 39.1902C28.0645 37.413 28.0567 37.3565 27.7675 37.0675L27.4707 36.7705H17.4194H7.36802L7.07117 37.0675C6.78206 37.3565 6.77419 37.413 6.77419 39.1902C6.77419 40.9674 6.78206 41.0239 7.07117 41.3129C7.23448 41.4763 7.45222 41.6099 7.55504 41.6099C7.72137 41.6099 7.74194 42.3549 7.74194 48.3852V55.1605H6.77419H5.80645V43.5457V31.931H17.4194H29.0323V43.5457ZM54.1935 43.5457V55.1605H48.3871H42.5806V48.6823V42.2039L42.2837 41.907L41.9868 41.6099H37.2581H32.5293L32.2325 41.907L31.9355 42.2039V48.6823V55.1605H31.4516H30.9677V43.5457V31.931H42.5806H54.1935V43.5457ZM26.129 39.1902V39.6741H17.4194H8.70968V39.1902V38.7062H17.4194H26.129V39.1902ZM25.1613 48.3852V55.1605H17.4194H9.67742V48.3852V41.6099H17.4194H25.1613V48.3852ZM43.8454 41.907L43.5484 42.2039V45.9655V49.7271L43.8454 50.024L44.1422 50.321H48.3871H52.632L52.9288 50.024L53.2258 49.7271V45.9655V42.2039L52.9288 41.907L52.632 41.6099H48.3871H44.1422L43.8454 41.907ZM40.6452 49.3531V55.1605H37.2581H33.871V49.3531V43.5457H37.2581H40.6452V49.3531ZM51.2903 45.9655V48.3852H48.3871H45.4839V45.9655V43.5457H48.3871H51.2903V45.9655ZM38.0389 47.7144C37.7594 47.994 37.7419 48.0898 37.7419 49.3531C37.7419 50.6165 37.7594 50.7123 38.0389 50.9919C38.226 51.1792 38.474 51.2889 38.7097 51.2889C38.9453 51.2889 39.1933 51.1792 39.3804 50.9919C39.66 50.7123 39.6774 50.6165 39.6774 49.3531C39.6774 48.0898 39.66 47.994 39.3804 47.7144C39.1933 47.5271 38.9453 47.4173 38.7097 47.4173C38.474 47.4173 38.226 47.5271 38.0389 47.7144ZM58.0645 57.5803V58.0642H30H1.93548V57.5803V57.0963H30H58.0645V57.5803Z" fill="#151EA6"/>
-            </svg>
-
-          </div>
-          <h4 class="text-xl font-bold text-gray-900 mb-3">The Perfect Residency</h4>
-          <p class="text-gray-600 mb-2">Comfortable, safe, and modern homes</p>
-          <p class="text-gray-600">Designed for convenience and peace of mind</p>
-        </div>
-        
-        <!-- Trusted Across The UK -->
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto mb-4  rounded-lg flex items-center justify-center">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.4758 3.42541C30.1845 5.30398 26.551 6.95824 26.4012 7.10149C26.1375 7.35375 26.129 7.4342 26.129 9.67053C26.129 11.9602 26.1315 11.9815 26.426 12.276C26.8132 12.6634 27.1433 12.6506 28.125 12.2101C28.5699 12.0104 28.9559 11.8471 28.983 11.8471C29.0101 11.8471 29.0323 13.0993 29.0323 14.6298V17.4125H15.7808H2.52931L2.23246 17.7095C1.94335 17.9986 1.93548 18.0551 1.93548 19.8322C1.93548 21.6094 1.94335 21.6659 2.23246 21.955C2.51843 22.2411 2.58944 22.252 4.16794 22.252H5.80645V24.6717V27.0915H4.16794C2.58944 27.0915 2.51843 27.1024 2.23246 27.3885C1.94335 27.6775 1.93548 27.734 1.93548 29.5112C1.93548 31.2884 1.94335 31.3449 2.23246 31.6339C2.47621 31.8779 2.64919 31.931 3.2002 31.931H3.87097V43.5457V55.1605H2.23246C0.653952 55.1605 0.582944 55.1714 0.296976 55.4575C0.0078629 55.7466 0 55.8031 0 57.5803C0 59.3574 0.0078629 59.4139 0.296976 59.703L0.593831 60H30H59.4062L59.703 59.703C59.9921 59.4139 60 59.3574 60 57.5803C60 55.8031 59.9921 55.7466 59.703 55.4575C59.4171 55.1714 59.346 55.1605 57.7675 55.1605H56.129V43.5457V31.931H56.7998C57.3508 31.931 57.5238 31.8779 57.7675 31.6339C58.0567 31.3449 58.0645 31.2884 58.0645 29.5112C58.0645 27.734 58.0567 27.6775 57.7675 27.3885C57.5238 27.1446 57.3508 27.0915 56.7998 27.0915H56.129V19.4693C56.129 15.2771 56.1512 11.8471 56.1783 11.8471C56.2054 11.8471 56.5914 12.0104 57.0363 12.2101C58.0179 12.6506 58.3481 12.6634 58.7353 12.276C59.0297 11.9816 59.0323 11.9591 59.0323 9.68819C59.0323 7.68271 59.0059 7.36609 58.8206 7.14649C58.5716 6.85153 42.93 -0.0143749 42.5399 2.26112e-05C42.3959 0.00534605 38.7671 1.54684 34.4758 3.42541ZM49.7314 5.14355C53.616 6.84669 56.8625 8.26805 56.9456 8.30217C57.0469 8.34391 57.0968 8.654 57.0968 9.24381V10.1231L49.9508 6.9926C46.0206 5.27071 42.7079 3.86193 42.5892 3.86193C42.4227 3.86193 33.7454 7.60661 28.7601 9.82975L28.0645 10.14V9.2553V8.37076L35.2319 5.22195C39.1738 3.49014 42.4598 2.06733 42.5338 2.06019C42.6079 2.05305 45.8468 3.44054 49.7314 5.14355ZM48.3987 8.4315L54.1331 10.9443L54.1642 19.0179L54.1952 27.0915H42.5806H30.966L30.9971 19.0225L31.0282 10.9535L36.7137 8.44795C39.8407 7.06991 42.4588 5.93699 42.5318 5.93057C42.6047 5.92404 45.2448 7.04946 48.3987 8.4315ZM32.2325 12.87L31.9355 13.1669V16.9286V20.6902L32.2325 20.9871L32.5293 21.2841H36.7742H41.0191L41.3159 20.9871L41.6129 20.6902V16.9286V13.1669L41.3159 12.87L41.0191 12.573H36.7742H32.5293L32.2325 12.87ZM43.8454 12.87L43.5484 13.1669V16.9286V20.6902L43.8454 20.9871L44.1422 21.2841H48.3871H52.632L52.9288 20.9871L53.2258 20.6902V16.9286V13.1669L52.9288 12.87L52.632 12.573H48.3871H44.1422L43.8454 12.87ZM39.6774 16.9286V19.3483H36.7742H33.871V16.9286V14.5088H36.7742H39.6774V16.9286ZM51.2903 16.9286V19.3483H48.3871H45.4839V16.9286V14.5088H48.3871H51.2903V16.9286ZM29.0323 19.8322V20.3162H16.4516H3.87097V19.8322V19.3483H16.4516H29.0323V19.8322ZM11.6129 24.6717V27.0915H9.67742H7.74194V24.6717V22.252H9.67742H11.6129V24.6717ZM17.4194 24.6717V27.0915H15.4839H13.5484V24.6717V22.252H15.4839H17.4194V24.6717ZM23.2258 24.6717V27.0915H21.2903H19.3548V24.6717V22.252H21.2903H23.2258V24.6717ZM29.0323 24.6717V27.0915H27.0968H25.1613V24.6717V22.252H27.0968H29.0323V24.6717ZM56.129 29.5112V29.9952H30H3.87097V29.5112V29.0273H30H56.129V29.5112ZM29.0323 43.5457V55.1605H28.0645H27.0968V48.3852C27.0968 42.3549 27.1173 41.6099 27.2837 41.6099C27.3865 41.6099 27.6042 41.4763 27.7675 41.3129C28.0567 41.0239 28.0645 40.9674 28.0645 39.1902C28.0645 37.413 28.0567 37.3565 27.7675 37.0675L27.4707 36.7705H17.4194H7.36802L7.07117 37.0675C6.78206 37.3565 6.77419 37.413 6.77419 39.1902C6.77419 40.9674 6.78206 41.0239 7.07117 41.3129C7.23448 41.4763 7.45222 41.6099 7.55504 41.6099C7.72137 41.6099 7.74194 42.3549 7.74194 48.3852V55.1605H6.77419H5.80645V43.5457V31.931H17.4194H29.0323V43.5457ZM54.1935 43.5457V55.1605H48.3871H42.5806V48.6823V42.2039L42.2837 41.907L41.9868 41.6099H37.2581H32.5293L32.2325 41.907L31.9355 42.2039V48.6823V55.1605H31.4516H30.9677V43.5457V31.931H42.5806H54.1935V43.5457ZM26.129 39.1902V39.6741H17.4194H8.70968V39.1902V38.7062H17.4194H26.129V39.1902ZM25.1613 48.3852V55.1605H17.4194H9.67742V48.3852V41.6099H17.4194H25.1613V48.3852ZM43.8454 41.907L43.5484 42.2039V45.9655V49.7271L43.8454 50.024L44.1422 50.321H48.3871H52.632L52.9288 50.024L53.2258 49.7271V45.9655V42.2039L52.9288 41.907L52.632 41.6099H48.3871H44.1422L43.8454 41.907ZM40.6452 49.3531V55.1605H37.2581H33.871V49.3531V43.5457H37.2581H40.6452V49.3531ZM51.2903 45.9655V48.3852H48.3871H45.4839V45.9655V43.5457H48.3871H51.2903V45.9655ZM38.0389 47.7144C37.7594 47.994 37.7419 48.0898 37.7419 49.3531C37.7419 50.6165 37.7594 50.7123 38.0389 50.9919C38.226 51.1792 38.474 51.2889 38.7097 51.2889C38.9453 51.2889 39.1933 51.1792 39.3804 50.9919C39.66 50.7123 39.6774 50.6165 39.6774 49.3531C39.6774 48.0898 39.66 47.994 39.3804 47.7144C39.1933 47.5271 38.9453 47.4173 38.7097 47.4173C38.474 47.4173 38.226 47.5271 38.0389 47.7144ZM58.0645 57.5803V58.0642H30H1.93548V57.5803V57.0963H30H58.0645V57.5803Z" fill="#151EA6"/>
-            </svg>
-
-          </div>
-          <h4 class="text-xl font-bold text-gray-900 mb-3">Trusted Across The UK</h4>
-          <p class="text-gray-600 mb-2">Reliable housing solutions nationwide</p>
-          <p class="text-gray-600">From shared homes to supported living</p>
-        </div>
-        
-        <!-- Total Transparency -->
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto mb-4  rounded-lg flex items-center justify-center">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.4758 3.42541C30.1845 5.30398 26.551 6.95824 26.4012 7.10149C26.1375 7.35375 26.129 7.4342 26.129 9.67053C26.129 11.9602 26.1315 11.9815 26.426 12.276C26.8132 12.6634 27.1433 12.6506 28.125 12.2101C28.5699 12.0104 28.9559 11.8471 28.983 11.8471C29.0101 11.8471 29.0323 13.0993 29.0323 14.6298V17.4125H15.7808H2.52931L2.23246 17.7095C1.94335 17.9986 1.93548 18.0551 1.93548 19.8322C1.93548 21.6094 1.94335 21.6659 2.23246 21.955C2.51843 22.2411 2.58944 22.252 4.16794 22.252H5.80645V24.6717V27.0915H4.16794C2.58944 27.0915 2.51843 27.1024 2.23246 27.3885C1.94335 27.6775 1.93548 27.734 1.93548 29.5112C1.93548 31.2884 1.94335 31.3449 2.23246 31.6339C2.47621 31.8779 2.64919 31.931 3.2002 31.931H3.87097V43.5457V55.1605H2.23246C0.653952 55.1605 0.582944 55.1714 0.296976 55.4575C0.0078629 55.7466 0 55.8031 0 57.5803C0 59.3574 0.0078629 59.4139 0.296976 59.703L0.593831 60H30H59.4062L59.703 59.703C59.9921 59.4139 60 59.3574 60 57.5803C60 55.8031 59.9921 55.7466 59.703 55.4575C59.4171 55.1714 59.346 55.1605 57.7675 55.1605H56.129V43.5457V31.931H56.7998C57.3508 31.931 57.5238 31.8779 57.7675 31.6339C58.0567 31.3449 58.0645 31.2884 58.0645 29.5112C58.0645 27.734 58.0567 27.6775 57.7675 27.3885C57.5238 27.1446 57.3508 27.0915 56.7998 27.0915H56.129V19.4693C56.129 15.2771 56.1512 11.8471 56.1783 11.8471C56.2054 11.8471 56.5914 12.0104 57.0363 12.2101C58.0179 12.6506 58.3481 12.6634 58.7353 12.276C59.0297 11.9816 59.0323 11.9591 59.0323 9.68819C59.0323 7.68271 59.0059 7.36609 58.8206 7.14649C58.5716 6.85153 42.93 -0.0143749 42.5399 2.26112e-05C42.3959 0.00534605 38.7671 1.54684 34.4758 3.42541ZM49.7314 5.14355C53.616 6.84669 56.8625 8.26805 56.9456 8.30217C57.0469 8.34391 57.0968 8.654 57.0968 9.24381V10.1231L49.9508 6.9926C46.0206 5.27071 42.7079 3.86193 42.5892 3.86193C42.4227 3.86193 33.7454 7.60661 28.7601 9.82975L28.0645 10.14V9.2553V8.37076L35.2319 5.22195C39.1738 3.49014 42.4598 2.06733 42.5338 2.06019C42.6079 2.05305 45.8468 3.44054 49.7314 5.14355ZM48.3987 8.4315L54.1331 10.9443L54.1642 19.0179L54.1952 27.0915H42.5806H30.966L30.9971 19.0225L31.0282 10.9535L36.7137 8.44795C39.8407 7.06991 42.4588 5.93699 42.5318 5.93057C42.6047 5.92404 45.2448 7.04946 48.3987 8.4315ZM32.2325 12.87L31.9355 13.1669V16.9286V20.6902L32.2325 20.9871L32.5293 21.2841H36.7742H41.0191L41.3159 20.9871L41.6129 20.6902V16.9286V13.1669L41.3159 12.87L41.0191 12.573H36.7742H32.5293L32.2325 12.87ZM43.8454 12.87L43.5484 13.1669V16.9286V20.6902L43.8454 20.9871L44.1422 21.2841H48.3871H52.632L52.9288 20.9871L53.2258 20.6902V16.9286V13.1669L52.9288 12.87L52.632 12.573H48.3871H44.1422L43.8454 12.87ZM39.6774 16.9286V19.3483H36.7742H33.871V16.9286V14.5088H36.7742H39.6774V16.9286ZM51.2903 16.9286V19.3483H48.3871H45.4839V16.9286V14.5088H48.3871H51.2903V16.9286ZM29.0323 19.8322V20.3162H16.4516H3.87097V19.8322V19.3483H16.4516H29.0323V19.8322ZM11.6129 24.6717V27.0915H9.67742H7.74194V24.6717V22.252H9.67742H11.6129V24.6717ZM17.4194 24.6717V27.0915H15.4839H13.5484V24.6717V22.252H15.4839H17.4194V24.6717ZM23.2258 24.6717V27.0915H21.2903H19.3548V24.6717V22.252H21.2903H23.2258V24.6717ZM29.0323 24.6717V27.0915H27.0968H25.1613V24.6717V22.252H27.0968H29.0323V24.6717ZM56.129 29.5112V29.9952H30H3.87097V29.5112V29.0273H30H56.129V29.5112ZM29.0323 43.5457V55.1605H28.0645H27.0968V48.3852C27.0968 42.3549 27.1173 41.6099 27.2837 41.6099C27.3865 41.6099 27.6042 41.4763 27.7675 41.3129C28.0567 41.0239 28.0645 40.9674 28.0645 39.1902C28.0645 37.413 28.0567 37.3565 27.7675 37.0675L27.4707 36.7705H17.4194H7.36802L7.07117 37.0675C6.78206 37.3565 6.77419 37.413 6.77419 39.1902C6.77419 40.9674 6.78206 41.0239 7.07117 41.3129C7.23448 41.4763 7.45222 41.6099 7.55504 41.6099C7.72137 41.6099 7.74194 42.3549 7.74194 48.3852V55.1605H6.77419H5.80645V43.5457V31.931H17.4194H29.0323V43.5457ZM54.1935 43.5457V55.1605H48.3871H42.5806V48.6823V42.2039L42.2837 41.907L41.9868 41.6099H37.2581H32.5293L32.2325 41.907L31.9355 42.2039V48.6823V55.1605H31.4516H30.9677V43.5457V31.931H42.5806H54.1935V43.5457ZM26.129 39.1902V39.6741H17.4194H8.70968V39.1902V38.7062H17.4194H26.129V39.1902ZM25.1613 48.3852V55.1605H17.4194H9.67742V48.3852V41.6099H17.4194H25.1613V48.3852ZM43.8454 41.907L43.5484 42.2039V45.9655V49.7271L43.8454 50.024L44.1422 50.321H48.3871H52.632L52.9288 50.024L53.2258 49.7271V45.9655V42.2039L52.9288 41.907L52.632 41.6099H48.3871H44.1422L43.8454 41.907ZM40.6452 49.3531V55.1605H37.2581H33.871V49.3531V43.5457H37.2581H40.6452V49.3531ZM51.2903 45.9655V48.3852H48.3871H45.4839V45.9655V43.5457H48.3871H51.2903V45.9655ZM38.0389 47.7144C37.7594 47.994 37.7419 48.0898 37.7419 49.3531C37.7419 50.6165 37.7594 50.7123 38.0389 50.9919C38.226 51.1792 38.474 51.2889 38.7097 51.2889C38.9453 51.2889 39.1933 51.1792 39.3804 50.9919C39.66 50.7123 39.6774 50.6165 39.6774 49.3531C39.6774 48.0898 39.66 47.994 39.3804 47.7144C39.1933 47.5271 38.9453 47.4173 38.7097 47.4173C38.474 47.4173 38.226 47.5271 38.0389 47.7144ZM58.0645 57.5803V58.0642H30H1.93548V57.5803V57.0963H30H58.0645V57.5803Z" fill="#151EA6"/>
-            </svg>
-          </div>
-          <h4 class="text-xl font-bold text-gray-900 mb-3">Total Transparency</h4>
-          <p class="text-gray-600 mb-2">Clear communication, no hidden terms</p>
-          <p class="text-gray-600">Honest, straightforward service you can trust</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- For Tenants Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
-          For Tenants
-          <svg width="61" height="56" viewBox="0 0 61 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M14.0094 2.34571C9.30011 4.90988 8.86166 5.22053 8.60095 6.17848C8.40695 6.89149 8.53588 9.37659 8.84041 10.795C9.58683 14.2719 11.5703 18.1403 13.9373 20.7355L14.5579 21.416L14.2605 22.7628C13.5545 25.9608 13.5371 29.0098 14.2068 32.1592C14.3393 32.7823 14.456 33.3344 14.466 33.386C14.4761 33.4378 14.0279 33.6542 13.47 33.8672C12.9122 34.0801 12.2845 34.3769 12.0752 34.5266L11.6945 34.7988L11.568 34.4646C11.1121 33.2601 10.441 32.4975 9.37407 31.9713L8.66684 31.6225H5.81747H2.9681L2.28211 31.9715C1.47253 32.3832 0.620451 33.255 0.258699 34.0413C0.000118725 34.6036 0 34.6085 0 43.6074V52.6109L0.329102 53.2839C0.729914 54.1035 1.51195 54.8507 2.41306 55.275C3.08136 55.5897 3.1089 55.5923 5.81747 55.5923C8.52603 55.5923 8.55358 55.5897 9.22187 55.275C10.5557 54.6469 11.5109 53.4331 11.6589 52.1782C11.7019 51.8134 11.7793 51.6061 11.8599 51.6396C11.9321 51.6697 13.6733 52.4542 15.7292 53.383C17.7852 54.3118 19.8421 55.1728 20.3001 55.2964C21.5652 55.6376 22.7721 55.7691 25.7631 55.8918C29.2882 56.0363 42.7199 56.036 43.8289 55.8912C44.8572 55.7571 45.8628 55.4158 46.5454 54.9693C47.0082 54.6666 58.1878 44.3779 59.4095 43.1304C59.6985 42.8352 60.0996 42.2449 60.3008 41.8186C60.6252 41.1314 60.6667 40.9218 60.6667 39.9702C60.6667 39.0101 60.6265 38.8118 60.2863 38.089C59.6286 36.6922 58.3856 35.7296 56.7797 35.3733C56.4043 35.2899 56.097 35.2129 56.097 35.202C56.097 35.1912 56.2325 34.7838 56.398 34.2968C57.0165 32.4767 57.2996 30.7217 57.3684 28.2807C57.4545 25.2314 57.2148 23.4226 56.3731 20.7706C55.5268 18.103 53.5423 14.5519 52.7007 14.1987C51.8909 13.8588 51.1106 14.3877 51.1106 15.2766C51.1106 15.5899 51.3047 15.9916 51.8885 16.8866C53.2162 18.922 54.1524 21.2043 54.6926 23.7222C54.9147 24.7574 54.9557 25.3276 54.9601 27.4487C54.9662 30.2894 54.8219 31.3275 54.115 33.53C53.5777 35.2039 53.233 35.8846 52.7464 36.2325C52.5323 36.3853 50.514 38.2229 48.2612 40.3157C46.0084 42.4085 43.9783 44.2065 43.7497 44.3113C43.3855 44.4783 42.3812 44.5063 35.6171 44.5385C30.3534 44.5636 27.7613 44.5345 27.4637 44.4469C26.2154 44.0799 26.0372 42.4686 27.1756 41.8423C27.4989 41.6645 28.1175 41.6325 32.2365 41.5801L36.929 41.5205L37.7124 41.1329C39.1448 40.4242 40.0645 39.0645 40.1377 37.5476C40.1735 36.8042 40.1958 36.7515 40.5721 36.5187C41.3895 36.0132 41.8621 35.5699 42.3231 34.8766C44.3283 31.8604 43.0172 27.8873 39.607 26.6449C39.0205 26.4312 38.5465 26.3937 35.6171 26.3287C31.8887 26.2458 31.9341 26.2558 31.0854 25.3311C29.7432 23.8683 30.129 21.6294 31.8928 20.6482L32.5303 20.2936L37.6162 20.2339L42.7021 20.1743L42.9885 19.8397C43.3924 19.3678 43.37 18.7946 42.9286 18.298L42.5823 17.9085L39.6637 17.8727L36.745 17.8371V16.1642V14.4914L36.398 14.1429C36.0068 13.7499 35.5136 13.6878 34.9814 13.9642C34.4687 14.2305 34.3705 14.6066 34.3705 16.3042V17.8489H33.6743C30.7235 17.8489 28.3972 19.7487 27.9377 22.5341C27.4592 25.4349 29.6401 28.3118 32.6114 28.6994C33.0892 28.7618 34.6316 28.8144 36.0391 28.8164C38.5508 28.82 38.6093 28.8258 39.2151 29.129C40.951 29.9978 41.4265 32.2221 40.1969 33.7205C40.0094 33.9489 39.6708 34.2359 39.4444 34.3584L39.0327 34.5812L38.5715 34.2104C38.3179 34.0064 37.8432 33.7164 37.5167 33.5659L36.9231 33.2921L26.9245 33.2596L16.9259 33.2272L16.8073 32.7826C16.0636 29.9943 15.9222 27.0748 16.3956 24.2856C16.5011 23.6641 16.5965 23.1452 16.6076 23.1325C16.6187 23.1197 16.9934 23.2942 17.4403 23.52C18.5343 24.0731 19.0273 24.0665 20.1144 23.4836C22.6976 22.0986 25.1529 19.2442 26.9511 15.5357C27.8416 13.6993 28.3277 12.2772 28.6648 10.5231C28.7992 9.82319 28.9092 9.22824 28.9092 9.20082C28.9092 9.17351 29.3575 9.01371 29.9056 8.84592C33.9219 7.61536 38.3356 7.74367 42.2657 9.20511C44.1243 9.8963 44.5333 9.90011 44.9402 9.22967C45.4078 8.4593 45.1067 7.76382 44.1175 7.32951C39.8467 5.45391 34.1891 5.0816 29.7314 6.38252L28.9508 6.61042L28.8054 6.064C28.7094 5.70374 28.5067 5.37329 28.2106 5.09448C27.6243 4.54246 19.3724 0.0700198 18.8177 0.0035962C18.4582 -0.0393347 17.8096 0.276565 14.0094 2.34571ZM22.6031 4.62129C24.6676 5.74154 26.4056 6.70558 26.4654 6.76377C26.6263 6.92035 26.5523 8.94383 26.348 9.97548C25.8895 12.2899 24.7448 14.9732 23.2699 17.1907C22.402 18.4957 20.5726 20.3921 19.5405 21.0566L18.7791 21.5469L18.201 21.2184C16.3483 20.1657 14.1398 17.4976 12.7063 14.5799C11.6003 12.3289 11.0253 10.2382 10.8984 8.00591L10.8303 6.80885L14.7349 4.69725C16.8825 3.53585 18.6869 2.58541 18.7446 2.58517C18.8024 2.58481 20.5387 3.50115 22.6031 4.62129ZM20.0538 9.97405L18.1935 11.8779L17.4668 11.2235C17.067 10.8636 16.6199 10.5376 16.4729 10.4992C15.7574 10.3121 15.0186 10.8847 15.0186 11.6263C15.0186 12.2043 15.1857 12.4231 16.6255 13.7293C17.6641 14.6715 17.7868 14.7483 18.2532 14.7483C18.7527 14.7483 18.7796 14.7254 21.1002 12.3335C22.6057 10.7816 23.4783 9.79076 23.542 9.56084C23.7696 8.73943 23.2692 8.07018 22.4274 8.07018C21.9212 8.07018 21.888 8.09678 20.0538 9.97405ZM47.7772 10.5653C47.0625 11.2832 47.4494 12.4278 48.4524 12.5629C48.8753 12.6199 48.9929 12.581 49.3398 12.2697C49.6739 11.9699 49.7399 11.8281 49.7399 11.4093C49.7399 10.9943 49.6734 10.8483 49.3548 10.5623C48.8278 10.0892 48.2501 10.0903 47.7772 10.5653ZM8.36765 34.1569C8.59489 34.2715 8.90215 34.5477 9.05032 34.7706L9.31982 35.1758L9.31934 43.5952C9.31899 51.8362 9.31388 52.023 9.07881 52.4104C8.93147 52.653 8.62992 52.8988 8.29856 53.046C7.81084 53.2627 7.5557 53.2821 5.66016 53.2466C3.37995 53.2037 3.12374 53.137 2.61192 52.4519C2.38041 52.1419 2.37365 51.9229 2.34301 43.7266C2.3131 35.711 2.322 35.2999 2.53357 34.902C2.6555 34.6724 2.96346 34.3647 3.21789 34.2182C3.64921 33.9699 3.82492 33.9518 5.81747 33.9501C7.61768 33.9485 8.01956 33.9812 8.36765 34.1569ZM36.7545 35.8946C37.9922 36.5521 38.0675 38.1242 36.8963 38.8555C36.4506 39.134 36.4234 39.1358 31.7586 39.1951L27.069 39.2547L26.3289 39.5981C24.8833 40.2687 24.0079 41.5728 23.9978 43.0708C23.9877 44.565 24.8595 45.9022 26.2798 46.571L26.9503 46.8868L34.9266 46.9199C43.6729 46.9561 44.0298 46.9332 45.1778 46.2642C45.4907 46.0819 47.6251 44.1887 49.9211 42.0571C52.2171 39.9255 54.2654 38.0905 54.473 37.9794C55.3881 37.4894 56.6673 37.6139 57.4597 38.27C57.9469 38.6734 58.346 39.4208 58.3501 39.938C58.3575 40.8497 58.2185 40.9983 51.6859 47.0614C47.7904 50.6771 45.2088 52.9866 44.8886 53.1422C44.0539 53.5481 42.7213 53.6229 36.3888 53.6197C26.1594 53.6145 21.9307 53.4019 20.4055 52.8164C20.0872 52.6943 17.9971 51.7696 15.7606 50.7616L11.6943 48.9288V43.418V37.9072L12.3293 37.3242C12.6786 37.0036 13.3118 36.5695 13.7363 36.3595C15.2306 35.6206 14.9327 35.6384 26.0709 35.6274L36.2327 35.6175L36.7545 35.8946Z" fill="#151EA6"/>
-          </svg>
-
-        </h2>
-      </div>
-
-      <!-- Carousel wrapper -->
-      <div class="relative">
-        <!-- Prev/Next buttons (no bg) - enlarged, bolder and moved further out -->
-        <button id="tenantsPrev" aria-label="Previous tenants" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="left:-72px;">
-          <svg class="w-7 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M15 19l-7-7 7-7"/></svg>
-        </button>
-        <button id="tenantsNext" aria-label="Next tenants" class="hidden md:block absolute top-1/2 transform -translate-y-1/2 p-3 z-10" style="right:-72px;">
-          <svg class="w-7 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M9 5l7 7-7 7"/></svg>
-        </button>
-
-  <div class="tenants-carousel flex gap-6 overflow-hidden snap-x snap-mandatory scroll-smooth py-4">
-          <div class="min-w-[260px] snap-start rounded-xl overflow-hidden transition duration-300 flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover rounded-xl" alt="London Apartments">
-            <div class="p-6">
-              <h3 class="font-bold text-lg mb-2">London Apartments</h3>
-              <p class="text-gray-600 mb-4">Premium city living</p>
-              <a href="product.php?id=5" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg w-full text-center block transition-colors">View Property</a>
-            </div>
-          </div>
-
-          <div class="min-w-[260px] snap-start rounded-xl overflow-hidden transition duration-300 flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover rounded-xl" alt="Birmingham Flats">
-            <div class="p-6">
-              <h3 class="font-bold text-lg mb-2">Birmingham Flats</h3>
-              <p class="text-gray-600 mb-4">Modern urban living</p>
-              <a href="product.php?id=12" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg w-full text-center block transition-colors">View Property</a>
-            </div>
-          </div>
-
-          <div class="min-w-[260px] snap-start rounded-xl overflow-hidden transition duration-300 flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover rounded-xl" alt="Manchester Homes">
-            <div class="p-6">
-              <h3 class="font-bold text-lg mb-2">Manchester Homes</h3>
-              <p class="text-gray-600 mb-4">Family-friendly areas</p>
-              <a href="product.php?id=22" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg w-full text-center block transition-colors">View Property</a>
-            </div>
-          </div>
-
-          <div class="min-w-[260px] snap-start rounded-xl overflow-hidden transition duration-300 flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover rounded-xl" alt="Leeds Properties">
-            <div class="p-6">
-              <h3 class="font-bold text-lg mb-2">Leeds Properties</h3>
-              <p class="text-gray-600 mb-4">Affordable housing</p>
-              <a href="product.php?id=14" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg w-full text-center block transition-colors">View Property</a>
-            </div>
-          </div>
-        </div>
-
-          <!-- Mobile-only arrows for tenants: plain black icons, no background -->
-          <div class="md:hidden flex justify-center gap-6 mt-4">
-            <button onclick="document.getElementById('tenantsPrev').click()" aria-label="Previous tenants" class="p-3 text-black">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M15 19l-7-7 7-7"/></svg>
-            </button>
-            <button onclick="document.getElementById('tenantsNext').click()" aria-label="Next tenants" class="p-3 text-black">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M9 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-
       </div>
     </div>
   </section>
@@ -839,6 +685,7 @@ $totalPages = ceil(count($allProperties) / $propertiesPerPage);
   <?php include 'footer.php'; ?>
 
   <script src="/public/assets/js/main.js"></script>
+  <script src="/public/assets/js/back-button-fix.js"></script>
   <!-- reveal script moved to /public/assets/js/main.js for global initialization -->
 </body>
 </html>
