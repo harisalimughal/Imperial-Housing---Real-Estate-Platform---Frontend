@@ -28,7 +28,7 @@
   <h3 class="text-yellow-500 text-lg font-semibold mb-4">Additional Links</h3>
   <ul class="space-y-2">
           <li><a href="/src/pages/design.php" class="text-gray-300 hover:brand-yellow">Property Management</a></li>
-          <li><a href="/src/pages/hmo.php" class="text-gray-300 hover:brand-yellow">HMO (Supported Living)</a></li>
+          <li><a href="/src/pages/hmo.php" class="text-gray-300 hover:brand-yellow">HMO (Supported Accomodation)</a></li>
           <li><a href="/src/pages/tenants.php" class="text-gray-300 hover:brand-yellow">Tenants</a></li>
           <li><a href="/src/pages/about.php" class="text-gray-300 hover:brand-yellow">About Us</a></li>
         </ul>
@@ -41,7 +41,7 @@
           <li class="flex items-start space-x-3">
             <img src="/public/assets/images/locationIcon.png" alt="Location" class="w-6 h-6 mt-1 flex-shrink-0 object-contain" />
             <div>
-              <p class="text-gray-300 text-sm">1250, Coventry Road, B25 8BJ, Birmingham</p>
+              <p class="text-gray-300 text-sm">1250 Coventry Road, B25 8BJ, Birmingham</p>
             </div>
           </li>
           <li class="flex items-center space-x-3">

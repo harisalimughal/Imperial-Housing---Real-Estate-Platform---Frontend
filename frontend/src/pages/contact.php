@@ -64,7 +64,7 @@
 							<input 
 								type="date" 
 								name="required_moving_date" 
-								placeholder="Required Moving Date" 
+								placeholder="Request Move IN" 
 								required 
 								class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 placeholder-gray-500"
 							>
@@ -76,8 +76,8 @@
 						<div>
 							<input 
 								type="text" 
-								name="postal_code" 
-								placeholder="Postal Code" 
+								name="post_code" 
+								placeholder="Post Code" 
 								class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 placeholder-gray-500"
 							>
 						</div>
@@ -178,7 +178,7 @@
 							</svg>
 						</div>
 						<h3 class="font-semibold text-gray-900 mb-1">Address</h3>
-						<p class="text-gray-600">1250, Coventry Road, B25 8BJ, Birmingham</p>
+						<p class="text-gray-600">1250 Coventry Road, B25 8BJ, Birmingham</p>
 					</div>
 				</div>
 			</div>
@@ -187,66 +187,17 @@
 
 	<!-- Google Map Section -->
 	<section class="py-0 bg-white">
-		<div class="w-full h-96 relative">
-			<div id="map" class="w-full h-full bg-gray-200 relative overflow-hidden group">
-				<!-- Map Container -->
-				<iframe 
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155358.8942334246!2d-1.9690508!3d52.4796992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870942d1b417173%3A0xca81fef0aeee7998!2sBirmingham%2C%20UK!5e0!3m2!1sen!2sus!4v1635000000000!5m2!1sen!2sus"
-					width="100%" 
-					height="100%" 
-					style="border:0;pointer-events:none;" 
-					allowfullscreen="" 
-					loading="lazy" 
-					referrerpolicy="no-referrer-when-downgrade"
-					class="grayscale">
-				</iframe>
-
-				<div class="absolute top-8 right-20">
-					<div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-						<svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-						</svg>
-					</div>
-				</div>
-
-				<div class="absolute bottom-16 left-20">
-					<div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-						<svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-						</svg>
-					</div>
-				</div>
-
-				<div class="absolute bottom-8 right-24">
-					<div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-						<svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-						</svg>
-					</div>
-				</div>
-
-				<div class="absolute top-20 left-1/3">
-					<div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-						<svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-						</svg>
-					</div>
-				</div>
-
-				<div class="absolute top-1/3 right-16">
-					<div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-						<svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-						</svg>
-					</div>
-				</div>
-
-				</div>
-			</div>
-		</div>
-	</section>
-
-
+    <div class="relative w-full h-[300px]"> 
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155358.8942334246!2d-1.9690508!3d52.4796992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870942d1b417173%3A0xca81fef0aeee7998!2sBirmingham%2C%20UK!5e0!3m2!1sen!2sus!4v1635000000000!5m2!1sen!2sus"
+            class="absolute top-0 left-0 w-full h-full"
+            style="border:0; pointer-events:none;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
 	<script>
 		// Make map clickable to open Google Maps
 		document.addEventListener('DOMContentLoaded', function() {
