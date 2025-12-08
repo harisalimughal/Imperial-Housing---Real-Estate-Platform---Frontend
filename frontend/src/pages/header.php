@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center space-x-2">
-      <img src="/public/assets/images/LogoBgblack.png" alt="Imperial Housing" class="w-16 h-16 object-contain">
+      <img src="/public/assets/images/logo.png" alt="Imperial Housing" class="w-16 h-16 object-contain">
       </div>
       
       <!-- Navigation -->
@@ -53,7 +53,7 @@
   <div id="mobileMenuPanel" class="w-full max-w-md bg-white rounded-2xl shadow-2xl ring-1 ring-black ring-opacity-5 overflow-hidden pointer-events-auto opacity-0 scale-95 translate-y-2 transform transition-all duration-300 ease-out">
         <div class="flex items-center justify-between px-6 py-4 border-b">
           <div class="flex items-center space-x-2">
-            <img src="/public/assets/images/LogoBgblack.png" alt="Imperial Housing" class="w-12 h-12 object-contain">
+            <img src="/public/assets/images/logo.png" alt="Imperial Housing" class="w-12 h-12 object-contain">
           </div>
           <button id="mobileMenuCloseBtn" data-pressable="true" class="p-2 rounded hover:bg-red-100">
             <svg class="w-6 h-6 text-gray-700 transform transition-transform duration-200 hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -85,7 +85,7 @@
 <!-- Splash screen: rotating logo with blurred background -->
 <div id="splashScreen" aria-hidden="true" class="fixed inset-0 z-50 flex items-center justify-center" style="background: rgba(255,255,255,0.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: opacity .35s ease, visibility .35s;">
   <div class="flex flex-col items-center space-y-4">
-    <img src="/public/assets/images/LogoBgblack.png" alt="Imperial Housing" id="splashLogo" class="splash-logo" style="width:120px;height:120px;object-fit:contain;">
+    <img src="/public/assets/images/logo.png" alt="Imperial Housing" id="splashLogo" class="splash-logo" style="width:120px;height:120px;object-fit:contain;">
     <div class="text-sm text-gray-700">Loading</div>
   </div>
 </div>
