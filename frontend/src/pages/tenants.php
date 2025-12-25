@@ -282,7 +282,7 @@
 							</div>
 							<div class="text-left">
 								<div class="text-sm font-medium text-gray-600">Address</div>
-								<div class="text-sm text-gray-800">1250, Coventry Road, B25 8BJ, Birmingham</div>
+								<div class="text-sm text-gray-800">1250 Coventry Road, B25 8BJ, Birmingham</div>
 							</div>
 						</div>
 					</div>

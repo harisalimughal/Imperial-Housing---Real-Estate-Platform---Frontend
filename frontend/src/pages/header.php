@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center space-x-2">
-      <img src="/public/assets/images/logo.png" alt="Imperial Housing" class="w-16 h-16 object-contain">
+      <img src="/public/assets/images/logo.png" alt="Imperial Housing" class="w-20 h-20 object-contain">
       </div>
       
       <!-- Navigation -->
