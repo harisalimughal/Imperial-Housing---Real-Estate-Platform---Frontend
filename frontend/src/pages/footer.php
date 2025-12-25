@@ -4,10 +4,10 @@
       
       <!-- Logo & Info -->
       <div class="flex flex-col items-start">
-        <img src="/public/assets/images/logo.png" alt="Imperial Housing" class="mb-4 w-40 h-40 md:w-44 md:h-44 object-contain">
+        <img src="/public/assets/images/logo.png" alt="Imperial Housing" class="mb-0 w-40 h-40 md:w-44 md:h-44 object-contain">
         <div>
           <p class="text-gray-300 text-sm leading-relaxed max-w-xs">
-            Always striving to make the lives of landlords and tenants stress free.
+            Where housing meets care
           </p>
         </div>
       </div>
